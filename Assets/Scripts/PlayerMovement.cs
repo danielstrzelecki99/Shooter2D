@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     private Rigidbody2D body;
     private bool grounded;
+    private bool falling;
     private Animator animat;
 
     private void Awake()
@@ -27,18 +28,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
-            animat.SetBool("jump", Input.GetKey(KeyCode.Space));
             Jump();
         }
+        if (Input.GetKeyUp(KeyCode.Space))
+            falling = true;
+            animat.SetBool("fall", falling);
 
         //Set animator parameters
         animat.SetBool("run", horizontalInput != 0);
+        animat.SetBool("grounded", grounded);
     }
 
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed);
         grounded = false;
+        falling = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other) 

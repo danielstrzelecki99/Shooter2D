@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,32 +8,41 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private Animator animat;
 
+    PhotonView view;
+
     private void Awake()
     {
-
         body = GetComponent<Rigidbody2D>();
         animat = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        view = GetComponent<PhotonView>();
+    }
+
     private void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
-        //Flip player when moving left-right
-        if (horizontalInput > 0.01f)
-            transform.localScale = new Vector3((float)0.14, (float)0.14, (float)0.14);
-        else if (horizontalInput < -0.01f)
-            transform.localScale = new Vector3((float)-0.14, (float)0.14, (float)0.14);
-
-        if (Input.GetKey(KeyCode.Space) && grounded)
+        if(view.IsMine)
         {
-            animat.SetBool("jump", Input.GetKey(KeyCode.Space));
-            Jump();
-        }
+            float horizontalInput = Input.GetAxis("Horizontal");
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
-        //Set animator parameters
-        animat.SetBool("run", horizontalInput != 0);
+            //Flip player when moving left-right
+            if (horizontalInput > 0.01f)
+                transform.localScale = new Vector3((float)0.14, (float)0.14, (float)0.14);
+            else if (horizontalInput < -0.01f)
+                transform.localScale = new Vector3((float)-0.14, (float)0.14, (float)0.14);
+
+            if (Input.GetKey(KeyCode.Space) && grounded)
+            {
+                animat.SetBool("jump", Input.GetKey(KeyCode.Space));
+                Jump();
+            }
+
+            //Set animator parameters
+            animat.SetBool("run", horizontalInput != 0);
+        }
     }
 
     private void Jump()

@@ -13,11 +13,11 @@ public class PlayerMovement : MonoBehaviour
     private bool doubleJump;
 
     //Dash
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashingPower = 24f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    // private bool canDash = true;
+    // private bool isDashing;
+    // private float dashingPower = 24f;
+    // private float dashingTime = 0.2f;
+    // private float dashingCooldown = 1f;
     //[SerializeField] private TrailRenderer tr;
 
     private Animator animat;
@@ -40,10 +40,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(view.IsMine)
         {
-            if (isDashing)
-            {
-                return;
-            }
+            // if (isDashing)
+            // {
+            //     return;
+            // }
 
             if (grounded && !Input.GetKey(KeyCode.Space))
             {
@@ -72,10 +72,10 @@ public class PlayerMovement : MonoBehaviour
             //Set animator parameters
             animat.SetBool("run", horizontalInput != 0);
 
-            if (Input.GetKey(KeyCode.LeftShift) && canDash)
-            {
-                StartCoroutine(Dash());
-            }
+            // if (Input.GetKey(KeyCode.LeftShift) && canDash)
+            // {
+            //     StartCoroutine(Dash());
+            // }
         }
     }
 
@@ -95,26 +95,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        float originalGravity = body.gravityScale;
-        body.gravityScale = 0f;
-        if (horizontalInput > 0.01f)
-        {
-            body.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-        }
-        else if (horizontalInput < -0.01f)
-        {
-            body.velocity = new Vector2(transform.localScale.x * -dashingPower, 0f);
-        }
-        //tr.emitting = true;
-        yield return new WaitForSeconds(dashingTime);
-        //tr.emitting = false;
-        body.gravityScale = originalGravity;
-        isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
-    }
+    // private IEnumerator Dash()
+    // {
+    //     canDash = false;
+    //     isDashing = true;
+    //     float originalGravity = body.gravityScale;
+    //     body.gravityScale = 0f;
+    //     if (horizontalInput > 0.01f)
+    //     {
+    //         body.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+    //     }
+    //     else if (horizontalInput < -0.01f)
+    //     {
+    //         body.velocity = new Vector2(transform.localScale.x * -dashingPower, 0f);
+    //     }
+    //     //tr.emitting = true;
+    //     yield return new WaitForSeconds(dashingTime);
+    //     //tr.emitting = false;
+    //     body.gravityScale = originalGravity;
+    //     isDashing = false;
+    //     yield return new WaitForSeconds(dashingCooldown);
+    //     canDash = true;
+    // }
 }

@@ -18026,6 +18026,7 @@ GameObject:
   - component: {fileID: -5114872951129833208}
   - component: {fileID: 7876176843534519352}
   - component: {fileID: 2265333968282787962}
+  - component: {fileID: 7625572257315698746}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -18151,6 +18152,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: -5114872951129833208}
   - {fileID: 7876176843534519352}
+  - {fileID: 2265333968282787962}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -18224,6 +18226,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmoothingDelay: 5
+--- !u!114 &7625572257315698746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462434138723774264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e87a7892a2ecc44a7bfc262a1ef199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 7460605439468301052}
 --- !u!1 &7462447437678163396
 GameObject:
   m_ObjectHideFlags: 0

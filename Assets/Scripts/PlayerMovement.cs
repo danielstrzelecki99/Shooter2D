@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,38 +20,62 @@ public class PlayerMovement : MonoBehaviour
     private float dashingCooldown = 1f;
     //[SerializeField] private TrailRenderer tr;
 
+    private Animator animat;
+
+    PhotonView view;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         //tr = GetComponent<TrailRenderer>();
+        animat = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        view = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        if (isDashing)
+        if(view.IsMine)
         {
-            return;
-        }
-        
-        horizontalInput = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            if (isDashing)
+            {
+                return;
+            }
 
-        if (grounded && !Input.GetKey(KeyCode.Space))
-        {
-            doubleJump = false;
-        }
+            if (grounded && !Input.GetKey(KeyCode.Space))
+            {
+                doubleJump = false;
+            }
+            
+                        
+            horizontalInput = Input.GetAxis("Horizontal");
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
-        if(Input.GetButtonDown("Jump"))
-        {
-           if (grounded || doubleJump)
-           {
-                Jump();
-           } 
-        }
+            //Flip player when moving left-right
+            if (horizontalInput > 0.01f)
+                transform.localScale = new Vector3((float)0.14, (float)0.14, (float)0.14);
+            else if (horizontalInput < -0.01f)
+                transform.localScale = new Vector3((float)-0.14, (float)0.14, (float)0.14);
 
-        if (Input.GetKey(KeyCode.LeftShift) && canDash)
-        {
-            StartCoroutine(Dash());
+            if(Input.GetButtonDown("Jump"))
+            {
+                if (grounded || doubleJump)
+                {
+                    animat.SetBool("jump", Input.GetKey(KeyCode.Space));
+                    Jump();
+                } 
+            }
+
+            //Set animator parameters
+            animat.SetBool("run", horizontalInput != 0);
+
+            if (Input.GetKey(KeyCode.LeftShift) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
         }
     }
 

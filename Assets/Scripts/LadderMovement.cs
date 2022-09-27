@@ -19,8 +19,6 @@ public class LadderMovement : MonoBehaviour
         {
             isClimbing = true;
         }
-        Debug.Log("isClimbing" + isClimbing);
-        Debug.Log("isLadder" + isLadder);
     }
 
     private void FixedUpdate() 

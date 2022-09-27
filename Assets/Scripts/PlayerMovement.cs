@@ -36,27 +36,9 @@ public class PlayerMovement : MonoBehaviour
         view = GetComponent<PhotonView>();
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    private void FixedUpdate()
     {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(body.position);
-            stream.SendNext(body.rotation);
-            stream.SendNext(body.velocity);
-        }
-        else
-        {
-            body.position = (Vector3)stream.ReceiveNext();
-            body.velocity = (Vector3)stream.ReceiveNext();
-
-            float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.timestamp));
-            body.position += body.velocity * lag;
-        }
-    }
-
-    private void Update()
-    {
-        if(view.IsMine)
+        if (view.IsMine)
         {
             // if (isDashing)
             // {

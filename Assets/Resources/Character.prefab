@@ -18205,10 +18205,10 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: run
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: jump
   m_SynchronizeLayers:
   - SynchronizeType: 0

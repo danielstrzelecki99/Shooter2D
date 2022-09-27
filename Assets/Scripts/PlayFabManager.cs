@@ -5,6 +5,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayFabManager : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class PlayFabManager : MonoBehaviour
     public void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         information.text = "Registered and logged in";
+        SceneManager.LoadScene("Loading");
     }
 
     public void LoginButton()
@@ -68,8 +70,9 @@ public class PlayFabManager : MonoBehaviour
     public void OnLoginSuccess(LoginResult resault)
     {
         information.text = "Logged in";
+        SceneManager.LoadScene("Loading");
     }
-    
+
     void Start()
     {
         //Login();

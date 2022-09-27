@@ -73,24 +73,27 @@ public class PlayFabManager : MonoBehaviour
         SceneManager.LoadScene("Loading");
     }
 
+    public void ResetPasswordButton()
+    {
+        var request = new SendAccountRecoveryEmailRequest {
+            Email = emailInput.text,
+            TitleId = "7DC52"
+        };
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnError);
+    }
+
+    public void OnPasswordReset(SendAccountRecoveryEmailResult resault)
+    {
+        information.text = "The reset email sent";
+    }
+
     void Start()
     {
-        //Login();
         registerButton.onClick.AddListener(() => { RegisterButton();});
         loginButton.onClick.AddListener(() => { LoginButton();});
+        passwordResetButton.onClick.AddListener(() => { ResetPasswordButton();});
     }
     
-
-
-    // void Login()
-    // {
-    //     var request = new LoginWithCustomIDRequest {
-    //         CustomId = SystemInfo.deviceUniqueIdentifier,
-    //         CreateAccount = true
-    //     };
-    //     PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
-    // }
-
     void OnSuccess(LoginResult result)
     {
         Debug.Log("Successful login/account create!");

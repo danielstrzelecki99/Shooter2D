@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     private Rigidbody2D body;
     private bool grounded;
+    private Animator animator;
     private bool doubleJump;
 
     //Dash
@@ -20,15 +21,13 @@ public class PlayerMovement : MonoBehaviour
     // private float dashingCooldown = 1f;
     //[SerializeField] private TrailRenderer tr;
 
-    private Animator animat;
 
     PhotonView view;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        //tr = GetComponent<TrailRenderer>();
-        animat = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -64,14 +63,18 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (grounded || doubleJump)
                 {
-                    animat.SetBool("jump", Input.GetKey(KeyCode.Space));
+                    animator.SetBool("jump", Input.GetKey(KeyCode.Space));
                     Jump();
                 } 
             }
 
             //Set animator parameters
-            animat.SetBool("run", horizontalInput != 0);
-
+            animator.SetBool("run", horizontalInput != 0);
+            animator.SetBool("grounded", grounded);
+            animator.SetBool("jump", !grounded);
+    
+            //Set the yVelocity in the animator
+            animator.SetFloat("yVelocity", body.velocity.y);
             // if (Input.GetKey(KeyCode.LeftShift) && canDash)
             // {
             //     StartCoroutine(Dash());
@@ -82,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed);
+        animator.SetBool("jump", true);
         grounded = false;
         doubleJump = !doubleJump;
         

@@ -35,6 +35,22 @@ public class PlayerMovement : MonoBehaviour
         view = GetComponent<PhotonView>();
     }
 
+    private void Update()
+    {
+        if (view.IsMine)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                if (grounded || doubleJump)
+                {
+                    animator.SetBool("jump", Input.GetKey(KeyCode.Space));
+                    Jump();
+
+                }
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         if (view.IsMine)
@@ -59,14 +75,14 @@ public class PlayerMovement : MonoBehaviour
             else if (horizontalInput < -0.01f)
                 transform.localScale = new Vector3((float)-0.14, (float)0.14, (float)0.14);
 
-            if(Input.GetButtonDown("Jump"))
+            /*if(Input.GetButtonDown("Jump"))
             {
                 if (grounded || doubleJump)
                 {
                     animator.SetBool("jump", Input.GetKey(KeyCode.Space));
                     Jump();
                 } 
-            }
+            }*/
 
             //Set animator parameters
             animator.SetBool("run", horizontalInput != 0);

@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+        Physics2D.IgnoreLayerCollision(3, 3);
     }
 
     private void FixedUpdate()

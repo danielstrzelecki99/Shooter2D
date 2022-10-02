@@ -17762,6 +17762,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1343197951307874678}
   - {fileID: -5499464127023512479}
+  - {fileID: -5562083267010693072}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -17886,7 +17887,7 @@ MonoBehaviour:
   isAngularVelocityCompressed: 0
   automaticallyResetTime: 1
   isSmoothingAuthorityChanges: 0
-  whenToUpdateTransform: 0
+  whenToUpdateTransform: 1
   setVelocityInsteadOfPositionOnNonOwners: 0
   useLocalTransformOnly: 0
   maxPositionDifferenceForVelocitySyncing: 10

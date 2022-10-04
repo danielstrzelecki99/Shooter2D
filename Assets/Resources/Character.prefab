@@ -17859,6 +17859,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 1
     Name: yVelocity
+  - Type: 4
+    SynchronizeType: 0
+    Name: shot
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

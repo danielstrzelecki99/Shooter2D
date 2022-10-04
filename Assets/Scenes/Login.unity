@@ -1668,12 +1668,9 @@ MonoBehaviour:
   information: {fileID: 196351642}
   emailInput: {fileID: 325948292}
   passwordInput: {fileID: 1113368579}
-  usernameInput: {fileID: 0}
   loginButton: {fileID: 752037904}
-  registerButton: {fileID: 0}
   passwordResetButton: {fileID: 1461284265}
   switchToRegister: {fileID: 1933964432}
-  switchToLogin: {fileID: 0}
 --- !u!1 &1346283316
 GameObject:
   m_ObjectHideFlags: 0

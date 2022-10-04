@@ -111,8 +111,8 @@ public class PlayFabManager : MonoBehaviour
         registerButton.onClick.AddListener(() => { RegisterButton();});
         loginButton.onClick.AddListener(() => { LoginButton();});
         passwordResetButton.onClick.AddListener(() => { ResetPasswordButton();});
-        // switchToRegister.onClick.AddListener(() => { SwitchToRegister();});
-        // switchToLogin.onClick.AddListener(() => { SwitchToLogin();});
+        switchToRegister.onClick.AddListener(() => { SwitchToRegister();});
+        switchToLogin.onClick.AddListener(() => { SwitchToLogin();});
     }
     
     void OnSuccess(LoginResult result)

@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
             
                         
             horizontalInput = Input.GetAxis("Horizontal");
+            
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
             //Flip player when moving left-right

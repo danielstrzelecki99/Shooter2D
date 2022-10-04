@@ -12,9 +12,12 @@ public class PlayFabManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI information;
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
+    public TMP_InputField usernameInput;
     public Button loginButton;
     public Button registerButton;
     public Button passwordResetButton;
+    public Button switchToRegister;
+    public Button switchToLogin;
 
     public void RegisterButton()
     {
@@ -28,11 +31,17 @@ public class PlayFabManager : MonoBehaviour
             information.text = "The password is too short!";
             return;
         }
+        else if(usernameInput.text == "")
+        {
+            information.text = "The username is empty!";
+            return;
+        }
         else 
         {
             var request = new RegisterPlayFabUserRequest {
             Email = emailInput.text,
             Password = passwordInput.text,
+            Username = usernameInput.text,
             RequireBothUsernameAndEmail = false
             };
             PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
@@ -87,11 +96,23 @@ public class PlayFabManager : MonoBehaviour
         information.text = "The reset email sent";
     }
 
+    public void SwitchToRegister()
+    {
+        SceneManager.LoadScene("Registration");
+    }
+
+    public void SwitchToLogin()
+    {
+        SceneManager.LoadScene("Login");
+    }
+
     void Start()
     {
         registerButton.onClick.AddListener(() => { RegisterButton();});
         loginButton.onClick.AddListener(() => { LoginButton();});
         passwordResetButton.onClick.AddListener(() => { ResetPasswordButton();});
+        // switchToRegister.onClick.AddListener(() => { SwitchToRegister();});
+        // switchToLogin.onClick.AddListener(() => { SwitchToLogin();});
     }
     
     void OnSuccess(LoginResult result)

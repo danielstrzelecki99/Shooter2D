@@ -6,6 +6,7 @@ using PlayFab.ClientModels;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class PlayFabManagerLogin : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayFabManagerLogin : MonoBehaviour
     public Button loginButton;
     public Button passwordResetButton;
     public Button switchToRegister;
-    public string username = "chuj";
+    public string username = "null";
 
     public void LoginButton()
     {
@@ -39,39 +40,24 @@ public class PlayFabManagerLogin : MonoBehaviour
         }
     }
 
-    // string ReturnUsername(GetPlayerProfileResult profile)
-    // {
-    //     return profile.PlayerProfile.DisplayName;
-    // }
+    public void GetUsername(){
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataRecieved, OnError);
+    }
 
-    // void GetPlayerProfile(string playFabId) {
-
-    //     // var request = new GetPlayerProfileRequest {
-    //     //     PlayFabId = playFabId,
-    //     // };
-
-    //     string newUsername = null;
-    //     PlayFabClientAPI.GetPlayerProfile( new GetPlayerProfileRequest() {
-    //         PlayFabId = playFabId,
-    //         ProfileConstraints = new PlayerProfileViewConstraints() {
-    //             ShowDisplayName = true
-    //         }
-    //     },
-    //     (result) => {
-    //         var newUsername = result.PlayerProfile.DisplayName;
-    //         Debug.Log("in result" + newUsername);
-    //     },
-    //     error => Debug.LogError(error.GenerateErrorReport()));
-
-    //     Debug.Log("in get" + newUsername);
-    // }
+    void OnDataRecieved(GetUserDataResult result){
+        Debug.Log("I got data!");
+        if(result.Data != null && result.Data.ContainsKey("Username")){
+            username = result.Data["Username"].Value;
+        }
+    }
 
     public void OnLoginSuccess(LoginResult result)
     {
         information.text = "Logged in";
         SceneManager.LoadScene("Loading");
-        // GetPlayerProfile(result.PlayFabId);
-       // Debug.Log("in success" + username);
+        GetUsername();
+        Debug.Log(username);
+
     }
 
     public void ResetPasswordButton()

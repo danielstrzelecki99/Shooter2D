@@ -6,6 +6,7 @@ using PlayFab.ClientModels;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class PlayFabManagerRegister : MonoBehaviour
 {
@@ -46,6 +47,24 @@ public class PlayFabManagerRegister : MonoBehaviour
         }
     }
 
+    public void SetStatsToData(){
+        var request = new UpdateUserDataRequest {
+            Data = new Dictionary<string, string> {
+                {"Username", usernameInput.text},
+                {"Level", "1"},
+                {"PlayedGames", "0"},
+                {"Wins", "0"},
+                {"Experience", "0"},
+                {"Coins", "0"}
+            }
+        };
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
+    }
+
+    void OnDataSend(UpdateUserDataResult result){
+        Debug.Log("User data updated");
+    }
+
     public void SetPlayerName(){
         var request = new UpdateUserTitleDisplayNameRequest {
                 DisplayName = usernameInput.text,
@@ -56,6 +75,7 @@ public class PlayFabManagerRegister : MonoBehaviour
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult resault)
     {
         Debug.Log("Name updated");
+        SetStatsToData();
     }
 
     public void OnRegisterSuccess(RegisterPlayFabUserResult result)

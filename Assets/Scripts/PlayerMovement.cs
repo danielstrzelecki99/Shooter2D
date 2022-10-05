@@ -52,6 +52,17 @@ public class PlayerMovement : MonoBehaviour
                     Jump();
                 }
             }
+            if (Input.GetButtonDown("Crouch"))
+            {
+                if (grounded)
+                {
+                    animator.SetBool("crouch", true);
+                }
+            }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                animator.SetBool("crouch", false);
+            }
         }
         Physics2D.IgnoreLayerCollision(3, 3);
     }
@@ -72,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
             
                         
             horizontalInput = Input.GetAxis("Horizontal");
-            
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
             //Flip player when moving left-right

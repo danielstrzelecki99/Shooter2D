@@ -7247,7 +7247,7 @@ Transform:
   - {fileID: 7013311509183002620}
   m_Father: {fileID: 7010977026621142480}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 91.938}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7007790670171633272
 GameObject:
   m_ObjectHideFlags: 0
@@ -17710,7 +17710,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.4
+  m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: a09d5032f185b9c4599da59f811cf410, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -17850,9 +17850,6 @@ MonoBehaviour:
   m_SynchronizeParameters:
   - Type: 4
     SynchronizeType: 1
-    Name: run
-  - Type: 4
-    SynchronizeType: 1
     Name: grounded
   - Type: 4
     SynchronizeType: 1
@@ -17863,6 +17860,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: shot
+  - Type: 1
+    SynchronizeType: 0
+    Name: Speed
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

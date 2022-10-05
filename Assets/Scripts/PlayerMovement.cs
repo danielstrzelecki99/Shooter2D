@@ -56,11 +56,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (grounded)
                 {
+                    speed /= 2;
                     animator.SetBool("crouch", true);
                 }
             }
             else if (Input.GetButtonUp("Crouch"))
             {
+                speed *= 2;
                 animator.SetBool("crouch", false);
             }
         }
@@ -119,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "Ground")
         {
             grounded = true;
+            Debug.Log(other.gameObject.tag);
         }
     }
     private void Flip()

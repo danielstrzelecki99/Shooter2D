@@ -10,6 +10,7 @@ using System.Threading;
 
 public class PlayFabManagerRegister : MonoBehaviour
 {
+    //UI fields
     [SerializeField] TextMeshProUGUI information;
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
@@ -17,6 +18,7 @@ public class PlayFabManagerRegister : MonoBehaviour
     public Button registerButton;
     public Button switchToLogin;
 
+    //Registration
     public void RegisterButton()
     {
         if(emailInput.text == "")
@@ -47,24 +49,26 @@ public class PlayFabManagerRegister : MonoBehaviour
         }
     }
 
-    public void SetStatsToData(){
-        var request = new UpdateUserDataRequest {
-            Data = new Dictionary<string, string> {
-                {"Username", usernameInput.text},
-                {"Level", "1"},
-                {"PlayedGames", "0"},
-                {"Wins", "0"},
-                {"Experience", "0"},
-                {"Coins", "0"}
-            }
-        };
-        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
-    }
+    //Setting stats in Data
+    // public void SetStatsToData(){
+    //     var request = new UpdateUserDataRequest {
+    //         Data = new Dictionary<string, string> {
+    //             {"Username", usernameInput.text},
+    //             {"Level", "1"},
+    //             {"PlayedGames", "0"},
+    //             {"Wins", "0"},
+    //             {"Experience", "0"},
+    //             {"Coins", "0"}
+    //         }
+    //     };
+    //     PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
+    // }
 
-    void OnDataSend(UpdateUserDataResult result){
-        Debug.Log("User data updated");
-    }
+    // void OnDataSend(UpdateUserDataResult result){
+    //     Debug.Log("User data updated");
+    // }
 
+    //Setting username
     public void SetPlayerName(){
         var request = new UpdateUserTitleDisplayNameRequest {
                 DisplayName = usernameInput.text,
@@ -75,9 +79,29 @@ public class PlayFabManagerRegister : MonoBehaviour
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult resault)
     {
         Debug.Log("Name updated");
-        SetStatsToData();
+        SetPlayerStatistics();
     }
 
+    //Setting statis in statistics
+    public void SetPlayerStatistics(){
+        var request = new UpdatePlayerStatisticsRequest {
+            Statistics = new List<StatisticUpdate>{
+                new StatisticUpdate {StatisticName = "Level", Value = 0},
+                new StatisticUpdate {StatisticName = "PlayedGames", Value = 0},
+                new StatisticUpdate {StatisticName = "Wins", Value = 0},
+                new StatisticUpdate {StatisticName = "Experience", Value = 0},
+                new StatisticUpdate {StatisticName = "Coins", Value = 0},
+            }
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);
+    }
+
+    void OnUpdateStatistics(UpdatePlayerStatisticsResult result)
+    {
+        Debug.Log("Statistics added");
+    }
+
+    //Funcions after register
     public void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         information.text = "Registered and logged in";
@@ -85,17 +109,20 @@ public class PlayFabManagerRegister : MonoBehaviour
         SetPlayerName();
     }
 
+    //Switch
     public void SwitchToLogin()
     {
         SceneManager.LoadScene("Login");
     }
 
+    //Buttons executions
     void Start()
     {
         registerButton.onClick.AddListener(() => { RegisterButton();});
         switchToLogin.onClick.AddListener(() => { SwitchToLogin();});
     }
     
+    //Exta funcions
     void OnSuccess(LoginResult result)
     {
         Debug.Log("Successful login/account create!");

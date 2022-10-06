@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
@@ -11,7 +12,13 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(createInput.text);
+        if (!PhotonNetwork.IsConnected) // sprawdzenie czy jest po³¹czenie z serwerem
+        {
+            return;
+        }
+        RoomOptions options = new RoomOptions();
+        options.MaxPlayers = 10;
+        PhotonNetwork.JoinOrCreateRoom(createInput.text, options, TypedLobby.Default);
     }
 
     public void JoinRoom()
@@ -23,4 +30,4 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("Game");
     }
-}
+} 

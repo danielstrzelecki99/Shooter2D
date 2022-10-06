@@ -8,12 +8,6 @@ using Cinemachine;
 public class SpawnPlayers : MonoBehaviour
 {
     public GameObject playerPrefab;
-
-    public float minX;
-    public int maxX;
-    public float minY;
-    public int maxY;
-
     public CinemachineVirtualCamera myCinemachine;
 
     public float[,] listOfSpawns =
@@ -36,7 +30,15 @@ public class SpawnPlayers : MonoBehaviour
         System.Random gen = new System.Random();
         int numberOfSpawnPoint = gen.Next(11);
         Vector3 spawnPosition = new Vector3(listOfSpawns[numberOfSpawnPoint, 0], listOfSpawns[numberOfSpawnPoint, 1]);
-        var player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, Quaternion.identity);
+        GameObject player;
+        if (PhotonNetwork.InRoom)
+        {
+            player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+        }
 
         myCinemachine.Follow = player.transform;
     }

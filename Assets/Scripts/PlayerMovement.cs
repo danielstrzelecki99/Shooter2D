@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (view.IsMine)
+        if (view.IsMine || !PhotonNetwork.InRoom)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (view.IsMine)
+        if (view.IsMine || !PhotonNetwork.InRoom)
         {
             // if (isDashing)
             // {

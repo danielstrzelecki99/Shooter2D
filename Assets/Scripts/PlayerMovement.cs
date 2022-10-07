@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (view.IsMine)
+        if (view.IsMine || !PhotonNetwork.InRoom)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (view.IsMine)
+        if (view.IsMine || !PhotonNetwork.InRoom)
         {
             // if (isDashing)
             // {

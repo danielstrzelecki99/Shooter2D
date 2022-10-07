@@ -13659,6 +13659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a50a4b79619b943a3a0a0e942d9818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 7008343939132955052, guid: 10018cc639fbab444992b4ef5cb3c772, type: 3}
+  myCinemachine: {fileID: 1372364904}
 --- !u!4 &579035162
 Transform:
   m_ObjectHideFlags: 0
@@ -21091,10 +21093,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7008343939132955052, guid: 10018cc639fbab444992b4ef5cb3c772, type: 3}
-  minX: 25
-  maxX: 25
-  minY: 4
-  maxY: 4
   myCinemachine: {fileID: 1372364904}
 --- !u!4 &1144320090
 Transform:

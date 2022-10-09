@@ -6,14 +6,18 @@ namespace Photon.Pun.Demo.Asteroids
     public class Bullet : MonoBehaviour
     {
         public Player Owner { get; private set; }
+        public float speed = 20f;
+        public Rigidbody2D rb;
 
         public void Start()
         {
             Destroy(gameObject, 3.0f);
+            rb.velocity = transform.right * speed;
         }
 
-        public void OnCollisionEnter(Collision collision)
+        void OnTriggerEnter2D(Collider2D hitInfo)
         {
+            Debug.Log(hitInfo.name);
             Destroy(gameObject);
         }
 

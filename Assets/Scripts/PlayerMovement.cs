@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private Animator animator;
     private bool doubleJump;
+    private bool FacingRight = true; //For setting which way the player is facing
 
     //Dash
     // private bool canDash = true;
@@ -37,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (view.IsMine)
+        if (view.IsMine || !PhotonNetwork.InRoom)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (view.IsMine)
+        if (view.IsMine || !PhotonNetwork.InRoom)
         {
             // if (isDashing)
             // {
@@ -71,10 +72,12 @@ public class PlayerMovement : MonoBehaviour
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
             //Flip player when moving left-right
-            if (horizontalInput > 0.01f)
-                transform.localScale = new Vector3((float)0.14, (float)0.14, (float)0.14);
-            else if (horizontalInput < -0.01f)
-                transform.localScale = new Vector3((float)-0.14, (float)0.14, (float)0.14);
+            if (horizontalInput > 0.01f && !FacingRight)
+                Flip();
+            //transform.localScale = new Vector3((float)0.14, (float)0.14, (float)0.14);
+            else if (horizontalInput < -0.01f && FacingRight)
+                Flip();
+            //transform.localScale = new Vector3((float)-0.14, (float)0.14, (float)0.14);
 
             //Set animator parameters
             animator.SetBool("run", horizontalInput != 0);
@@ -105,6 +108,13 @@ public class PlayerMovement : MonoBehaviour
         {
             grounded = true;
         }
+    }
+    private void Flip()
+    {
+        // Switch the way the player is labelled as facing.
+        FacingRight = !FacingRight;
+
+        transform.Rotate(0f, 180f, 0f);
     }
 
     // private IEnumerator Dash()

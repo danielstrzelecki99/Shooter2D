@@ -8,6 +8,7 @@ namespace Photon.Pun.Demo.Asteroids
         public Player Owner { get; private set; }
         public float speed = 20f;
         public Rigidbody2D rb;
+        public GameObject impactEffect;
 
         public void Start()
         {
@@ -18,6 +19,8 @@ namespace Photon.Pun.Demo.Asteroids
         void OnTriggerEnter2D(Collider2D hitInfo)
         {
             Debug.Log(hitInfo.name);
+            //Instantiate(impactEffect, transform.position, transform.rotation);
+
             Destroy(gameObject);
         }
 

@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class RoomListing : MonoBehaviour
 {
     [SerializeField]
-    private Text text;
+    private Text _text;
 
     public void setRoomInfo(RoomInfo roomInfo)
     {
-        text.text = roomInfo.MaxPlayers + ", " + roomInfo.Name;
+        Debug.Log(roomInfo.Name);
+        _text.text = roomInfo.MaxPlayers + ", " + roomInfo.Name;
     }
 }

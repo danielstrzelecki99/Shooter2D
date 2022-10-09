@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private bool doubleJump;
     private bool FacingRight = true; //For setting which way the player is facing
+    float horizontalMove = 0f; //To define if player is moving
 
     //Dash
     // private bool canDash = true;
@@ -38,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
         if (view.IsMine || !PhotonNetwork.InRoom)
         {
             if (Input.GetButtonDown("Jump"))
@@ -47,6 +51,19 @@ public class PlayerMovement : MonoBehaviour
                     animator.SetBool("jump", Input.GetKey(KeyCode.Space));
                     Jump();
                 }
+            }
+            if (Input.GetButtonDown("Crouch"))
+            {
+                if (grounded)
+                {
+                    speed /= 2;
+                    animator.SetBool("crouch", true);
+                }
+            }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                speed *= 2;
+                animator.SetBool("crouch", false);
             }
         }
         Physics2D.IgnoreLayerCollision(3, 3);
@@ -68,19 +85,15 @@ public class PlayerMovement : MonoBehaviour
             
                         
             horizontalInput = Input.GetAxis("Horizontal");
-            
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
             //Flip player when moving left-right
             if (horizontalInput > 0.01f && !FacingRight)
                 Flip();
-            //transform.localScale = new Vector3((float)0.14, (float)0.14, (float)0.14);
             else if (horizontalInput < -0.01f && FacingRight)
                 Flip();
-            //transform.localScale = new Vector3((float)-0.14, (float)0.14, (float)0.14);
 
             //Set animator parameters
-            animator.SetBool("run", horizontalInput != 0);
             animator.SetBool("grounded", grounded);
             animator.SetBool("jump", !grounded);
     
@@ -98,8 +111,9 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, speed);
         animator.SetBool("jump", true);
         grounded = false;
+        if (doubleJump)
+            animator.SetBool("jump", false);
         doubleJump = !doubleJump;
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -107,13 +121,13 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "Ground")
         {
             grounded = true;
+            Debug.Log(other.gameObject.tag);
         }
     }
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
-
         transform.Rotate(0f, 180f, 0f);
     }
 

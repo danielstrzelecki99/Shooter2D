@@ -19,7 +19,6 @@ public class Gun_Shooting : MonoBehaviour
     //Variables for following the cursor
     public Transform weapon;
     Vector2 lookDirection;
-    float lookAngle;
     public Transform Player2;
     public Transform bodyPart;
 

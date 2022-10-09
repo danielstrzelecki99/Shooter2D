@@ -18,9 +18,9 @@ public class PlayFabManagerLogin : MonoBehaviour
     public Button switchToRegister;
 
     //Global variables of account statistics
-    public string username = "null";
-    public int level;
-    public int coins;
+    public static string username = "null";
+    public static int level;
+    public static int coins;
     public int experience;
     public int playedGames;
     public int wins;

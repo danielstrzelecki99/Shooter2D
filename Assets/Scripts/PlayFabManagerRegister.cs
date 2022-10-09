@@ -50,23 +50,18 @@ public class PlayFabManagerRegister : MonoBehaviour
     }
 
     //Setting stats in Data
-    // public void SetStatsToData(){
-    //     var request = new UpdateUserDataRequest {
-    //         Data = new Dictionary<string, string> {
-    //             {"Username", usernameInput.text},
-    //             {"Level", "1"},
-    //             {"PlayedGames", "0"},
-    //             {"Wins", "0"},
-    //             {"Experience", "0"},
-    //             {"Coins", "0"}
-    //         }
-    //     };
-    //     PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
-    // }
+    public void SetStatsToData(){
+        var request = new UpdateUserDataRequest {
+            Data = new Dictionary<string, string> {
+                {"Username", usernameInput.text}
+            }
+        };
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
+    }
 
-    // void OnDataSend(UpdateUserDataResult result){
-    //     Debug.Log("User data updated");
-    // }
+    void OnDataSend(UpdateUserDataResult result){
+        Debug.Log("User data updated");
+    }
 
     //Setting username
     public void SetPlayerName(){
@@ -99,13 +94,13 @@ public class PlayFabManagerRegister : MonoBehaviour
     void OnUpdateStatistics(UpdatePlayerStatisticsResult result)
     {
         Debug.Log("Statistics added");
+        SetStatsToData();
     }
 
     //Funcions after register
     public void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        information.text = "Registered and logged in";
-        SceneManager.LoadScene("Loading");
+        information.text = "Account registered successfully! Sign in now!";
         SetPlayerName();
     }
 

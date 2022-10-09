@@ -33,8 +33,8 @@ public class Gun_Shooting : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 bulletExit = Player2.transform.position;
         Vector3 playerToCursor = mousePos - bulletExit; 
-        Debug.Log("weapon End position:" + bulletExit);
-        Debug.Log("cursor position:" + mousePos);
+        //Debug.Log("weapon End position:" + bulletExit);
+        //Debug.Log("cursor position:" + mousePos);
         //Debug.Log("FirePoint position:" + firePoint.transform.position);
         Vector2 cursorVector = playerToCursor.normalized * radius;
         Vector2 finalPos = bulletExit + cursorVector;
@@ -76,7 +76,7 @@ public class Gun_Shooting : MonoBehaviour
         //send ray from the certain point and direction
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
         shot = true;
-        if (hitInfo) //
+        if (hitInfo) //if bullet hit the target
         {
             Debug.Log(hitInfo.transform.name);
             Instantiate(impactEffect, hitInfo.point, Quaternion.identity);

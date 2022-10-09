@@ -8,6 +8,7 @@ TagManager:
   - Ladder
   - Wall
   - Head
+  - Weapon
   layers:
   - Default
   - TransparentFX

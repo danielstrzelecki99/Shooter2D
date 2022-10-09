@@ -128,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
-
         transform.Rotate(0f, 180f, 0f);
     }
 

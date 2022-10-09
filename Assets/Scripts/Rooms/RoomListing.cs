@@ -9,9 +9,11 @@ public class RoomListing : MonoBehaviour
     [SerializeField]
     private Text _text;
 
+    public RoomInfo RoomInfo { get; private set; }
+
     public void setRoomInfo(RoomInfo roomInfo)
     {
-        Debug.Log(roomInfo.Name);
+        RoomInfo = roomInfo;
         _text.text = roomInfo.MaxPlayers + ", " + roomInfo.Name;
     }
 }

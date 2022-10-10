@@ -19,6 +19,11 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
             if (roomInfo.RemovedFromList)
             {
                 int index = roomListings.FindIndex(x => x.RoomInfo.Name == roomInfo.Name);
+                if (index != -1)
+                {
+                    Destroy(roomListings[index].gameObject);
+                    roomListings.RemoveAt(index);
+                }
             }
             else
             {

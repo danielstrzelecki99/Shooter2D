@@ -9,6 +9,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
     public InputField joinInput;
+    private RoomsCanvases roomsCanvases;
+
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+        roomsCanvases = canvases;
+    }
 
     public void CreateRoom()
     {
@@ -21,13 +27,19 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom(createInput.text, options, TypedLobby.Default);
     }
 
+    public override void OnCreatedRoom()
+    {
+        roomsCanvases.CurrentRoomCanvas.Show();
+        roomsCanvases.CreateOrJoinCanvas.Hide();
+    }
+
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(joinInput.text);
     }
 
-    public override void OnJoinedRoom()
+    /*public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("Game");
-    }
+    }*/
 } 

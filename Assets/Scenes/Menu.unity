@@ -5816,6 +5816,7 @@ GameObject:
   - component: {fileID: 1729772981}
   - component: {fileID: 1729772980}
   - component: {fileID: 1729772979}
+  - component: {fileID: 1729772982}
   m_Layer: 5
   m_Name: PlayersListings
   m_TagString: Untagged
@@ -5913,6 +5914,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729772977}
   m_CullTransparentMesh: 1
+--- !u!114 &1729772982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729772977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287eccd351789814ca703c8fe2db84f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 53335378}
+  playerListing: {fileID: 1125617458748889819, guid: 5b0249c91750d64468dc5e0fe3594cfd, type: 3}
 --- !u!1 &1770151191
 GameObject:
   m_ObjectHideFlags: 0
@@ -6195,6 +6210,7 @@ GameObject:
   - component: {fileID: 1789530469}
   - component: {fileID: 1789530468}
   - component: {fileID: 1789530467}
+  - component: {fileID: 1789530470}
   m_Layer: 5
   m_Name: RoomsListings
   m_TagString: Untagged
@@ -6292,6 +6308,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789530465}
   m_CullTransparentMesh: 1
+--- !u!114 &1789530470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789530465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff69997bd6e910409fccb335063fa21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 1004574292}
+  roomListing: {fileID: 8698137208643538386, guid: eb0b58d09ec85214b9cfc364869069b6, type: 3}
 --- !u!1 &1828143168
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 {
     void Start()
     {
-        PhotonNetwork.NickName = "test123";
+        PhotonNetwork.NickName = PlayFabManagerLogin.username;
         PhotonNetwork.ConnectUsingSettings();
     }
 

@@ -2974,6 +2974,7 @@ GameObject:
   - component: {fileID: 961237632}
   - component: {fileID: 961237631}
   - component: {fileID: 961237634}
+  - component: {fileID: 961237635}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3066,6 +3067,18 @@ MonoBehaviour:
   winsStat: {fileID: 762677325}
   gamesStat: {fileID: 2109480995}
   coinsStat: {fileID: 1683050264}
+--- !u!114 &961237635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961237630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d5f51e1788645498d831f404d25aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &966531761
 GameObject:
   m_ObjectHideFlags: 0
@@ -5426,6 +5439,7 @@ GameObject:
   - component: {fileID: 1851897660}
   - component: {fileID: 1851897661}
   - component: {fileID: 1851897662}
+  - component: {fileID: 1851897663}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -5493,6 +5507,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1851897663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851897659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1dbaadc0b2d5644aa7bf22124ec3405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logoutButton: {fileID: 1707913408}
 --- !u!1 &1852989971
 GameObject:
   m_ObjectHideFlags: 0

@@ -86,6 +86,7 @@ public class PlayFabManagerRegister : MonoBehaviour
                 new StatisticUpdate {StatisticName = "Wins", Value = 0},
                 new StatisticUpdate {StatisticName = "Experience", Value = 0},
                 new StatisticUpdate {StatisticName = "Coins", Value = 0},
+                new StatisticUpdate {StatisticName = "isLogged", Value = 0},
             }
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);

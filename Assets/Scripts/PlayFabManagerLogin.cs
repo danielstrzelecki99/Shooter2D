@@ -21,9 +21,9 @@ public class PlayFabManagerLogin : MonoBehaviour
     public static string username = "null";
     public static int level;
     public static int coins;
-    public int experience;
-    public int playedGames;
-    public int wins;
+    public static int experience;
+    public static int playedGames;
+    public static int wins;
 
     //Login funcion
     public void LoginButton()

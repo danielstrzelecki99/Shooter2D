@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Ladder
   - Wall
+  - Head
+  - Weapon
   layers:
   - Default
   - TransparentFX

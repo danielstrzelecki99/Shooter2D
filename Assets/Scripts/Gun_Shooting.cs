@@ -16,11 +16,6 @@ public class Gun_Shooting : MonoBehaviour
     private bool FacingRight = true; //For setting which way the player is facing
 
 
-    //Variables for following the cursor
-    public Transform weapon;
-    public Transform weaponPoint;
-    Vector2 lookDirection;
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -28,16 +23,6 @@ public class Gun_Shooting : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //assign to cursor's variables
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 bulletExit = weaponPoint.transform.position;
-        Vector3 playerToCursor = mousePos - bulletExit; 
-        Vector2 cursorVector = playerToCursor.normalized * radius;
-        Vector2 finalPos = bulletExit + cursorVector;
-        firePoint.transform.position = finalPos;
-        lookDirection = mousePos - (Vector2)firePoint.position;
-        firePoint.transform.right = lookDirection;
-
         //make action when fire button is pressed
         if (Input.GetButtonDown("Fire1"))
         {
@@ -61,7 +46,7 @@ public class Gun_Shooting : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot ()
+    IEnumerator Shoot()
     {
         //send ray from the certain point and direction
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
@@ -69,7 +54,7 @@ public class Gun_Shooting : MonoBehaviour
         if (hitInfo) //if bullet hit the target
         {
             Debug.Log(hitInfo.transform.name);
-            Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
+            Instantiate(impactEffect, hitInfo.point, firePoint.transform.rotation);
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
         }
@@ -89,6 +74,5 @@ public class Gun_Shooting : MonoBehaviour
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
-        //weapon.transform.Rotate(0, 0, 180f);
     }
 }

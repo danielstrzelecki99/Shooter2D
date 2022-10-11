@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    private SpriteRenderer spriteRender;
-    // Start is called before the first frame update
-    void Start()
-    {
-        spriteRender = GetComponent<SpriteRenderer>();
-    }
-
     // Update is called once per frame
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
         if (rotZ < 89 && rotZ > -89)
         {
             Debug.Log("Facing right");
-            spriteRender.flipY = false;
+            transform.Rotate(0f, 0f, transform.rotation.z);
         }
         else
         {
             Debug.Log("Facing left");
-            spriteRender.flipY = true;
+            transform.Rotate(180f, 0f, transform.rotation.z);
         }
     }
 }

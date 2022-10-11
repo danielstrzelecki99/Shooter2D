@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 105
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -9161,7 +9161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7007981753216200356}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.8, y: -2, z: -0}
+  m_LocalPosition: {x: 0.99, y: -5.35, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13967,7 +13967,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 76608e2431c99d740a4793928f713e44, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16143,16 +16142,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: e653cdefca3d3a844b52b22afe9b6aea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 10.24}
+  m_Size: {x: 10.24, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7008141508845671472
@@ -16230,6 +16229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7013250218807092080}
   - component: {fileID: 7185010963848001578}
+  - component: {fileID: 1215996368288981618}
   m_Layer: 3
   m_Name: Weapon R
   m_TagString: Weapon
@@ -16244,14 +16244,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7008153050880386164}
-  m_LocalRotation: {x: 0, y: 0, z: -0.70090926, w: 0.7132505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7013243628707847824}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7185010963848001578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16304,6 +16304,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1215996368288981618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7008153050880386164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad1b659db1d8db449dc5cbaf0078139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7008163934158747016
 GameObject:
   m_ObjectHideFlags: 0
@@ -18004,10 +18016,9 @@ MonoBehaviour:
   firePoint: {fileID: 2981141767691014503}
   impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
   lineRenderer: {fileID: 3830192131909698798}
-  radius: 1.2
+  radius: 1
   weapon: {fileID: 7013250218807092080}
-  Player2: {fileID: 2184204491302108411}
-  bodyPart: {fileID: 7013654214949694950}
+  weaponPoint: {fileID: 2184204491302108411}
 --- !u!1 &7008357681954972710
 GameObject:
   m_ObjectHideFlags: 0

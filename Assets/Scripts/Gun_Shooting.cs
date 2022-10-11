@@ -18,9 +18,8 @@ public class Gun_Shooting : MonoBehaviour
 
     //Variables for following the cursor
     public Transform weapon;
+    public Transform weaponPoint;
     Vector2 lookDirection;
-    public Transform Player2;
-    public Transform bodyPart;
 
     private void Awake()
     {
@@ -31,16 +30,13 @@ public class Gun_Shooting : MonoBehaviour
     {
         //assign to cursor's variables
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 bulletExit = Player2.transform.position;
+        Vector2 bulletExit = weaponPoint.transform.position;
         Vector3 playerToCursor = mousePos - bulletExit; 
-        //Debug.Log("weapon End position:" + bulletExit);
-        //Debug.Log("cursor position:" + mousePos);
-        //Debug.Log("FirePoint position:" + firePoint.transform.position);
         Vector2 cursorVector = playerToCursor.normalized * radius;
         Vector2 finalPos = bulletExit + cursorVector;
         firePoint.transform.position = finalPos;
         lookDirection = mousePos - (Vector2)firePoint.position;
-        FaceMouse();
+        firePoint.transform.right = lookDirection;
 
         //make action when fire button is pressed
         if (Input.GetButtonDown("Fire1"))
@@ -65,12 +61,6 @@ public class Gun_Shooting : MonoBehaviour
         }
     }
 
-    private void FaceMouse()
-    {
-        weapon.transform.right = lookDirection;
-        firePoint.transform.right = lookDirection;
-        bodyPart.transform.right = lookDirection;
-    }
     IEnumerator Shoot ()
     {
         //send ray from the certain point and direction
@@ -99,5 +89,6 @@ public class Gun_Shooting : MonoBehaviour
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
+        //weapon.transform.Rotate(0, 0, 180f);
     }
 }

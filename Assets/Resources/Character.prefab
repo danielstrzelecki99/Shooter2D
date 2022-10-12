@@ -16236,7 +16236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7013250218807092080
 Transform:
   m_ObjectHideFlags: 0
@@ -18016,8 +18016,6 @@ MonoBehaviour:
   impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
   lineRenderer: {fileID: 3830192131909698798}
   radius: 1
-  weapon: {fileID: 7013250218807092080}
-  weaponPoint: {fileID: 0}
 --- !u!1 &7008357681954972710
 GameObject:
   m_ObjectHideFlags: 0

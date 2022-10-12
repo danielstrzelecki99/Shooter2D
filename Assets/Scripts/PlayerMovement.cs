@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private Animator animator;
     private bool doubleJump;
-    private bool FacingRight = true; //For setting which way the player is facing
     float horizontalMove = 0f; //To define if player is moving
 
     //Dash
@@ -22,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     // private float dashingTime = 0.2f;
     // private float dashingCooldown = 1f;
     //[SerializeField] private TrailRenderer tr;
+
+    int CurrentWeaponNo;
 
 
     PhotonView view;
@@ -64,6 +65,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 speed *= 2;
                 animator.SetBool("crouch", false);
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                ChangeWeapon();
             }
         }
         Physics2D.IgnoreLayerCollision(3, 3);
@@ -116,6 +121,23 @@ public class PlayerMovement : MonoBehaviour
             grounded = true;
             Debug.Log(other.gameObject.tag);
         }
+    }
+
+    void ChangeWeapon()
+    {
+        if (CurrentWeaponNo == 0)
+        {
+            CurrentWeaponNo += 1;
+            animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
+            animator.SetLayerWeight(CurrentWeaponNo, 1);
+        }
+        else
+        {
+            CurrentWeaponNo -= 1;
+            animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
+            animator.SetLayerWeight(CurrentWeaponNo, 1);
+        }
+        
     }
 
     // private IEnumerator Dash()

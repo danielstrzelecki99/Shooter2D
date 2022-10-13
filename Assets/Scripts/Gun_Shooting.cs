@@ -7,7 +7,6 @@ public class Gun_Shooting : MonoBehaviour
 {
     public Transform gunHolder;
     public Transform firePoint;
-    public GameObject impactEffect;
     private Animator animator;
     private bool shot = false;
     public LineRenderer lineRenderer;
@@ -32,8 +31,8 @@ public class Gun_Shooting : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunHolder.position;
         float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         gunHolder.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-
-        if (rotZ < 89 && rotZ > -89)
+        Debug.Log(rotZ);
+        if (rotZ < 97 && rotZ > -89)
         {
             Debug.Log("Facing right");
             gunHolder.transform.Rotate(0f, 0f, gunHolder.transform.rotation.z);

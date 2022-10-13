@@ -8006,9 +8006,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7007856066939268080}
-  m_LocalRotation: {x: -0, y: -0, z: -0.9738676, w: -0.22711666}
-  m_LocalPosition: {x: 2.9281454, y: 0.7943125, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.97386754, w: -0.22711664}
+  m_LocalPosition: {x: 2.9281461, y: 0.79430526, z: 0}
+  m_LocalScale: {x: 1.0000006, y: 1.0000006, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7010526905576576862}
@@ -16353,7 +16353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7013250218807092080
 Transform:
   m_ObjectHideFlags: 0
@@ -17834,6 +17834,7 @@ GameObject:
   - component: {fileID: 7008765400610643055}
   - component: {fileID: 7008765400610643050}
   - component: {fileID: -2577778784348048490}
+  - component: {fileID: 7878504907076256891}
   - component: {fileID: -6113115038188728013}
   - component: {fileID: 1343197951307874678}
   - component: {fileID: -5499464127023512479}
@@ -17958,12 +17959,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunHolder: {fileID: 3784147708219882753}
   firePoint: {fileID: 2981141767691014503}
-  impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
   lineRenderer: {fileID: 3830192131909698798}
   radius: 1
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   BulletSpeed: 1200
   fireRate: 3
+--- !u!114 &7878504907076256891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7008343939132955052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844471948cd9b5a46ac5a69d30b34bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-6113115038188728013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18046,15 +18058,15 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 1
     Name: yVelocity
-  - Type: 4
-    SynchronizeType: 0
-    Name: shot
   - Type: 1
     SynchronizeType: 0
     Name: Speed
   - Type: 4
     SynchronizeType: 0
     Name: crouch
+  - Type: 4
+    SynchronizeType: 0
+    Name: shoot
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -20151,7 +20163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4378587241409180007
 Transform:
   m_ObjectHideFlags: 0

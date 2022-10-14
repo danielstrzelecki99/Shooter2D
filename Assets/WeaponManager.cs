@@ -40,6 +40,8 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
             gunShootingScript.SetFirePoint(firePoint1);
+            gunShootingScript.SetBulletSpeed(1200);
+            gunShootingScript.SetFireRate(4);
         }
         else
         {
@@ -48,6 +50,9 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
             gunShootingScript.SetFirePoint(firePoint2);
+            gunShootingScript.SetBulletSpeed(600);
+            gunShootingScript.SetFireRate(2);
+
         }
 
     }

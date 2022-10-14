@@ -9,14 +9,13 @@ public class Gun_Shooting : MonoBehaviour
     [SerializeField] private Transform firePoint;
     private Animator animator;
     private bool shot = false;
-    public LineRenderer lineRenderer;
-    [SerializeField] private float radius;
     //Variable for flipping the player model
     private bool FacingRight = true; //For setting which way the player is facing
 
+    //Bullet variables
     public GameObject Bullet;
-    public float BulletSpeed;
-    public float fireRate;
+    [SerializeField] private float BulletSpeed;
+    [SerializeField] private float fireRate;
     float ReadyForNextShoot;
 
 
@@ -50,7 +49,6 @@ public class Gun_Shooting : MonoBehaviour
                 ReadyForNextShoot = Time.time + 1 / fireRate;
                 Shoot();
             }
-            
         }
         else
             shot = false;
@@ -88,5 +86,13 @@ public class Gun_Shooting : MonoBehaviour
     public void SetFirePoint(Transform newFirePoint)
     {
         firePoint = newFirePoint;
+    }
+    public void SetBulletSpeed(float newBulletspeed)
+    {
+        BulletSpeed = newBulletspeed;
+    }
+    public void SetFireRate(float newFirRate)
+    {
+        fireRate = newFirRate;
     }
 }

@@ -17958,7 +17958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunHolder: {fileID: 3784147708219882753}
-  firePoint: {fileID: 2981141767691014503}
+  firePoint: {fileID: 7976424847736481237}
   lineRenderer: {fileID: 3830192131909698798}
   radius: 1
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
@@ -17976,6 +17976,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844471948cd9b5a46ac5a69d30b34bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint1: {fileID: 2981141767691014503}
+  firePoint2: {fileID: 7976424847736481237}
 --- !u!114 &-6113115038188728013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18067,6 +18069,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: shoot
+  - Type: 4
+    SynchronizeType: 0
+    Name: riffle
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

@@ -6,10 +6,15 @@ public class WeaponManager : MonoBehaviour
 {
     private Animator animator;
     int CurrentWeaponNo;
+    public Transform firePoint1;
+    public Transform firePoint2;
+
+    Gun_Shooting gunShootingScript;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        gunShootingScript = GetComponent<Gun_Shooting>();
     }
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,7 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
+            gunShootingScript.SetFirePoint(firePoint1);
         }
         else
         {
@@ -41,6 +47,7 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
+            gunShootingScript.SetFirePoint(firePoint2);
         }
 
     }

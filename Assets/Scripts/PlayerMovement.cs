@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private Animator animator;
     private bool doubleJump;
-    private bool FacingRight = true; //For setting which way the player is facing
     float horizontalMove = 0f; //To define if player is moving
 
     //Dash
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     // private float dashingTime = 0.2f;
     // private float dashingCooldown = 1f;
     //[SerializeField] private TrailRenderer tr;
-
 
     PhotonView view;
 
@@ -82,16 +80,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 doubleJump = false;
             }
-            
-                        
+                 
             horizontalInput = Input.GetAxis("Horizontal");
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
-            //Flip player when moving left-right
-            if (horizontalInput > 0.01f && !FacingRight)
-                Flip();
-            else if (horizontalInput < -0.01f && FacingRight)
-                Flip();
 
             //Set animator parameters
             animator.SetBool("grounded", grounded);
@@ -123,12 +114,6 @@ public class PlayerMovement : MonoBehaviour
             grounded = true;
             Debug.Log(other.gameObject.tag);
         }
-    }
-    private void Flip()
-    {
-        // Switch the way the player is labelled as facing.
-        FacingRight = !FacingRight;
-        transform.Rotate(0f, 180f, 0f);
     }
 
     // private IEnumerator Dash()

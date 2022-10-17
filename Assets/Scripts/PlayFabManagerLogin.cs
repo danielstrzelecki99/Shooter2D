@@ -56,10 +56,10 @@ public class PlayFabManagerLogin : MonoBehaviour
 
     void OnDataRecieved(GetUserDataResult result)
     {
-        Debug.Log("I got data!");
         if(result.Data != null && result.Data.ContainsKey("Username")){
             username = result.Data["Username"].Value;
         }
+        SceneManager.LoadScene("Loading");
     }
 
     //Getting account statistics
@@ -94,7 +94,6 @@ public class PlayFabManagerLogin : MonoBehaviour
     public void OnLoginSuccess(LoginResult result)
     {
         information.text = "Logged in";
-        SceneManager.LoadScene("Loading");
         GetUsername();
         GetStatistics();
     }

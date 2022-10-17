@@ -11,6 +11,18 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
     [SerializeField] RoomListing roomListing;
 
     private List<RoomListing> roomListings = new List<RoomListing>();
+    private RoomsCanvases roomsCanvases;
+
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+        roomsCanvases = canvases;
+    }
+
+    public override void OnJoinedRoom()
+    {
+        roomsCanvases.CurrentRoomCanvas.Show();
+        roomsCanvases.CreateOrJoinCanvas.Hide();
+    }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -37,5 +49,3 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
         }
     }
 }
-
-// https://www.youtube.com/watch?v=AbGwORylKqo&list=PLkx8oFug638oMagBH2qj1fXOkvBr6nhzt&index=8&ab_channel=FirstGearGames

@@ -5,22 +5,19 @@ using UnityEngine;
 
 public class Gun_Shooting : MonoBehaviour
 {
-
-    public Transform firePoint;
-    public GameObject impactEffect;
+    public Transform gunHolder;
+    [SerializeField] private Transform firePoint;
     private Animator animator;
     private bool shot = false;
-    public LineRenderer lineRenderer;
-    [SerializeField] private float radius;
     //Variable for flipping the player model
     private bool FacingRight = true; //For setting which way the player is facing
 
+    //Bullet variables
+    public GameObject Bullet;
+    [SerializeField] private float BulletSpeed;
+    [SerializeField] private float fireRate;
+    float ReadyForNextShoot;
 
-    //Variables for following the cursor
-    public Transform weapon;
-    Vector2 lookDirection;
-    public Transform Player2;
-    public Transform bodyPart;
 
     private void Awake()
     {
@@ -29,27 +26,33 @@ public class Gun_Shooting : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //assign to cursor's variables
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 bulletExit = Player2.transform.position;
-        Vector3 playerToCursor = mousePos - bulletExit; 
-        Debug.Log("weapon End position:" + bulletExit);
-        Debug.Log("cursor position:" + mousePos);
-        //Debug.Log("FirePoint position:" + firePoint.transform.position);
-        Vector2 cursorVector = playerToCursor.normalized * radius;
-        Vector2 finalPos = bulletExit + cursorVector;
-        firePoint.transform.position = finalPos;
-        lookDirection = mousePos - (Vector2)firePoint.position;
-        FaceMouse();
+        //rotate gun towards mousePosition
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunHolder.position;
+        float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        gunHolder.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+        if (rotZ < 97 && rotZ > -89)
+        {
+            Debug.Log("Facing right");
+            gunHolder.transform.Rotate(0f, 0f, gunHolder.transform.rotation.z);
+        }
+        else
+        {
+            Debug.Log("Facing left");
+            gunHolder.transform.Rotate(180f, 0f, gunHolder.transform.rotation.z);
+        }
 
         //make action when fire button is pressed
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButton(0))
         {
-            StartCoroutine(Shoot()); //StartCoroutine because WaitForSeconds to disable line
+            if(Time.time > ReadyForNextShoot)
+            {
+                ReadyForNextShoot = Time.time + 1 / fireRate;
+                Shoot();
+            }
         }
         else
             shot = false;
-        animator.SetBool("shot", shot);
+        animator.SetBool("shoot", shot);
     }
 
     private void FixedUpdate()
@@ -65,39 +68,31 @@ public class Gun_Shooting : MonoBehaviour
         }
     }
 
-    private void FaceMouse()
+    void Shoot()
     {
-        weapon.transform.right = lookDirection;
-        firePoint.transform.right = lookDirection;
-        bodyPart.transform.right = lookDirection;
-    }
-    IEnumerator Shoot ()
-    {
-        //send ray from the certain point and direction
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
         shot = true;
-        if (hitInfo) //
-        {
-            Debug.Log(hitInfo.transform.name);
-            Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, hitInfo.point);
-        }
-        else
-        {
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
-        }
-
-        lineRenderer.enabled = true;
-        // waiting to disable line
-        yield return new WaitForSeconds(0.02f);
-        lineRenderer.enabled = false;
+        GameObject BulletIns = Instantiate(Bullet, firePoint.position, firePoint.rotation);
+        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * BulletSpeed);
+        //animator.SetTrigger("shoot");
+        Destroy(BulletIns, 3);
     }
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    public void SetFirePoint(Transform newFirePoint)
+    {
+        firePoint = newFirePoint;
+    }
+    public void SetBulletSpeed(float newBulletspeed)
+    {
+        BulletSpeed = newBulletspeed;
+    }
+    public void SetFireRate(float newFirRate)
+    {
+        fireRate = newFirRate;
     }
 }

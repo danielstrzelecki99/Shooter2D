@@ -8,6 +8,8 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 {
     void Start()
     {
+        Debug.Log(PlayFabManagerLogin.username);
+        PhotonNetwork.NickName = PlayFabManagerLogin.username;
         PhotonNetwork.ConnectUsingSettings();
     }
 

@@ -73,10 +73,10 @@ public class PlayFabManagerLogin : MonoBehaviour
 
     void OnDataRecieved(GetUserDataResult result)
     {
-        Debug.Log("I got data!");
         if(result.Data != null && result.Data.ContainsKey("Username")){
             username = result.Data["Username"].Value;
         }
+        SceneManager.LoadScene("Loading");
     }
 
     //Check if accound is already logged
@@ -93,7 +93,6 @@ public class PlayFabManagerLogin : MonoBehaviour
 
         if (isLogged == 0) {
             information.text = "Logged in";
-            SceneManager.LoadScene("Loading");
             GetUsername();
             GetStatistics();
             SetPlayerLoggedStatusToTrue();

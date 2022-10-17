@@ -9,6 +9,11 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public InputField createInput;
     public InputField joinInput;
 
+    public void Awake()
+    {
+        Cursor.visible = true;
+    }
+
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(createInput.text);

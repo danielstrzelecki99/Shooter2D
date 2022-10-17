@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private Animator animator;
     private bool doubleJump;
+    private bool crouch = false;
     float horizontalMove = 0f; //To define if player is moving
 
     //Dash
@@ -50,18 +51,20 @@ public class PlayerMovement : MonoBehaviour
                     Jump();
                 }
             }
-            if (Input.GetButtonDown("Crouch"))
+            if (grounded)
             {
-                if (grounded)
+                if (Input.GetButtonDown("Crouch"))
                 {
+                    crouch = true;
                     speed /= 2;
-                    animator.SetBool("crouch", true);
+                    animator.SetBool("crouch", crouch);
                 }
             }
-            else if (Input.GetButtonUp("Crouch"))
+            if (Input.GetButtonUp("Crouch") && crouch)
             {
+                crouch = false;
                 speed *= 2;
-                animator.SetBool("crouch", false);
+                animator.SetBool("crouch", crouch);
             }
         }
         Physics2D.IgnoreLayerCollision(3, 3);

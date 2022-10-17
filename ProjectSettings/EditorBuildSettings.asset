@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/WinterMap.unity
+    guid: ab6f04f23e9a16b4e96844f67f9d1310
   m_configObjects: {}

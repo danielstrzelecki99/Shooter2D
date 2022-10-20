@@ -8,6 +8,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 {
     void Start()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         Debug.Log(PlayFabManagerLogin.username);
         PhotonNetwork.NickName = PlayFabManagerLogin.username;
         PhotonNetwork.ConnectUsingSettings();
@@ -21,9 +22,5 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
             Debug.Log("dolaczenie do lobby");
             SceneManager.LoadScene("Menu");
         }
-    }
-
-    public override void OnJoinedLobby()
-    {
     }
 }

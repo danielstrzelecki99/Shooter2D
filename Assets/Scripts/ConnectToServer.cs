@@ -19,11 +19,11 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.InLobby)
         {
             Debug.Log("dolaczenie do lobby");
+            SceneManager.LoadScene("Menu");
         }
     }
 
     public override void OnJoinedLobby()
     {
-        SceneManager.LoadScene("Menu");
     }
 }

@@ -16,12 +16,20 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
     public void FirstInitialize(RoomsCanvases canvases)
     {
         roomsCanvases = canvases;
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedRoom()
     {
         roomsCanvases.CurrentRoomCanvas.Show();
         roomsCanvases.CreateOrJoinCanvas.Hide();
+        content.DestroyChildren();
+        PhotonNetwork.LeaveLobby();
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)

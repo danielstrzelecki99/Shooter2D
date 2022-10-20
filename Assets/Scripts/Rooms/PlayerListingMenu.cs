@@ -11,10 +11,21 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     [SerializeField] PlayerListing playerListing;
 
     private List<PlayerListing> playerListings = new List<PlayerListing>();
+    private RoomsCanvases roomsCanvases;
 
     private void Awake()
     {
         GetCurrentRoomPlayers();
+    }
+
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+        roomsCanvases = canvases;
+    }
+
+    public override void OnLeftRoom()
+    {
+        content.DestroyChildren();
     }
 
     private void GetCurrentRoomPlayers()

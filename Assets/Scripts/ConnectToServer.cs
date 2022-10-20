@@ -18,9 +18,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         Debug.Log("polaczenie do mastera");
         if (!PhotonNetwork.InLobby)
         {
-            PhotonNetwork.JoinLobby();
             Debug.Log("dolaczenie do lobby");
-            Debug.Log(PhotonNetwork.CountOfRooms);
         }
     }
 

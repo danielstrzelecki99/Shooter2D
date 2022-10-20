@@ -144,6 +144,6 @@ public class PlayerMovement : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("took: " + damage);
+        Debug.Log("took damage: " + damage);
     }
 }

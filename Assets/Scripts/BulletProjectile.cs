@@ -29,14 +29,6 @@ public class BulletProjectile : MonoBehaviour
         Debug.Log(hitInfo.name);
         GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
         Destroy(impact, 2);
-        Collider[] coliiders = Physics.OverlapSphere(transform.position, radius);
-        foreach (Collider colid in coliiders)
-        {
-            if (colid.tag == "Player")
-            {
-                PlayerManagerDMG.TakeDamage(damageAmount);
-            }
-        }
         hitInfo.gameObject.GetComponent<IDamagable>()?.TakeDamage(gunInfo.damage);
         Destroy(gameObject);
     }

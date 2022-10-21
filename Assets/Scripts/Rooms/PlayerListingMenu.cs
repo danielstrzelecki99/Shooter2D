@@ -13,18 +13,16 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private List<PlayerListing> playerListings = new List<PlayerListing>();
     private RoomsCanvases roomsCanvases;
 
+    private void Awake()
+    {
+        GetCurrentRoomPlayers();
+    }
+
     public override void OnDisable()
     {
-        Debug.Log("disable");
-
         for (int i = 0; i < playerListings.Count; i++)
             Destroy(playerListings[i].gameObject);
         playerListings.Clear();
-    }
-
-    public void Update()
-    {
-        GetCurrentRoomPlayers();
     }
 
     public void FirstInitialize(RoomsCanvases canvases)

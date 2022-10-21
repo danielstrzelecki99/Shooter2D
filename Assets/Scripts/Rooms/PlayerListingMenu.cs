@@ -11,14 +11,34 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     [SerializeField] PlayerListing playerListing;
 
     private List<PlayerListing> playerListings = new List<PlayerListing>();
+    private RoomsCanvases roomsCanvases;
 
-    private void Awake()
+    public override void OnDisable()
+    {
+        Debug.Log("disable");
+
+        for (int i = 0; i < playerListings.Count; i++)
+            Destroy(playerListings[i].gameObject);
+        playerListings.Clear();
+    }
+
+    public void Update()
     {
         GetCurrentRoomPlayers();
     }
 
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+        roomsCanvases = canvases;
+    }
+
     private void GetCurrentRoomPlayers()
     {
+        if (!PhotonNetwork.IsConnected)
+            return;
+        if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null)
+            return;
+
         foreach(KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
@@ -27,18 +47,26 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     private void AddPlayerListing(Player player)
     {
-        PlayerListing listing = Instantiate(playerListing, content);
-        if (null != listing)
+        int index = playerListings.FindIndex(x => x.Player == player);
+        if (index != -1)
         {
-            listing.SetPlayerInfo(player);
-            playerListings.Add(listing);
+            playerListings[index].SetPlayerInfo(player);
+        }
+        else
+        {
+            PlayerListing listing = Instantiate(playerListing, content);
+            if (null != listing)
+            {
+                listing.SetPlayerInfo(player);
+                playerListings.Add(listing);
+            }
         }
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        AddPlayerListing(newPlayer);
-    }
+   // public override void OnPlayerEnteredRoom(Player newPlayer)
+   // {
+     //   AddPlayerListing(newPlayer);
+   // }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
@@ -47,6 +75,16 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         {
             Destroy(playerListings[index].gameObject);
             playerListings.RemoveAt(index);
+        }
+    }
+
+    public void OnClick_StartGame()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+            PhotonNetwork.LoadLevel("Game");
         }
     }
 }

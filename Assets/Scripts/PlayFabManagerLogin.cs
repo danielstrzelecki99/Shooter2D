@@ -25,7 +25,7 @@ public class PlayFabManagerLogin : MonoBehaviour
     public static int experience;
     public static int playedGames;
     public static int wins;
-    public int isLogged;
+    public static int isLogged;
 
     //Login funcion
     public void LoginButton()

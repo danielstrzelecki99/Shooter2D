@@ -13,7 +13,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private List<PlayerListing> playerListings = new List<PlayerListing>();
     private RoomsCanvases roomsCanvases;
 
-    private void Awake()
+    private void Update()
     {
         GetCurrentRoomPlayers();
     }

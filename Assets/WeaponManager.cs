@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class WeaponManager : MonoBehaviour
     public Transform firePoint1;
     public Transform firePoint2;
 
+    PhotonView view;
+
     Gun_Shooting gunShootingScript;
 
     private void Awake()
@@ -19,13 +22,13 @@ public class WeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (view.IsMine && Input.GetKeyDown(KeyCode.C))
         {
             ChangeWeapon();
         }

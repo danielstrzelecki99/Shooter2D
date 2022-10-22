@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviour, IDamagable
+public class PlayerMovement : MonoBehaviourPun
 {
     //Move and jump
     private float horizontalInput;
@@ -106,7 +106,9 @@ public class PlayerMovement : MonoBehaviour, IDamagable
         animator.SetBool("jump", true);
         grounded = false;
         if (doubleJump)
+        {
             animator.SetBool("jump", false);
+        }
         doubleJump = !doubleJump;
     }
 
@@ -141,9 +143,4 @@ public class PlayerMovement : MonoBehaviour, IDamagable
     //     yield return new WaitForSeconds(dashingCooldown);
     //     canDash = true;
     // }
-
-    public void TakeDamage(float damage)
-    {
-        Debug.Log("took damage: " + damage);
-    }
 }

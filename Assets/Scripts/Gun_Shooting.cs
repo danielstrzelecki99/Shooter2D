@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun_Shooting : MonoBehaviour
+public class Gun_Shooting : MonoBehaviourPun
 {
     public Transform gunHolder;
     [SerializeField] private Transform firePoint;
@@ -12,6 +12,7 @@ public class Gun_Shooting : MonoBehaviour
     private bool shot = false;
     //Variable for flipping the player model
     private bool FacingRight = true; //For setting which way the player is facing
+    public GameObject muzzle;
 
     //Bullet variables
     public GameObject Bullet;
@@ -37,12 +38,12 @@ public class Gun_Shooting : MonoBehaviour
             gunHolder.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
             if (rotZ < 97 && rotZ > -89)
             {
-                Debug.Log("Facing right");
+                //Debug.Log("Facing right");
                 gunHolder.transform.Rotate(0f, 0f, gunHolder.transform.rotation.z);
             }
             else
             {
-                Debug.Log("Facing left");
+                //Debug.Log("Facing left");
                 gunHolder.transform.Rotate(180f, 0f, gunHolder.transform.rotation.z);
             }
 
@@ -76,15 +77,15 @@ public class Gun_Shooting : MonoBehaviour
             }
         }        
     }
-
     void Shoot()
     {
         shot = true;
-        GameObject BulletIns = Instantiate(Bullet, firePoint.position, firePoint.rotation);
+        //Edit bullet speed depends on weapon
+        GameObject BulletIns = PhotonNetwork.Instantiate(Bullet.name, firePoint.position, firePoint.rotation, 0);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * BulletSpeed);
         //animator.SetTrigger("shoot");
-        Destroy(BulletIns, 3);
     }
+    [PunRPC]
     private void Flip()
     {
         // Switch the way the player is labelled as facing.
@@ -92,6 +93,7 @@ public class Gun_Shooting : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+    //Setters and getters
     public void SetFirePoint(Transform newFirePoint)
     {
         firePoint = newFirePoint;

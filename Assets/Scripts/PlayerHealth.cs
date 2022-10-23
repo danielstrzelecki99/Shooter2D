@@ -3,9 +3,12 @@ using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviourPun
 {
+    public Image fillImage;
+
     public int localHealth = 100;
     public Rigidbody2D rb;
     public SpriteRenderer sr;
@@ -57,7 +60,7 @@ public class PlayerHealth : MonoBehaviourPun
     [PunRPC]
     public void HealthUpdate(int damage)
     {
-        //fillImage.fillAmount -= damage;
+        fillImage.fillAmount -= damage;
         localHealth -= damage;
     }
 }

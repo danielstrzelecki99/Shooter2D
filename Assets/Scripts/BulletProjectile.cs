@@ -37,7 +37,7 @@ public class BulletProjectile : MonoBehaviourPun
         //destroy bullet only if it hits the other player
         if(target != null && (!target.IsMine || target.IsRoomView))
         {
-            if (hitInfo.tag == "Player")
+            if (target.tag == "Player")
             {
                 Debug.Log("Player was shot");
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);

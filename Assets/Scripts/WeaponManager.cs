@@ -10,19 +10,12 @@ public class WeaponManager : MonoBehaviour
     public Transform firePoint2;
 
     Gun_Shooting gunShootingScript;
-    BulletProjectile BulletProjectileScript;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         gunShootingScript = GetComponent<Gun_Shooting>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +36,6 @@ public class WeaponManager : MonoBehaviour
             gunShootingScript.SetFirePoint(firePoint1);
             gunShootingScript.SetBulletSpeed(800);
             gunShootingScript.SetFireRate(4);
-            BulletProjectileScript.SetBulletDamange(0.15f);
         }
         else
         {
@@ -54,7 +46,6 @@ public class WeaponManager : MonoBehaviour
             gunShootingScript.SetFirePoint(firePoint2);
             gunShootingScript.SetBulletSpeed(400);
             gunShootingScript.SetFireRate(2);
-            BulletProjectileScript.SetBulletDamange(0.3f);
         }
 
     }

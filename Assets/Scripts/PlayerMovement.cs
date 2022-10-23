@@ -24,9 +24,12 @@ public class PlayerMovement : MonoBehaviourPun
     //[SerializeField] private TrailRenderer tr;
 
     PhotonView view;
+    //when player is dead variable disable inputs
+    public bool DisableInputs = false;
 
     private void Awake()
     {
+        GameManagerScript.instance.LocalPlayer = gameObject;
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -38,10 +41,13 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        if (!DisableInputs)
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        }
 
-        if (view.IsMine || !PhotonNetwork.InRoom)
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -72,7 +78,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        if (view.IsMine || !PhotonNetwork.InRoom)
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             // if (isDashing)
             // {

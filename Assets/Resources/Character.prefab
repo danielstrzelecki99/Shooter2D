@@ -18039,6 +18039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  DisableInputs: 0
 --- !u!114 &7878504907076256891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18069,8 +18070,9 @@ MonoBehaviour:
   firePoint: {fileID: 7976424847736481237}
   muzzle: {fileID: 7007981753216200356}
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
-  BulletSpeed: 400
+  bulletSpeed: 400
   fireRate: 2
+  DisableInputs: 0
 --- !u!114 &6472150491140279519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18085,11 +18087,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillImage: {fileID: 7522395843720666980}
   localHealth: 1
-  rb: {fileID: 0}
-  sr: {fileID: 0}
-  collider: {fileID: 0}
-  playerCanvas: {fileID: 0}
-  playerMovement: {fileID: 0}
+  rb: {fileID: 7008765400610643048}
+  playerPrefab: {fileID: 7008343939132955052}
+  playerCollider: {fileID: 7008765400610643054}
+  playerCanvas: {fileID: 7067075182976258256}
+  playerScript: {fileID: 7008765400610643050}
+  shootingScript: {fileID: 7197215574491090403}
+  spawnPlayerScript: {fileID: 0}
 --- !u!114 &-6113115038188728013
 MonoBehaviour:
   m_ObjectHideFlags: 0

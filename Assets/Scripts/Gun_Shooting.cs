@@ -16,11 +16,13 @@ public class Gun_Shooting : MonoBehaviourPun
 
     //Bullet variables
     public GameObject Bullet;
-    [SerializeField] private float BulletSpeed;
+    [SerializeField] private float bulletSpeed;
     [SerializeField] private float fireRate;
     float ReadyForNextShoot;
 
     PhotonView view;
+    //when player is dead variable disable inputs
+    public bool DisableInputs = false;
 
     private void Awake()
     {
@@ -30,7 +32,7 @@ public class Gun_Shooting : MonoBehaviourPun
     // Update is called once per frame
     private void Update()
     {
-        if (view.IsMine || !PhotonNetwork.InRoom)
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             //rotate gun towards mousePosition
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunHolder.position;
@@ -64,7 +66,7 @@ public class Gun_Shooting : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        if (view.IsMine || !PhotonNetwork.InRoom)
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mousePos.x > transform.position.x && !FacingRight)
@@ -82,7 +84,7 @@ public class Gun_Shooting : MonoBehaviourPun
         shot = true;
         //Edit bullet speed depends on weapon
         GameObject BulletIns = PhotonNetwork.Instantiate(Bullet.name, firePoint.position, firePoint.rotation, 0);
-        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * BulletSpeed);
+        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
         //animator.SetTrigger("shoot");
     }
     [PunRPC]
@@ -100,7 +102,7 @@ public class Gun_Shooting : MonoBehaviourPun
     }
     public void SetBulletSpeed(float newBulletspeed)
     {
-        BulletSpeed = newBulletspeed;
+        bulletSpeed = newBulletspeed;
     }
     public void SetFireRate(float newFirRate)
     {

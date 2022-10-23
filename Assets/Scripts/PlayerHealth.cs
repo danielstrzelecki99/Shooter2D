@@ -8,55 +8,51 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviourPun
 {
     public Image fillImage;
-
     public float localHealth = 1;
-    public Rigidbody2D rb;
-    public SpriteRenderer sr;
-    public BoxCollider2D collider;
-    public GameObject playerCanvas;
 
-    public PlayerHealth playerMovement;
+    //variables required to be hidden when player is dead
+    public Rigidbody2D rb;
+    //public SpriteRenderer sr;
+    public GameObject playerPrefab; //against SpriteRenderer
+    public BoxCollider2D playerCollider;
+    public GameObject playerCanvas;
+    //reference to PlayerMovement script
+    public PlayerMovement playerScript;
+    public Gun_Shooting shootingScript;
+    SpawnPlayers spawnPlayerScript;
     public void CheckHealth()
     {
         //condition if only specific player died
         if(photonView.IsMine && localHealth <= 0)
         {
-            //GameManager.Instance.EnableRespawn(); //respawn player in a new place
-            //playerMovement.DisableInputs = true;
-            //this.GetComponent<PhotonView>().RPC("death", RpcTarget.AllBuffered);
+            GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
+            playerScript.DisableInputs = true; //disable inputs like jump and move
+            shootingScript.DisableInputs = true; //disable shooting and moving weapon
+            GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
         }
     }
     [PunRPC]
-    public void death()
+    public void Death()
     {
         rb.gravityScale = 0;
-        collider.enabled = false;
-        sr.enabled = false;
+        playerCollider.enabled = false;
+        //sr.enabled = false;
         playerCanvas.SetActive(false);
     }
     [PunRPC]
     public void Revive()
     {
         rb.gravityScale = 1;
-        collider.enabled = true;
-        sr.enabled = true;
+        playerCollider.enabled = true;
+        //sr.enabled = true;
         playerCanvas.SetActive(true);
         localHealth = 1;
+        fillImage.fillAmount = localHealth;
+        Debug.Log("Player has respawned again");
     }
     public void EnableInputs()
     {
-        //playerMovement.DisableInputs = false;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerScript.DisableInputs = false;
     }
     [PunRPC]
     public void HealthUpdate(float damage)

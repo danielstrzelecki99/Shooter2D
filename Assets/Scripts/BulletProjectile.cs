@@ -66,9 +66,4 @@ public class BulletProjectile : MonoBehaviourPun
         Destroy(impact, 2);
         Destroy(gameObject);
     }
-
-    public void SetBulletDamange(float newDamage)
-    {
-        bulleteDamage = newDamage;
-    }
 }

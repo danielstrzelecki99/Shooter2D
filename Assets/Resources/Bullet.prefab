@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5314872518628712113}
   - component: {fileID: 7567600357428435405}
+  - component: {fileID: 6805758448114864910}
   - component: {fileID: -4711363732674924711}
   - component: {fileID: 5866474997239677892}
-  - component: {fileID: -1694159132856213190}
   - component: {fileID: -7727069556598999733}
+  - component: {fileID: -4251389050470120669}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -88,6 +89,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6805758448114864910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247887314533593849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9837774d6ed9144943af9803790900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  rb: {fileID: -4711363732674924711}
+  impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
+  lifeTime: 0.5
+  bulleteDamage: 0.15
 --- !u!50 &-4711363732674924711
 Rigidbody2D:
   serializedVersion: 4
@@ -125,21 +143,6 @@ CircleCollider2D:
   m_Offset: {x: -0.07313018, y: 0}
   serializedVersion: 2
   m_Radius: 0.60047287
---- !u!114 &-1694159132856213190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247887314533593849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6321a7d9112988841b7223ac6a925bfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rb: {fileID: -4711363732674924711}
-  impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
 --- !u!96 &-7727069556598999733
 TrailRenderer:
   serializedVersion: 2
@@ -248,3 +251,25 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-4251389050470120669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247887314533593849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 1
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

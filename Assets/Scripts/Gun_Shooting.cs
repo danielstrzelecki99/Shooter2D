@@ -63,7 +63,7 @@ public class Gun_Shooting : MonoBehaviourPun
             else
                 shot = false;
             animator.SetBool("shoot", shot);
-        }   
+        }
     }
 
     private void FixedUpdate()
@@ -79,8 +79,9 @@ public class Gun_Shooting : MonoBehaviourPun
             {
                 Flip();
             }
-        }        
+        }
     }
+
     void Shoot()
     {
         shot = true;

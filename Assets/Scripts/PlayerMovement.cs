@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPun
 {
     //Move and jump
     private float horizontalInput;
@@ -24,9 +24,12 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] private TrailRenderer tr;
 
     PhotonView view;
+    //when player is dead variable disable inputs
+    public bool DisableInputs = false;
 
     private void Awake()
     {
+        GameManagerScript.instance.LocalPlayer = gameObject;
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -38,10 +41,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        if (!DisableInputs)
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        }
 
-        if (view.IsMine || !PhotonNetwork.InRoom)
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -72,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (view.IsMine || !PhotonNetwork.InRoom)
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             // if (isDashing)
             // {
@@ -106,7 +112,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("jump", true);
         grounded = false;
         if (doubleJump)
+        {
             animator.SetBool("jump", false);
+        }
         doubleJump = !doubleJump;
     }
 
@@ -115,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "Ground")
         {
             grounded = true;
-            Debug.Log(other.gameObject.tag);
+            //Debug.Log(other.gameObject.tag);
         }
     }
 

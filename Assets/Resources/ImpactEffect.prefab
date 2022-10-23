@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3509163190424128545}
   - component: {fileID: 6700983078514111458}
   - component: {fileID: 6939429155721051232}
-  - component: {fileID: 8345804521616952116}
   - component: {fileID: 701084326797706758}
   m_Layer: 0
   m_Name: ImpactEffect
@@ -125,20 +124,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.11
---- !u!114 &8345804521616952116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578406035328597884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6321a7d9112988841b7223ac6a925bfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rb: {fileID: 6700983078514111458}
 --- !u!95 &701084326797706758
 Animator:
   serializedVersion: 4

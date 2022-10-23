@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerName : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI nameInfo;
+    [SerializeField] TextMeshPro nameInfo;
 
     public void GetPlayerName() {
-        nameInfo.text = PlayFabManagerLogin.username;
+        nameInfo.text = PhotonNetwork.NickName;
     }
 
     void Start()

@@ -42,5 +42,21 @@ public class SpawnPlayers : MonoBehaviour
 
         myCinemachine.Follow = player.transform;
     }
+    public void SpawnAfterDeath()
+    {
+        System.Random gen = new System.Random();
+        int numberOfSpawnPoint = gen.Next(11);
+        Vector3 spawnPosition = new Vector3(listOfSpawns[numberOfSpawnPoint, 0], listOfSpawns[numberOfSpawnPoint, 1]);
+        GameObject player;
+        if (PhotonNetwork.InRoom)
+        {
+            player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+        }
 
+        myCinemachine.Follow = player.transform;
+    }
 }

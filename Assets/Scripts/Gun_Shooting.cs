@@ -74,10 +74,12 @@ public class Gun_Shooting : MonoBehaviourPun
             if (mousePos.x > transform.position.x && !FacingRight)
             {
                 Flip();
+                withoutFlip();
             }
             else if (mousePos.x < transform.position.x && FacingRight)
             {
                 Flip();
+                withoutFlip();
             }
         }
     }
@@ -96,7 +98,9 @@ public class Gun_Shooting : MonoBehaviourPun
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
+    }
 
+    private void withoutFlip(){
         nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 

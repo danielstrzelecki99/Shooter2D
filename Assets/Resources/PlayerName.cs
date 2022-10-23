@@ -8,7 +8,7 @@ using Photon.Pun;
 public class PlayerName : MonoBehaviour
 {
     [SerializeField] TextMeshPro nameInfo;
-
+    [PunRPC]
     public void GetPlayerName() {
         nameInfo.text = PhotonNetwork.NickName;
     }

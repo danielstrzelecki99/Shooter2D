@@ -17932,6 +17932,7 @@ GameObject:
   - component: {fileID: -5499464127023512479}
   - component: {fileID: -2176643693609621528}
   - component: {fileID: -5562083267010693072}
+  - component: {fileID: 5047839267205537279}
   m_Layer: 6
   m_Name: Character
   m_TagString: Player
@@ -18069,6 +18070,7 @@ MonoBehaviour:
   gunHolder: {fileID: 3784147708219882753}
   firePoint: {fileID: 7976424847736481237}
   muzzle: {fileID: 7007981753216200356}
+  nickName: {fileID: 0}
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   bulletSpeed: 400
   fireRate: 2
@@ -18093,7 +18095,6 @@ MonoBehaviour:
   playerCanvas: {fileID: 7067075182976258256}
   playerScript: {fileID: 7008765400610643050}
   shootingScript: {fileID: 7197215574491090403}
-  spawnPlayerScript: {fileID: 0}
 --- !u!114 &-6113115038188728013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18271,7 +18272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b42096a3d67324280271e7e4443e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameInfo: {fileID: 4033325841849386440}
+  nameInfo: {fileID: 0}
 --- !u!1 &7008357681954972710
 GameObject:
   m_ObjectHideFlags: 0

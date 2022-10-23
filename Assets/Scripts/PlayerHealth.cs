@@ -19,7 +19,6 @@ public class PlayerHealth : MonoBehaviourPun
     //reference to PlayerMovement script
     public PlayerMovement playerScript;
     public Gun_Shooting shootingScript;
-    SpawnPlayers spawnPlayerScript;
     public void CheckHealth()
     {
         //condition if only specific player died
@@ -38,6 +37,7 @@ public class PlayerHealth : MonoBehaviourPun
         playerCollider.enabled = false;
         //sr.enabled = false;
         playerCanvas.SetActive(false);
+        Destroy(gameObject);
     }
     [PunRPC]
     public void Revive()

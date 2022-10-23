@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviourPun
 {
     public Image fillImage;
 
-    public int localHealth = 100;
+    public float localHealth = 1;
     public Rigidbody2D rb;
     public SpriteRenderer sr;
     public BoxCollider2D collider;
@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviourPun
     public PlayerHealth playerMovement;
     public void CheckHealth()
     {
+        //condition if only specific player died
         if(photonView.IsMine && localHealth <= 0)
         {
             //GameManager.Instance.EnableRespawn(); //respawn player in a new place
@@ -58,9 +59,11 @@ public class PlayerHealth : MonoBehaviourPun
         
     }
     [PunRPC]
-    public void HealthUpdate(int damage)
+    public void HealthUpdate(float damage)
     {
         fillImage.fillAmount -= damage;
+        localHealth = fillImage.fillAmount;
         localHealth -= damage;
+        CheckHealth();
     }
 }

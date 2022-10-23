@@ -12,7 +12,7 @@ public class BulletProjectile : MonoBehaviourPun
     public GameObject impactEffect;
     public float lifeTime; //time after bullet will be destroyed
 
-    public int bulleteDamage = 15;
+    public float bulleteDamage = 0.15f;
     public void Start()
     {
         //invoke function destroying projectile after 'lifeTime'

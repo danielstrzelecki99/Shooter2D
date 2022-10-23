@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using PlayFab;
+using PlayFab.ClientModels;
 
 public class GetInformationToMenu : MonoBehaviour
 {
@@ -30,8 +32,29 @@ public class GetInformationToMenu : MonoBehaviour
         coinsStat.text = "GIT coins: " + PlayFabManagerLogin.coins.ToString();
     }
 
+        //Setting account status
+    public void SetPlayerLoggedStatusToTrue(){
+        var request = new UpdatePlayerStatisticsRequest {
+            Statistics = new List<StatisticUpdate>{
+                new StatisticUpdate {StatisticName = "isLogged", Value = 1},
+            }
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);
+    }
+
+    void OnUpdateStatistics(UpdatePlayerStatisticsResult result)
+    {
+        Debug.Log("Logged status has been updated");
+    }
+
+     void OnError(PlayFabError error)
+    {
+        Debug.Log(error.GenerateErrorReport());
+    }
+
     void Start() {
         GetAccountInfo();
         GetAccountStats();
+        SetPlayerLoggedStatusToTrue();
     }
 }

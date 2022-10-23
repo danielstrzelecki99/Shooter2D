@@ -50,21 +50,6 @@ public class PlayFabManagerLogin : MonoBehaviour
         }
     }
 
-    //Setting account status
-    public void SetPlayerLoggedStatusToTrue(){
-        var request = new UpdatePlayerStatisticsRequest {
-            Statistics = new List<StatisticUpdate>{
-                new StatisticUpdate {StatisticName = "isLogged", Value = 1},
-            }
-        };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);
-    }
-
-    void OnUpdateStatistics(UpdatePlayerStatisticsResult result)
-    {
-        Debug.Log("Logged status has been updated");
-    }
-
     //Getting username
     public void GetUsername()
     {
@@ -95,7 +80,7 @@ public class PlayFabManagerLogin : MonoBehaviour
             information.text = "Logged in";
             GetUsername();
             GetStatistics();
-            SetPlayerLoggedStatusToTrue();
+            //SetPlayerLoggedStatusToTrue();
         } else if (isLogged == 1) {
             information.text = "Someone is already logged to this account. Try again later.";
         }

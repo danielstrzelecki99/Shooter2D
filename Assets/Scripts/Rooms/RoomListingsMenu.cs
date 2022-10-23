@@ -16,12 +16,21 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
     public void FirstInitialize(RoomsCanvases canvases)
     {
         roomsCanvases = canvases;
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedRoom()
     {
         roomsCanvases.CurrentRoomCanvas.Show();
         roomsCanvases.CreateOrJoinCanvas.Hide();
+        content.DestroyChildren();
+        roomListings.Clear();
+        PhotonNetwork.LeaveLobby();
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -39,11 +48,15 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
             }
             else
             {
-                RoomListing listing = Instantiate(roomListing, content);
-                if (null != listing)
+                int index = roomListings.FindIndex(x => x.RoomInfo.Name == roomInfo.Name);
+                if (index == -1)
                 {
-                    listing.setRoomInfo(roomInfo);
-                    roomListings.Add(listing);
+                    RoomListing listing = Instantiate(roomListing, content);
+                    if (null != listing)
+                    {
+                        listing.setRoomInfo(roomInfo);
+                        roomListings.Add(listing);
+                    }
                 }
             }
         }

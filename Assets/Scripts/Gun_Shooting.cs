@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Gun_Shooting : MonoBehaviourPun
 {
@@ -13,6 +14,7 @@ public class Gun_Shooting : MonoBehaviourPun
     //Variable for flipping the player model
     private bool FacingRight = true; //For setting which way the player is facing
     public GameObject muzzle;
+    public Transform nickName;
 
     //Bullet variables
     public GameObject Bullet;
@@ -93,6 +95,8 @@ public class Gun_Shooting : MonoBehaviourPun
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
+
+        nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     //Setters and getters

@@ -45,7 +45,6 @@ public class BulletProjectile : MonoBehaviourPun
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }
         //destroy bullet on ground/walls
-        Debug.Log(hitInfo.name);
         GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
         Destroy(impact, 2);
         Destroy(gameObject);
@@ -66,5 +65,10 @@ public class BulletProjectile : MonoBehaviourPun
         GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
         Destroy(impact, 2);
         Destroy(gameObject);
+    }
+
+    public void SetBulletDamange(float newDamage)
+    {
+        bulleteDamage = newDamage;
     }
 }

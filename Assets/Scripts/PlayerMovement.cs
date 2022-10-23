@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviourPun
         if(other.gameObject.tag == "Ground")
         {
             grounded = true;
-            Debug.Log(other.gameObject.tag);
+            //Debug.Log(other.gameObject.tag);
         }
     }
 

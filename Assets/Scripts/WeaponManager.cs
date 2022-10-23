@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     public Transform firePoint2;
 
     Gun_Shooting gunShootingScript;
+    BulletProjectile BulletProjectileScript;
 
     private void Awake()
     {
@@ -42,7 +43,7 @@ public class WeaponManager : MonoBehaviour
             gunShootingScript.SetFirePoint(firePoint1);
             gunShootingScript.SetBulletSpeed(800);
             gunShootingScript.SetFireRate(4);
-            //gunShootingScript.SetWeaponDamage(15);
+            BulletProjectileScript.SetBulletDamange(0.15f);
         }
         else
         {
@@ -53,8 +54,7 @@ public class WeaponManager : MonoBehaviour
             gunShootingScript.SetFirePoint(firePoint2);
             gunShootingScript.SetBulletSpeed(400);
             gunShootingScript.SetFireRate(2);
-            //gunShootingScript.SetWeaponDamage(30);
-
+            BulletProjectileScript.SetBulletDamange(0.3f);
         }
 
     }

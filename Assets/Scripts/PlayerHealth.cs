@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviourPun
         {
             //GameManager.Instance.EnableRespawn(); //respawn player in a new place
             //playerMovement.DisableInputs = true;
-            this.GetComponent<PhotonView>().RPC("death", RpcTarget.AllBuffered);
+            //this.GetComponent<PhotonView>().RPC("death", RpcTarget.AllBuffered);
         }
     }
     [PunRPC]
@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviourPun
         collider.enabled = true;
         sr.enabled = true;
         playerCanvas.SetActive(true);
-        localHealth = 100;
+        localHealth = 1;
     }
     public void EnableInputs()
     {

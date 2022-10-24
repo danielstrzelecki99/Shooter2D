@@ -15,6 +15,7 @@ public class Gun_Shooting : MonoBehaviourPun
     private bool FacingRight = true; //For setting which way the player is facing
     public GameObject muzzle;
     public Transform nickName;
+    public Transform healthBar;
 
     //Bullet variables
     public GameObject Bullet;
@@ -65,6 +66,7 @@ public class Gun_Shooting : MonoBehaviourPun
             animator.SetBool("shoot", shot);
         }
         nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of nickname tag
+        healthBar.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of health bar
     }
 
     private void FixedUpdate()

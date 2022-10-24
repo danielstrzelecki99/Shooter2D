@@ -19,11 +19,10 @@ public class Gun_Shooting : MonoBehaviourPun
 
     //Bullet variables
     public GameObject Bullet;
-    [SerializeField] private float bulletSpeed;
     [SerializeField] private float fireRate;
     float ReadyForNextShoot;
 
-    PhotonView view;
+    public PhotonView view;
     //when player is dead variable disable inputs
     public bool DisableInputs = false;
 
@@ -58,7 +57,7 @@ public class Gun_Shooting : MonoBehaviourPun
                 if (Time.time > ReadyForNextShoot)
                 {
                     ReadyForNextShoot = Time.time + 1 / fireRate;
-                    Shoot();
+                    Shot();
                 }
             }
             else
@@ -87,12 +86,12 @@ public class Gun_Shooting : MonoBehaviourPun
         }
     }
 
-    void Shoot()
+    private void Shot()
     {
         shot = true;
         //Edit bullet speed depends on weapon
-        GameObject BulletIns = PhotonNetwork.Instantiate(Bullet.name, firePoint.position, firePoint.rotation, 0);
-        BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
+        PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
+        //BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
         //animator.SetTrigger("shoot");
     }
     [PunRPC]
@@ -112,10 +111,6 @@ public class Gun_Shooting : MonoBehaviourPun
     public void SetFirePoint(Transform newFirePoint)
     {
         firePoint = newFirePoint;
-    }
-    public void SetBulletSpeed(float newBulletspeed)
-    {
-        bulletSpeed = newBulletspeed;
     }
     public void SetFireRate(float newFirRate)
     {

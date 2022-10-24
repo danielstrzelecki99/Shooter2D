@@ -101,10 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9837774d6ed9144943af9803790900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 18
   rb: {fileID: -4711363732674924711}
   impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
-  lifeTime: 0.5
+  lifeTime: 1.5
   bulleteDamage: 0.15
 --- !u!50 &-4711363732674924711
 Rigidbody2D:

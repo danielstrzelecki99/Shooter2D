@@ -7868,7 +7868,7 @@ MonoBehaviour:
   spawnObjects:
   - {fileID: 7374857211901105198, guid: ecb330107409ffb47a9b521dcceefb77, type: 3}
   - {fileID: 2789472865898057286, guid: dd1c0d30b2102034c91ec093f3459d55, type: 3}
-  - {fileID: 2275456957103980637, guid: 0a91b019f39cdb34f88039c66563e47b, type: 3}
+  - {fileID: 2789472865898057286, guid: 888f504e000647c449593368170c5ef2, type: 3}
   spawnLocations:
   - {fileID: 459855635}
   - {fileID: 1788792589}

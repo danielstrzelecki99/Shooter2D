@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SpawnItems : MonoBehaviour
 {
-    public GameObject[] spawnObjects;
-    public Transform[] spawnLocations;
+    //public GameObject[] spawnObjects;
+    public List<GameObject> spawnObjects = new List<GameObject>();
+    //public Transform[] spawnLocations;
+    public List<Transform> spawnLocations = new List<Transform>();
     public bool stopSpawning = false;
     public float spawnTime;
     public float spawnDelay;
@@ -16,10 +18,21 @@ public class SpawnItems : MonoBehaviour
     }
 
     public void SpawnItem(){
-        Instantiate(spawnObjects[Random.Range(0, spawnObjects.Length)], spawnLocations[Random.Range(0,spawnLocations.Length)]);
         if(stopSpawning){
             CancelInvoke("SpawnItem");
+        } else {
+            GameObject itemToSpawn = spawnObjects[Random.Range(0,spawnObjects.Count)];
+            Transform locationToSpawn = spawnLocations[Random.Range(0,spawnLocations.Count)];
+            Instantiate(itemToSpawn, locationToSpawn);
             Debug.Log("Item spawned");
+            spawnLocations.Remove(locationToSpawn);
         }
+        if(spawnLocations.Count > 0){
+            stopSpawning = false;
+        }
+        else if(spawnLocations.Count == 0){
+            stopSpawning = true;
+        }
+        Debug.Log("Liczba miejsc do spawnowania: " + spawnLocations.Count);
     }
 }

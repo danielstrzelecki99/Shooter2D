@@ -9,12 +9,17 @@ public class PlayerName : MonoBehaviour
 {
     [SerializeField] TextMeshPro nameInfo;
 
-    public void GetPlayerName() {
-        nameInfo.text = PhotonNetwork.NickName;
+    PhotonView view;
+
+    [PunRPC]
+    public void GetPlayerName() 
+    {
+        nameInfo.text = view.Owner.NickName;
     }
 
     void Start()
     {
+        view = GetComponent<PhotonView>();
         GetPlayerName();
     }
 }

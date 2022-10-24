@@ -15,6 +15,7 @@ public class Gun_Shooting : MonoBehaviourPun
     private bool FacingRight = true; //For setting which way the player is facing
     public GameObject muzzle;
     public Transform nickName;
+    public Transform healthBar;
 
     //Bullet variables
     public GameObject Bullet;
@@ -63,6 +64,8 @@ public class Gun_Shooting : MonoBehaviourPun
                 shot = false;
             animator.SetBool("shoot", shot);
         }
+        nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of nickname tag
+        healthBar.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of health bar
     }
 
     private void FixedUpdate()
@@ -70,9 +73,11 @@ public class Gun_Shooting : MonoBehaviourPun
         if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             if (mousePos.x > transform.position.x && !FacingRight)
             {
                 Flip();
+
             }
             else if (mousePos.x < transform.position.x && FacingRight)
             {
@@ -95,9 +100,12 @@ public class Gun_Shooting : MonoBehaviourPun
         // Switch the way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
-
-        nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
+
+    //private void NicknameFlip(){
+
+      //  nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    //}
 
     //Setters and getters
     public void SetFirePoint(Transform newFirePoint)

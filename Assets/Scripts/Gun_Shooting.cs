@@ -71,15 +71,15 @@ public class Gun_Shooting : MonoBehaviourPun
         if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             if (mousePos.x > transform.position.x && !FacingRight)
             {
                 Flip();
-                withoutFlip();
+
             }
             else if (mousePos.x < transform.position.x && FacingRight)
             {
                 Flip();
-                withoutFlip();
             }
         }
     }
@@ -100,9 +100,10 @@ public class Gun_Shooting : MonoBehaviourPun
         transform.Rotate(0f, 180f, 0f);
     }
 
-    private void withoutFlip(){
-        nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    }
+    //private void NicknameFlip(){
+
+      //  nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    //}
 
     //Setters and getters
     public void SetFirePoint(Transform newFirePoint)

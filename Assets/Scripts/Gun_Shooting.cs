@@ -64,6 +64,7 @@ public class Gun_Shooting : MonoBehaviourPun
                 shot = false;
             animator.SetBool("shoot", shot);
         }
+        nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of nickname tag
     }
 
     private void FixedUpdate()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SpawnItems : MonoBehaviour
 {
@@ -11,10 +12,15 @@ public class SpawnItems : MonoBehaviour
     public bool stopSpawning = false;
     public float spawnTime;
     public float spawnDelay;
+    public TextMeshProUGUI iteractInfo;
    
     void Start()
     {
         InvokeRepeating("SpawnItem", spawnTime, spawnDelay);
+    }
+
+    void Update(){
+        iteractInfo.text = PlayerMovement.interactInfoText;
     }
 
     public void SpawnItem(){

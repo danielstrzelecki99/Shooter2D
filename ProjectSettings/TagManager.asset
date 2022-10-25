@@ -11,6 +11,9 @@ TagManager:
   - Weapon
   - Flipper
   - Nickname
+  - AmmoKit
+  - Armor
+  - FirsAidKit
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - UI
   - LocalPlayer
   - RemotePlayer
-  - 
+  - Bullet
   - 
   - 
   - 

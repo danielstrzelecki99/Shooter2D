@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviourPun
     private bool crouch = false;
     float horizontalMove = 0f; //To define if player is moving
 
+    //Interact with items on map variables
+    public static string interactInfoText;
+    public static bool pickUpAllowed = false;
+
     //Dash
     // private bool canDash = true;
     // private bool isDashing;
@@ -26,6 +30,7 @@ public class PlayerMovement : MonoBehaviourPun
     PhotonView view;
     //when player is dead variable disable inputs
     public bool DisableInputs = false;
+    public Gun_Shooting weapon;
 
     private void Awake()
     {
@@ -72,6 +77,10 @@ public class PlayerMovement : MonoBehaviourPun
                 crouch = false;
                 speed *= 2;
                 animator.SetBool("crouch", crouch);
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                weapon.Reload();
             }
         }
         Physics2D.IgnoreLayerCollision(3, 3);
@@ -126,7 +135,24 @@ public class PlayerMovement : MonoBehaviourPun
             grounded = true;
             //Debug.Log(other.gameObject.tag);
         }
+       
     }
+    
+    //Interact with items on map methods
+    private void OnTriggerStay2D(Collider2D other) {
+         if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "AidKit"){
+            interactInfoText = "Press [E] to take item!";
+            pickUpAllowed = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "AidKit"){
+            interactInfoText = "";
+            pickUpAllowed = false;
+        }
+    }
+    
 
     // private IEnumerator Dash()
     // {

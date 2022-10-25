@@ -22,9 +22,12 @@ public class Gun_Shooting : MonoBehaviourPun
     [SerializeField] private float fireRate;
     float ReadyForNextShoot;
 
-    public PhotonView view;
-    //when player is dead variable disable inputs
-    public bool DisableInputs = false;
+    //Ammo variables
+    public int currentClip, maxClipSize = 10, currentAmmo;
+    
+
+    PhotonView view;
+    public bool DisableInputs = false; //when player is dead variable disable inputs
 
     private void Awake()
     {
@@ -88,11 +91,31 @@ public class Gun_Shooting : MonoBehaviourPun
 
     private void Shot()
     {
-        shot = true;
-        //Edit bullet speed depends on weapon
-        PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
-        //BulletIns.GetComponent<Rigidbody2D>().AddForce(BulletIns.transform.right * bulletSpeed);
-        //animator.SetTrigger("shoot");
+        if(currentClip > 0)
+        {
+            //enable shoting animation
+            shot = true;
+            //Clone the bullet object every thime when shot funciton is involved
+            PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
+            currentClip--;
+            Debug.Log($"Current clip after shoot: {currentClip}");
+        }
+
+    }
+    public void Reload()
+    {
+        Debug.Log("Reloading!");
+        int reloadAmount = maxClipSize - currentClip; //how many bullets to refill cilp
+        if (currentAmmo - reloadAmount < 0)
+            reloadAmount = currentAmmo;
+        currentClip += reloadAmount;
+        currentAmmo -= reloadAmount;
+        Debug.Log($"After reload: {currentClip}/{currentAmmo}");
+    }
+    public void AddAmmo(int ammoAmount)
+    {
+        currentAmmo += ammoAmount;
+
     }
     [PunRPC]
     private void Flip()
@@ -115,5 +138,13 @@ public class Gun_Shooting : MonoBehaviourPun
     public void SetFireRate(float newFirRate)
     {
         fireRate = newFirRate;
+    }
+    public int GetCurrentClip()
+    {
+        return currentClip;
+    }
+    public int GetCurrentAmmo()
+    {
+        return currentAmmo;
     }
 }

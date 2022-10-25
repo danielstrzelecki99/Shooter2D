@@ -13,13 +13,11 @@ public class WeaponManager : MonoBehaviour
     PhotonView view;
 
     Gun_Shooting gunShootingScript;
-    BulletProjectile bulletProjectileScript;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         gunShootingScript = GetComponent<Gun_Shooting>();
-        bulletProjectileScript = GetComponent<BulletProjectile>();
     }
     // Start is called before the first frame update
     void Start()
@@ -45,7 +43,6 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
             gunShootingScript.SetFirePoint(firePoint1);
-            //gunShootingScript.SetBulletSpeed(500);
             gunShootingScript.SetFireRate(4);
         }
         else
@@ -55,7 +52,6 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
             gunShootingScript.SetFirePoint(firePoint2);
-            //gunShootingScript.SetBulletSpeed(300);
             gunShootingScript.SetFireRate(2);
         }
 

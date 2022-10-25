@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviourPun
     private bool doubleJump;
     private bool crouch = false;
     float horizontalMove = 0f; //To define if player is moving
+
+    //Interact with items on map variables
     public static string interactInfoText;
+    public static bool pickUpAllowed = false;
 
     //Dash
     // private bool canDash = true;
@@ -129,16 +132,19 @@ public class PlayerMovement : MonoBehaviourPun
         }
        
     }
-
+    
+    //Interact with items on map methods
     private void OnTriggerStay2D(Collider2D other) {
-         if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "FirstAidKit"){
+         if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "AidKit"){
             interactInfoText = "Press [E] to take item!";
+            pickUpAllowed = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "FirstAidKit"){
+        if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "AidKit"){
             interactInfoText = "";
+            pickUpAllowed = false;
         }
     }
     

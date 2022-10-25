@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8365649360369169150}
   - component: {fileID: 6136763830414894259}
   - component: {fileID: 8589189455157733967}
-  - component: {fileID: -1766787303484700568}
+  - component: {fileID: -3719212369250884802}
   m_Layer: 9
   m_Name: FirstAidKit
-  m_TagString: Armor
+  m_TagString: AidKit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 1.5335882}
   serializedVersion: 2
   m_Radius: 2.0725029
---- !u!114 &-1766787303484700568
+--- !u!114 &-3719212369250884802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2789472865898057286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e295479327fd943af4172acf012baf, type: 3}
+  m_Script: {fileID: 11500000, guid: c985e8c74c7e8fd44bbdcb34bc72b37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

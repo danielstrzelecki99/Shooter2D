@@ -13,7 +13,7 @@ TagManager:
   - Nickname
   - AmmoKit
   - Armor
-  - FirsAidKit
+  - AidKit
   layers:
   - Default
   - TransparentFX

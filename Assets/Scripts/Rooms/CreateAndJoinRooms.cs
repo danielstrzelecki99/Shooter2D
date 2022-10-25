@@ -8,7 +8,7 @@ using Photon.Realtime;
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
-    public InputField joinInput;
+    public Dropdown maxPlayers;
     private RoomsCanvases roomsCanvases;
 
     public void FirstInitialize(RoomsCanvases canvases)
@@ -23,7 +23,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             return;
         }
         RoomOptions options = new RoomOptions();
-        options.MaxPlayers = 10;
+        options.MaxPlayers = byte.Parse(maxPlayers.options[maxPlayers.value].text);
         options.IsVisible = true;
         PhotonNetwork.JoinOrCreateRoom(createInput.text, options, TypedLobby.Default);
     }
@@ -31,13 +31,12 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         roomsCanvases.CurrentRoomCanvas.Show();
-        roomsCanvases.CreateOrJoinCanvas.Hide();
     }
 
-    public void JoinRoom()
-    {
-        PhotonNetwork.JoinRoom(joinInput.text);
-    }
+    //public void JoinRoom()
+    //{
+       // PhotonNetwork.JoinRoom(joinInput.text);
+//}
 
     /*public override void OnJoinedRoom()
     {

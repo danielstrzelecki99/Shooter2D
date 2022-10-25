@@ -5,14 +5,15 @@ using TMPro;
 
 public class SpawnItems : MonoBehaviour
 {
-    //public GameObject[] spawnObjects;
     public List<GameObject> spawnObjects = new List<GameObject>();
-    //public Transform[] spawnLocations;
     public List<Transform> spawnLocations = new List<Transform>();
     public bool stopSpawning = false;
     public float spawnTime;
     public float spawnDelay;
     public TextMeshProUGUI iteractInfo;
+    [SerializeField] TextMeshProUGUI armorText;
+    [SerializeField] TextMeshProUGUI ammoText; 
+    [SerializeField] TextMeshProUGUI firstAidText;
    
     void Start()
     {
@@ -21,6 +22,9 @@ public class SpawnItems : MonoBehaviour
 
     void Update(){
         iteractInfo.text = PlayerMovement.interactInfoText;
+        armorText.text = "Armors: " + PlayerEq.armorAmount.ToString();
+        ammoText.text = "Ammo: " + PlayerEq.ammoAmount.ToString();
+        firstAidText.text = "First aid kits: " + PlayerEq.aidKitAmount.ToString();
     }
 
     public void SpawnItem(){

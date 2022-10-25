@@ -26,10 +26,6 @@ public class ItemsManager : MonoBehaviour
         } else if (gameObject.tag == "Armor"){
             PlayerEq.armorAmount += 1;
         }
-        Destroy(gameObject);
-        Debug.Log("Item destryed");
-        Debug.Log("Apteczki: " + PlayerEq.aidKitAmount);
-        Debug.Log("Armory: " + PlayerEq.armorAmount);
-        Debug.Log("Ammo: " + PlayerEq.ammoAmount);
+        Destroy(this.gameObject);
     }
 }

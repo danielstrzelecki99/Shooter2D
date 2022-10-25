@@ -19,9 +19,10 @@ public class PlayerHealth : MonoBehaviourPun
     //reference to PlayerMovement script
     public PlayerMovement playerScript;
     public Gun_Shooting shootingScript;
+    //check health level 
     public void CheckHealth()
     {
-        //condition if only specific player died
+        //condition only for specific (local) 
         if(photonView.IsMine && localHealth <= 0)
         {
             GameManagerScript.instance.EnableRespawn(); //respawn player in a new place

@@ -5,8 +5,9 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using TMPro;
+using CharacterCreator2D;
 
-public class GameManagerScript : MonoBehaviour
+public class GameManagerScript : MonoBehaviourPun
 {
     public GameObject playerPrefab;
     public CinemachineVirtualCamera myCinemachine;
@@ -22,8 +23,9 @@ public class GameManagerScript : MonoBehaviour
     //refence to LocalPlayer in PlayerMovement script
     [HideInInspector] public GameObject LocalPlayer;
 
-    public SpawnPlayers spawnPlayer;
-
+    //Dispaly ammo variables
+    public TextMeshProUGUI ammoText;
+    public Gun_Shooting weapon;
 
     public float[,] listOfSpawns =
     {
@@ -43,22 +45,25 @@ public class GameManagerScript : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        UpdateAmmoText();
     }
 
     public void Update()
     {
+        UpdateAmmoText();
         if (startRespawn)
         {
             StartRespawn();
         }
-        pingrate.text = "NetworkPing: " + PhotonNetwork.GetPing();
+        pingrate.text = $"Ping: {PhotonNetwork.GetPing()}";
     }
 
     void StartRespawn()
     {
+        //countdown timer
         TimeAmount -= Time.deltaTime;
         spawnTimer.text = "Respawn in: " + TimeAmount.ToString("F0");
-
+        //check if counter is 0 or lower
         if(TimeAmount <= 0)
         {
             respawnUI.SetActive(false);
@@ -68,10 +73,10 @@ public class GameManagerScript : MonoBehaviour
             LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
             //invoke method Revive from playerHealth
             LocalPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.AllBuffered);
-            Debug.Log("StartRespawn method invoked");
             SpawnAfterDeath();
         }
     }
+    //enable the whole respawning system
     public void EnableRespawn()
     {
         TimeAmount = 5;
@@ -90,8 +95,7 @@ public class GameManagerScript : MonoBehaviour
             SceneManager.LoadScene("Menu");
         }
     }
-
-    public void SpawnAfterDeath()
+        public void SpawnAfterDeath()
     {
         System.Random gen = new System.Random();
         int numberOfSpawnPoint = gen.Next(11);
@@ -107,5 +111,12 @@ public class GameManagerScript : MonoBehaviour
         }
 
         myCinemachine.Follow = player.transform;
+    }
+
+    [PunRPC]
+    public void UpdateAmmoText()
+    {
+
+        ammoText.text = $"{weapon.GetCurrentClip()}/{weapon.GetCurrentAmmo()}";
     }
 }

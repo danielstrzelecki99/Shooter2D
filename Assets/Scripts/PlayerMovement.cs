@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviourPun
     private bool doubleJump;
     private bool crouch = false;
     float horizontalMove = 0f; //To define if player is moving
+    public static string interactInfoText;
 
     //Dash
     // private bool canDash = true;
@@ -126,7 +127,21 @@ public class PlayerMovement : MonoBehaviourPun
             grounded = true;
             //Debug.Log(other.gameObject.tag);
         }
+       
     }
+
+    private void OnTriggerStay2D(Collider2D other) {
+         if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "FirstAidKit"){
+            interactInfoText = "Press [E] to take item!";
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "FirstAidKit"){
+            interactInfoText = "";
+        }
+    }
+    
 
     // private IEnumerator Dash()
     // {

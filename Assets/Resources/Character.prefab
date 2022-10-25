@@ -18214,6 +18214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   DisableInputs: 0
+  weapon: {fileID: 7197215574491090403}
 --- !u!114 &7878504907076256891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18246,9 +18247,10 @@ MonoBehaviour:
   nickName: {fileID: 2053640718700623372}
   healthBar: {fileID: 6966435295235964034}
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
-  bulletSpeed: 0
   fireRate: 2
-  view: {fileID: 0}
+  currentClip: 5
+  maxClipSize: 10
+  currentAmmo: 100
   DisableInputs: 0
 --- !u!114 &6472150491140279519
 MonoBehaviour:

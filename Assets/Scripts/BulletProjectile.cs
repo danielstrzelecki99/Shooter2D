@@ -35,20 +35,20 @@ public class BulletProjectile : MonoBehaviourPun
         //create variable for enemy
         PhotonView target = collision.gameObject.GetComponent<PhotonView>();
 
-        //destroy bullet only if it hits the other player
+        //condition if bullet hits someone
         if(target != null && (!target.IsMine || target.IsRoomView))
         {
             if (target.tag == "Player")
             {
                 Debug.Log("Player has been shot");
+                //update health hitten player
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }
-        Debug.Log("Ground/wall has been shot");
         //destroy bullet on ground/walls
+        Debug.Log("Ground/wall has been shot");
         GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
-        Debug.Log("Bullet speed:" + speed);
     }
 
     [PunRPC]

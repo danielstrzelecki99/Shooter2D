@@ -6,64 +6,54 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviourPun
 {
-    public Player Owner { get; private set; }
     public float speed;
     public Rigidbody2D rb;
     public GameObject impactEffect;
-    public float lifeTime; //time after bullet will be destroyed
-
+    public float lifeTime = 3f; //time after bullet will be destroyed
     public float bulleteDamage = 0.15f;
+
     public void Start()
     {
         //invoke function destroying projectile after 'lifeTime'
-        Invoke("DestroyProjectile", lifeTime);
+        //Invoke("DestroyProjectile", lifeTime);
         rb.velocity = transform.right * speed;
     }
 
-    private void Update()
+    IEnumerator destroyBullet()
     {
-
+        yield return new WaitForSeconds(lifeTime);
+        GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
     }
 
-    void OnTriggerEnter2D(Collider2D hitInfo)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         //check if PhotonView does not belong to player 
         if (!photonView.IsMine)
         {
             return;
         }
-        PhotonView target = hitInfo.gameObject.GetComponent<PhotonView>();
+        //create variable for enemy
+        PhotonView target = collision.gameObject.GetComponent<PhotonView>();
 
         //destroy bullet only if it hits the other player
         if(target != null && (!target.IsMine || target.IsRoomView))
         {
             if (target.tag == "Player")
             {
-                Debug.Log("Player was shot");
+                Debug.Log("Player has been shot");
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }
+        Debug.Log("Ground/wall has been shot");
         //destroy bullet on ground/walls
-        GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
-        Destroy(impact, 2);
-        Destroy(gameObject);
+        GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
+        Debug.Log("Bullet speed:" + speed);
     }
 
-    public void InitializeBullet(Player owner, Vector3 originalDirection, float lag)
-    {
-        Owner = owner;
-        transform.forward = originalDirection;
-
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
-        rigidbody.velocity = originalDirection * 200.0f;
-        rigidbody.position += rigidbody.velocity * lag;
-    }
     [PunRPC]
     public void DestroyProjectile()
     {
-        GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
-        Destroy(impact, 2);
         Destroy(gameObject);
     }
 }

@@ -13,6 +13,6 @@ public class PlayerListing : MonoBehaviour
     public void SetPlayerInfo(Player player)
     {
         Player = player;
-        _text.text = Player.NickName + " lvl: " + PlayFabManagerLogin.level;
+        _text.text = Player.NickName + " lvl: " + Player.CustomProperties["Level"];
     }
 }

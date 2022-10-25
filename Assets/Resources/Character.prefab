@@ -18244,9 +18244,11 @@ MonoBehaviour:
   firePoint: {fileID: 7976424847736481237}
   muzzle: {fileID: 7007981753216200356}
   nickName: {fileID: 2053640718700623372}
+  healthBar: {fileID: 6966435295235964034}
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
-  bulletSpeed: 400
+  bulletSpeed: 0
   fireRate: 2
+  view: {fileID: 0}
   DisableInputs: 0
 --- !u!114 &6472150491140279519
 MonoBehaviour:

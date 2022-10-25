@@ -42,7 +42,8 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Update()
     {
-        if (!DisableInputs)
+        GameManagerScript.instance.LocalPlayer = gameObject;
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));

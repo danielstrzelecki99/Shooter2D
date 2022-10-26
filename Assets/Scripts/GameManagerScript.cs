@@ -25,7 +25,6 @@ public class GameManagerScript : MonoBehaviourPun
 
     //Dispaly ammo variables
     public TextMeshProUGUI ammoText;
-    public Gun_Shooting weapon;
 
     public float[,] listOfSpawns =
     {
@@ -117,6 +116,6 @@ public class GameManagerScript : MonoBehaviourPun
     public void UpdateAmmoText()
     {
 
-        ammoText.text = $"{weapon.GetCurrentClip()}/{weapon.GetCurrentAmmo()}";
+        ammoText.text = $"{Gun_Shooting.currentClip}/{Gun_Shooting.currentAmmo}";
     }
 }

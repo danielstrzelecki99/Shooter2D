@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviourPun
     //[SerializeField] private TrailRenderer tr;
 
     PhotonView view;
+
     //when player is dead variable disable inputs
     public bool DisableInputs = false;
     public Gun_Shooting weapon;
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviourPun
                 if (grounded || doubleJump)
                 {
                     animator.SetBool("jump", Input.GetKey(KeyCode.Space));
+                    Debug.Log($"Grounded: {grounded}");
                     Jump();
                 }
             }

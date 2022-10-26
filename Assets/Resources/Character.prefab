@@ -18162,7 +18162,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7008343939132955052}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -18249,9 +18249,6 @@ MonoBehaviour:
   healthBar: {fileID: 6966435295235964034}
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   fireRate: 2
-  currentClip: 5
-  maxClipSize: 10
-  currentAmmo: 100
   DisableInputs: 0
 --- !u!114 &6472150491140279519
 MonoBehaviour:

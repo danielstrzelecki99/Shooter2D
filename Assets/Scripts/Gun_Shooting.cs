@@ -23,8 +23,8 @@ public class Gun_Shooting : MonoBehaviourPun
     float ReadyForNextShoot;
 
     //Ammo variables
-    public int currentClip, maxClipSize = 10, currentAmmo;
-    
+    public static int currentClip = 5, maxClipSize = 10, currentAmmo = 100;
+
 
     PhotonView view;
     public bool DisableInputs = false; //when player is dead variable disable inputs
@@ -91,7 +91,7 @@ public class Gun_Shooting : MonoBehaviourPun
 
     private void Shot()
     {
-        if(currentClip > 0)
+        if (currentClip > 0)
         {
             //enable shoting animation
             shot = true;
@@ -115,7 +115,6 @@ public class Gun_Shooting : MonoBehaviourPun
     public void AddAmmo(int ammoAmount)
     {
         currentAmmo += ammoAmount;
-
     }
     [PunRPC]
     private void Flip()
@@ -127,7 +126,7 @@ public class Gun_Shooting : MonoBehaviourPun
 
     //private void NicknameFlip(){
 
-      //  nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    //  nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     //}
 
     //Setters and getters
@@ -138,13 +137,5 @@ public class Gun_Shooting : MonoBehaviourPun
     public void SetFireRate(float newFirRate)
     {
         fireRate = newFirRate;
-    }
-    public int GetCurrentClip()
-    {
-        return currentClip;
-    }
-    public int GetCurrentAmmo()
-    {
-        return currentAmmo;
     }
 }

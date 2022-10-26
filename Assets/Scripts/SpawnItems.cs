@@ -21,7 +21,7 @@ public class SpawnItems : MonoBehaviour
     }
 
     void Update(){
-        iteractInfo.text = PlayerMovement.interactInfoText;
+        iteractInfo.text = ItemsManager.interactInfoText;
         armorText.text = "Armors: " + PlayerEq.armorAmount.ToString();
         ammoText.text = "Ammo: " + PlayerEq.ammoAmount.ToString();
         firstAidText.text = "First aid kits: " + PlayerEq.aidKitAmount.ToString();

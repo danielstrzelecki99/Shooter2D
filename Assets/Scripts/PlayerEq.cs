@@ -13,7 +13,7 @@ public class PlayerEq : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        if(PlayerMovement.pickUpAllowed == true && Input.GetKeyDown(KeyCode.E)){
+        if(ItemsManager.pickUpAllowed == true && Input.GetKeyDown(KeyCode.E)){
             destroy = true;
         }
     }

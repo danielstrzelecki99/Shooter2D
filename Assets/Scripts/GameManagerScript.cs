@@ -115,7 +115,6 @@ public class GameManagerScript : MonoBehaviourPun
     [PunRPC]
     public void UpdateAmmoText()
     {
-
         ammoText.text = $"{Gun_Shooting.currentClip}/{Gun_Shooting.currentAmmo}";
     }
 }

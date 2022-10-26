@@ -80,7 +80,6 @@ public class Gun_Shooting : MonoBehaviourPun
             if (mousePos.x > transform.position.x && !FacingRight)
             {
                 Flip();
-
             }
             else if (mousePos.x < transform.position.x && FacingRight)
             {
@@ -98,7 +97,6 @@ public class Gun_Shooting : MonoBehaviourPun
             //Clone the bullet object every thime when shot funciton is involved
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
             currentClip--;
-            Debug.Log($"Current clip after shoot: {currentClip}");
         }
 
     }
@@ -110,7 +108,6 @@ public class Gun_Shooting : MonoBehaviourPun
             reloadAmount = currentAmmo;
         currentClip += reloadAmount;
         currentAmmo -= reloadAmount;
-        Debug.Log($"After reload: {currentClip}/{currentAmmo}");
     }
     public void AddAmmo(int ammoAmount)
     {

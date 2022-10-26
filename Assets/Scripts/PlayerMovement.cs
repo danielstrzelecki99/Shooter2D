@@ -59,7 +59,6 @@ public class PlayerMovement : MonoBehaviourPun
                 if (grounded || doubleJump)
                 {
                     animator.SetBool("jump", Input.GetKey(KeyCode.Space));
-                    Debug.Log($"Grounded: {grounded}");
                     Jump();
                 }
             }

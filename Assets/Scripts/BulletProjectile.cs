@@ -10,7 +10,7 @@ public class BulletProjectile : MonoBehaviourPun
     public Rigidbody2D rb;
     public GameObject impactEffect;
     public float lifeTime = 3f; //time after bullet will be destroyed
-    public float bulleteDamage = 0.15f;
+    public static float bulleteDamage = 0.15f;
 
     public void Start()
     {

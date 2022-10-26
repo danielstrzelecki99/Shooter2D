@@ -44,6 +44,7 @@ public class WeaponManager : MonoBehaviour
             animator.SetBool("riffle", true);
             gunShootingScript.SetFirePoint(firePoint1);
             gunShootingScript.SetFireRate(4);
+            BulletProjectile.bulleteDamage = 0.3f;
         }
         else
         {
@@ -53,6 +54,7 @@ public class WeaponManager : MonoBehaviour
             animator.SetBool("riffle", false);
             gunShootingScript.SetFirePoint(firePoint2);
             gunShootingScript.SetFireRate(2);
+            BulletProjectile.bulleteDamage = 0.15f;
         }
 
     }

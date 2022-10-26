@@ -16,6 +16,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public Button map3;
     public GameObject createGameMenu;
     public TextMeshProUGUI errorText;
+    public Toggle privateGame;
+    public InputField roomPasswordInput;
     private RoomsCanvases roomsCanvases;
     private string selectedMap;
     private Color colorActive = new Color(1, 1, 1, 1);
@@ -30,6 +32,17 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         colorBlockInactive = map1.colors;
         colorBlockInactive.normalColor = colorInactive;
         map1Click();
+        createInput.text = PlayFabManagerLogin.username + "'s room";
+        privateGame.onValueChanged.AddListener(delegate {
+            if (privateGame.isOn)
+            {
+                roomPasswordInput.gameObject.SetActive(true);
+            }
+            else
+            {
+                roomPasswordInput.gameObject.SetActive(false);
+            }
+        });
     }
     public void FirstInitialize(RoomsCanvases canvases)
     {
@@ -47,6 +60,10 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         options.IsVisible = true;
         Hashtable customProps = new Hashtable();
         customProps.Add("Map", selectedMap);
+        if (privateGame.isOn && roomPasswordInput.text != "")
+        {
+            customProps.Add("RoomPassword", roomPasswordInput.text);
+        }
         options.CustomRoomProperties = customProps;
         if (createInput.text == "")
         {

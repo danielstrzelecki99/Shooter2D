@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemsManager : MonoBehaviour
 {
+    public static GameObject selectedObject;
     void Start()
     {
         Physics2D.IgnoreLayerCollision(9, 8);
@@ -11,6 +12,7 @@ public class ItemsManager : MonoBehaviour
 
     void Update()
     {
+        //selectedObject = gameObject;
         if(PlayerEq.destroy == true){
             PickUp();
             PlayerEq.destroy = false;
@@ -19,17 +21,13 @@ public class ItemsManager : MonoBehaviour
    
     public void PickUp()
     {   
-        if(gameObject.tag == "AidKit"){
+        if(selectedObject.tag == "AidKit"){
             PlayerEq.aidKitAmount += 1;
-        } else if(gameObject.tag == "AmmoKit"){
+        } else if(selectedObject.tag == "AmmoKit"){
             PlayerEq.ammoAmount += 1;
-        } else if (gameObject.tag == "Armor"){
+        } else if (selectedObject.tag == "Armor"){
             PlayerEq.armorAmount += 1;
         }
-        Destroy(gameObject);
-        Debug.Log("Item destryed");
-        Debug.Log("Apteczki: " + PlayerEq.aidKitAmount);
-        Debug.Log("Armory: " + PlayerEq.armorAmount);
-        Debug.Log("Ammo: " + PlayerEq.ammoAmount);
+        Destroy(selectedObject);
     }
 }

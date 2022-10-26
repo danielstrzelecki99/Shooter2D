@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviourPun
     public static string interactInfoText;
     public static bool pickUpAllowed = false;
 
+
+
     //Dash
     // private bool canDash = true;
     // private bool isDashing;
@@ -137,12 +139,13 @@ public class PlayerMovement : MonoBehaviourPun
         }
        
     }
-    
+
     //Interact with items on map methods
     private void OnTriggerStay2D(Collider2D other) {
-         if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "AidKit"){
+        if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "AidKit"){
             interactInfoText = "Press [E] to take item!";
             pickUpAllowed = true;
+            ItemsManager.selectedObject = other.gameObject;
         }
     }
 
@@ -152,6 +155,8 @@ public class PlayerMovement : MonoBehaviourPun
             pickUpAllowed = false;
         }
     }
+    
+
     
 
     // private IEnumerator Dash()

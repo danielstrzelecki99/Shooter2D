@@ -116,11 +116,11 @@ public class GameManagerScript : MonoBehaviourPun
     [PunRPC]
     public void UpdateAmmoText()
     {
-        if (WeaponManager.CurrentWeaponNo == 0)
+        if (WeaponManager.CurrentWeaponNo == 0) //if weapon is gun 
         {
-            ammoText.text = $"{WeaponScript.RcurrentClip}/{double.PositiveInfinity}";
+            ammoText.text = $"{WeaponScript.RcurrentClip}/{"\u221E"}";
         }
-        else
+        else //if weapon is riffle
         {
             ammoText.text = $"{WeaponScript.RcurrentClip}/{WeaponScript.RcurrentAmmo}";
         }

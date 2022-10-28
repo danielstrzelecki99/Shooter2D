@@ -58,10 +58,13 @@ public class WeaponScript : MonoBehaviourPun
     }
     public void AddAmmo(int ammoAmount)
     {
-        currentAmmo += ammoAmount;
-        if (currentAmmo > maxAmmoSize)
+        if (WeaponManager.CurrentWeaponNo != 0) //add ammo only for riffle
         {
-            currentAmmo = maxAmmoSize;
+            currentAmmo += ammoAmount;
+            if (currentAmmo > maxAmmoSize)
+            {
+                currentAmmo = maxAmmoSize;
+            }
         }
     }
 }

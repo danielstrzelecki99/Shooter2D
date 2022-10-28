@@ -8,7 +8,6 @@ using TMPro;
 public class Gun_Shooting : MonoBehaviourPun
 {
     public Transform gunHolder;
-    [SerializeField] private Transform firePoint;
     private Animator animator;
     private bool shot = false;
     //Variable for flipping the player model
@@ -17,14 +16,10 @@ public class Gun_Shooting : MonoBehaviourPun
     public Transform nickName;
     public Transform healthBar;
 
-    //Bullet variables
-    public GameObject Bullet;
-    [SerializeField] private float fireRate;
-    float ReadyForNextShoot;
 
     //Ammo variables
-    public int currentClip, maxClipSize = 10, currentAmmo;
-    
+    public static int currentClip = 5, maxClipSize = 10, currentAmmo = 100, maxAmmoSize = 100;
+
 
     PhotonView view;
     public bool DisableInputs = false; //when player is dead variable disable inputs
@@ -54,14 +49,10 @@ public class Gun_Shooting : MonoBehaviourPun
                 gunHolder.transform.Rotate(180f, 0f, gunHolder.transform.rotation.z);
             }
 
-            //make action when fire button is pressed
+            //activate animation fire button is pressed
             if (Input.GetMouseButton(0))
             {
-                if (Time.time > ReadyForNextShoot)
-                {
-                    ReadyForNextShoot = Time.time + 1 / fireRate;
-                    Shot();
-                }
+                shot = true;
             }
             else
                 shot = false;
@@ -80,42 +71,12 @@ public class Gun_Shooting : MonoBehaviourPun
             if (mousePos.x > transform.position.x && !FacingRight)
             {
                 Flip();
-
             }
             else if (mousePos.x < transform.position.x && FacingRight)
             {
                 Flip();
             }
         }
-    }
-
-    private void Shot()
-    {
-        if(currentClip > 0)
-        {
-            //enable shoting animation
-            shot = true;
-            //Clone the bullet object every thime when shot funciton is involved
-            PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
-            currentClip--;
-            Debug.Log($"Current clip after shoot: {currentClip}");
-        }
-
-    }
-    public void Reload()
-    {
-        Debug.Log("Reloading!");
-        int reloadAmount = maxClipSize - currentClip; //how many bullets to refill cilp
-        if (currentAmmo - reloadAmount < 0)
-            reloadAmount = currentAmmo;
-        currentClip += reloadAmount;
-        currentAmmo -= reloadAmount;
-        Debug.Log($"After reload: {currentClip}/{currentAmmo}");
-    }
-    public void AddAmmo(int ammoAmount)
-    {
-        currentAmmo += ammoAmount;
-
     }
     [PunRPC]
     private void Flip()
@@ -125,26 +86,8 @@ public class Gun_Shooting : MonoBehaviourPun
         transform.Rotate(0f, 180f, 0f);
     }
 
-    //private void NicknameFlip(){
-
-      //  nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    //private void NicknameFlip()
+    //{
+    //    nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     //}
-
-    //Setters and getters
-    public void SetFirePoint(Transform newFirePoint)
-    {
-        firePoint = newFirePoint;
-    }
-    public void SetFireRate(float newFirRate)
-    {
-        fireRate = newFirRate;
-    }
-    public int GetCurrentClip()
-    {
-        return currentClip;
-    }
-    public int GetCurrentAmmo()
-    {
-        return currentAmmo;
-    }
 }

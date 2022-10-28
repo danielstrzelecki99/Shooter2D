@@ -10,7 +10,7 @@ public class BulletProjectile : MonoBehaviourPun
     public Rigidbody2D rb;
     public GameObject impactEffect;
     public float lifeTime = 3f; //time after bullet will be destroyed
-    public float bulleteDamage = 0.15f;
+    public static float bulleteDamage = 0.15f;
 
     public void Start()
     {
@@ -38,16 +38,16 @@ public class BulletProjectile : MonoBehaviourPun
         //condition if bullet hits someone
         if(target != null && (!target.IsMine || target.IsRoomView))
         {
-            if (target.tag == "Player")
+            if (target.CompareTag("Player"))
             {
-                Debug.Log("Player has been shot");
+                //Debug.Log("Player has been shot");
                 //update health hitten player
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }
         //destroy bullet on ground/walls
-        Debug.Log("Ground/wall has been shot");
+        //Debug.Log("Ground/wall has been shot");
         GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
     }
 

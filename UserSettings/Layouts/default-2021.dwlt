@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
-  - {fileID: 15}
+  - {fileID: 12}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &10
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -250,8 +250,8 @@ MonoBehaviour:
   - {fileID: 16}
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 3
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -607,9 +607,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: -234, y: -149}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 0
+      snapCorner: 3
       id: Scene View/Camera
       index: 1
       layout: 4
@@ -706,7 +706,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -946,7 +946,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 643
-    width: 1531
+    width: 1538
     height: 348
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -985,7 +985,7 @@ MonoBehaviour:
       e10: 0
       e11: 0.76102895
       e12: 0
-      e13: -37.441925
+      e13: 60.882317
       e20: 0
       e21: 0
       e22: 1
@@ -1112,7 +1112,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 643
-    width: 1531
+    width: 1538
     height: 348
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1120,7 +1120,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -52604
+  m_LastSelectedObjectID: 83576
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52

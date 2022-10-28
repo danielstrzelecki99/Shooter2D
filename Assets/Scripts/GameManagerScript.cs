@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 using TMPro;
 using CharacterCreator2D;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviourPun
 {
@@ -25,7 +26,6 @@ public class GameManagerScript : MonoBehaviourPun
 
     //Dispaly ammo variables
     public TextMeshProUGUI ammoText;
-    public Gun_Shooting weapon;
 
     public float[,] listOfSpawns =
     {
@@ -116,7 +116,13 @@ public class GameManagerScript : MonoBehaviourPun
     [PunRPC]
     public void UpdateAmmoText()
     {
-
-        ammoText.text = $"{weapon.GetCurrentClip()}/{weapon.GetCurrentAmmo()}";
+        if (WeaponManager.CurrentWeaponNo == 0)
+        {
+            ammoText.text = $"{WeaponScript.RcurrentClip}/{double.PositiveInfinity}";
+        }
+        else
+        {
+            ammoText.text = $"{WeaponScript.RcurrentClip}/{WeaponScript.RcurrentAmmo}";
+        }
     }
 }

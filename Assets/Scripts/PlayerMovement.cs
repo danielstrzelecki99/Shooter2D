@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviourPun
     //[SerializeField] private TrailRenderer tr;
 
     PhotonView view;
+
     //when player is dead variable disable inputs
     public bool DisableInputs = false;
     public Gun_Shooting weapon;
@@ -79,10 +80,6 @@ public class PlayerMovement : MonoBehaviourPun
                 crouch = false;
                 speed *= 2;
                 animator.SetBool("crouch", crouch);
-            }
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                weapon.Reload();
             }
         }
         Physics2D.IgnoreLayerCollision(3, 3);

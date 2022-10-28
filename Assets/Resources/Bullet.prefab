@@ -105,7 +105,6 @@ MonoBehaviour:
   rb: {fileID: -4711363732674924711}
   impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
   lifeTime: 1.5
-  bulleteDamage: 0.15
 --- !u!50 &-4711363732674924711
 Rigidbody2D:
   serializedVersion: 4

@@ -25,7 +25,7 @@ public class ItemsManager : MonoBehaviour
     public void PickUp()
     {   
         if(selectedObject.tag == "AidKit"){
-            if(PlayerEq.aidKitAmount == 1){
+            if(PlayerEq.aidKitAmount == 2){
                 itemInfoText = "You already have 2 first aid kits!";
                 interval = 2f;
                 return;
@@ -34,7 +34,7 @@ public class ItemsManager : MonoBehaviour
                 PlayerEq.aidKitAmount += 1;
             }
         } else if(selectedObject.tag == "AmmoKit"){
-            if(PlayerEq.ammoAmount == 1){
+            if(PlayerEq.ammoAmount == 2){
                 itemInfoText = "You already have 2 ammo packs!";
                 interval = 2f;
                 return;
@@ -43,7 +43,7 @@ public class ItemsManager : MonoBehaviour
                 PlayerEq.ammoAmount += 1;
             }
         } else if (selectedObject.tag == "Armor"){
-            if(PlayerEq.armorAmount == 1){
+            if(PlayerEq.armorAmount == 2){
                 itemInfoText = "You already have 2 armors!";
                 interval = 2f;
                 return;

@@ -23,7 +23,7 @@ public class Gun_Shooting : MonoBehaviourPun
     float ReadyForNextShoot;
 
     //Ammo variables
-    public static int currentClip = 5, maxClipSize = 10, currentAmmo = 100;
+    public static int currentClip = 5, maxClipSize = 10, currentAmmo = 100, maxAmmoSize = 100;
 
 
     PhotonView view;
@@ -102,7 +102,6 @@ public class Gun_Shooting : MonoBehaviourPun
     }
     public void Reload()
     {
-        Debug.Log("Reloading!");
         int reloadAmount = maxClipSize - currentClip; //how many bullets to refill cilp
         if (currentAmmo - reloadAmount < 0)
             reloadAmount = currentAmmo;
@@ -112,6 +111,10 @@ public class Gun_Shooting : MonoBehaviourPun
     public void AddAmmo(int ammoAmount)
     {
         currentAmmo += ammoAmount;
+        if(currentAmmo > maxAmmoSize)
+        {
+            currentAmmo = maxAmmoSize;
+        }
     }
     [PunRPC]
     private void Flip()

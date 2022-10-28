@@ -36,7 +36,7 @@ public class WeaponManager : MonoBehaviour
 
     private void ChangeWeapon()
     {
-        if (CurrentWeaponNo == 0)
+        if (CurrentWeaponNo == 0) //riffle
         {
             CurrentWeaponNo += 1;
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
@@ -46,7 +46,7 @@ public class WeaponManager : MonoBehaviour
             gunShootingScript.SetFireRate(4);
             BulletProjectile.bulleteDamage = 0.3f;
         }
-        else
+        else //gun
         {
             CurrentWeaponNo -= 1;
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);

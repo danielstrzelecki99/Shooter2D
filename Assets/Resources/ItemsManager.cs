@@ -1,9 +1,10 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ItemsManager : MonoBehaviour
+public class ItemsManager : MonoBehaviourPun
 {
     public static GameObject selectedObject;
     public static string itemInfoText;

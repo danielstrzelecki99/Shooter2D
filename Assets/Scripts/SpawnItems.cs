@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 public class SpawnItems : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class SpawnItems : MonoBehaviour
     [SerializeField] TextMeshProUGUI armorText;
     [SerializeField] TextMeshProUGUI ammoText; 
     [SerializeField] TextMeshProUGUI firstAidText;
+    [SerializeField] TextMeshProUGUI itemInfo;
+    PhotonView view;
    
     void Start()
     {
@@ -21,10 +24,16 @@ public class SpawnItems : MonoBehaviour
     }
 
     void Update(){
-        iteractInfo.text = PlayerMovement.interactInfoText;
-        armorText.text = "Armors: " + PlayerEq.armorAmount.ToString();
-        ammoText.text = "Ammo: " + PlayerEq.ammoAmount.ToString();
-        firstAidText.text = "First aid kits: " + PlayerEq.aidKitAmount.ToString();
+            iteractInfo.text = PlayerMovement.interactInfoText;
+            armorText.text = "[G] " + PlayerEq.armorAmount.ToString();
+            ammoText.text = PlayerEq.ammoAmount.ToString();
+            firstAidText.text = "[F] " +  PlayerEq.aidKitAmount.ToString();
+            if(ItemsManager.interval > 0){
+                itemInfo.text = ItemsManager.itemInfoText;
+                ItemsManager.interval -= Time.deltaTime;
+            } else {
+                itemInfo.text = "";
+            }
     }
 
     public void SpawnItem(){

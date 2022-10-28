@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ItemsManager : MonoBehaviour
 {
     public static GameObject selectedObject;
+    public static string itemInfoText;
+    public static float interval;
     void Start()
     {
         Physics2D.IgnoreLayerCollision(9, 8);
@@ -18,15 +21,36 @@ public class ItemsManager : MonoBehaviour
             PlayerEq.destroy = false;
         }
     }
-   
+
     public void PickUp()
     {   
         if(selectedObject.tag == "AidKit"){
-            PlayerEq.aidKitAmount += 1;
+            if(PlayerEq.aidKitAmount == 2){
+                itemInfoText = "You already have 2 first aid kits!";
+                interval = 2f;
+                return;
+            }
+            else{
+                PlayerEq.aidKitAmount += 1;
+            }
         } else if(selectedObject.tag == "AmmoKit"){
-            PlayerEq.ammoAmount += 1;
+            if(PlayerEq.ammoAmount == 2){
+                itemInfoText = "You already have 2 ammo packs!";
+                interval = 2f;
+                return;
+            }
+            else{
+                PlayerEq.ammoAmount += 1;
+            }
         } else if (selectedObject.tag == "Armor"){
-            PlayerEq.armorAmount += 1;
+            if(PlayerEq.armorAmount == 2){
+                itemInfoText = "You already have 2 armors!";
+                interval = 2f;
+                return;
+            }
+            else{
+                PlayerEq.armorAmount += 1;
+            }
         }
         Destroy(selectedObject);
     }

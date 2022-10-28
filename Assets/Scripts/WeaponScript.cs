@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoManager : MonoBehaviourPun
+public class WeaponScript : MonoBehaviourPun
 {
     //Ammo variables
     public int currentClip, maxClipSize, currentAmmo, maxAmmoSize;

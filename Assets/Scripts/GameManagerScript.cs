@@ -118,11 +118,11 @@ public class GameManagerScript : MonoBehaviourPun
     {
         if (WeaponManager.CurrentWeaponNo == 0)
         {
-            ammoText.text = $"{AmmoManager.RcurrentClip}/{double.PositiveInfinity}";
+            ammoText.text = $"{WeaponScript.RcurrentClip}/{double.PositiveInfinity}";
         }
         else
         {
-            ammoText.text = $"{AmmoManager.RcurrentClip}/{AmmoManager.RcurrentAmmo}";
+            ammoText.text = $"{WeaponScript.RcurrentClip}/{WeaponScript.RcurrentAmmo}";
         }
     }
 }

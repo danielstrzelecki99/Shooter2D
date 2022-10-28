@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviourPun
     //when player is dead variable disable inputs
     public bool DisableInputs = false;
     public Gun_Shooting weapon;
-    public AmmoManager ammoManager;
 
     private void Awake()
     {

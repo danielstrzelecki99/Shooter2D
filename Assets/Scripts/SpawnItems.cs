@@ -14,6 +14,7 @@ public class SpawnItems : MonoBehaviour
     [SerializeField] TextMeshProUGUI armorText;
     [SerializeField] TextMeshProUGUI ammoText; 
     [SerializeField] TextMeshProUGUI firstAidText;
+    [SerializeField] TextMeshProUGUI itemInfo;
    
     void Start()
     {
@@ -25,6 +26,13 @@ public class SpawnItems : MonoBehaviour
         armorText.text = PlayerEq.armorAmount.ToString();
         ammoText.text = PlayerEq.ammoAmount.ToString();
         firstAidText.text = PlayerEq.aidKitAmount.ToString();
+        if(ItemsManager.interval > 0){
+            itemInfo.text = ItemsManager.itemInfoText;
+            ItemsManager.interval -= Time.deltaTime;
+        } else {
+            itemInfo.text = "";
+        }
+        
     }
 
     public void SpawnItem(){

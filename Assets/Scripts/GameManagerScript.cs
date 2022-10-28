@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 using TMPro;
 using CharacterCreator2D;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviourPun
 {
@@ -115,6 +116,13 @@ public class GameManagerScript : MonoBehaviourPun
     [PunRPC]
     public void UpdateAmmoText()
     {
-        ammoText.text = $"{Gun_Shooting.currentClip}/{Gun_Shooting.currentAmmo}";
+        if (WeaponManager.CurrentWeaponNo == 0)
+        {
+            ammoText.text = $"{AmmoManager.RcurrentClip}/{double.PositiveInfinity}";
+        }
+        else
+        {
+            ammoText.text = $"{AmmoManager.RcurrentClip}/{AmmoManager.RcurrentAmmo}";
+        }
     }
 }

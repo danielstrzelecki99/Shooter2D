@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     private Animator animator;
-    int CurrentWeaponNo;
+    public static int CurrentWeaponNo;
     public Transform firePoint1;
     public Transform firePoint2;
 
@@ -42,8 +42,6 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
-            gunShootingScript.SetFirePoint(firePoint1);
-            gunShootingScript.SetFireRate(4);
             BulletProjectile.bulleteDamage = 0.3f;
         }
         else //gun
@@ -52,8 +50,6 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
-            gunShootingScript.SetFirePoint(firePoint2);
-            gunShootingScript.SetFireRate(2);
             BulletProjectile.bulleteDamage = 0.15f;
         }
 

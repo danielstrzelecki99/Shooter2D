@@ -16595,7 +16595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7013250218807092080}
   - component: {fileID: 7185010963848001578}
-  - component: {fileID: 1544191980009606973}
+  - component: {fileID: 2210553467945585060}
   m_Layer: 6
   m_Name: Rifle
   m_TagString: Weapon
@@ -16672,7 +16672,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1544191980009606973
+--- !u!114 &2210553467945585060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16681,10 +16681,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7008153050880386164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c88e413dc978f4c9e857bf02d5db50, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e276a53af2ac644992cbe43315d298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  currentClip: 10
+  maxClipSize: 20
+  currentAmmo: 40
+  maxAmmoSize: 80
+  Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
+  fireRate: 4
+  firePoint: {fileID: 2981141767691014503}
 --- !u!1 &7008163934158747016
 GameObject:
   m_ObjectHideFlags: 0
@@ -18216,6 +18222,7 @@ MonoBehaviour:
   speed: 4
   DisableInputs: 0
   weapon: {fileID: 7197215574491090403}
+  ammoManager: {fileID: 0}
 --- !u!114 &7878504907076256891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18243,12 +18250,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunHolder: {fileID: 3784147708219882753}
-  firePoint: {fileID: 7976424847736481237}
   muzzle: {fileID: 7007981753216200356}
   nickName: {fileID: 2053640718700623372}
   healthBar: {fileID: 6966435295235964034}
-  Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
-  fireRate: 2
   DisableInputs: 0
 --- !u!114 &6472150491140279519
 MonoBehaviour:
@@ -20580,7 +20584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4378587241409180007}
   - component: {fileID: 3486943736924034048}
-  - component: {fileID: 4955364560812289720}
+  - component: {fileID: 2207050228221023205}
   m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
@@ -20657,7 +20661,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4955364560812289720
+--- !u!114 &2207050228221023205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20666,10 +20670,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7550169550785692224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c88e413dc978f4c9e857bf02d5db50, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e276a53af2ac644992cbe43315d298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  currentClip: 5
+  maxClipSize: 10
+  currentAmmo: 2147483647
+  maxAmmoSize: 2147483647
+  Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
+  fireRate: 2
+  firePoint: {fileID: 7976424847736481237}
 --- !u!1 &7744405378113379240
 GameObject:
   m_ObjectHideFlags: 0

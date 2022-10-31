@@ -98,9 +98,12 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
-        CheckIfPlayerIsHost();
+        if (PhotonNetwork.CurrentRoom.IsVisible) // check if players are in lobby
+        {
+            CheckIfPlayerIsHost();
 
-        base.photonView.RPC("RPC_ChangeHostPlayer", RpcTarget.AllBuffered, newMasterClient, host); // method which send information about host player to another players
+            base.photonView.RPC("RPC_ChangeHostPlayer", RpcTarget.AllBuffered, newMasterClient, host); // method which send information about host player to another players
+        }
     }
 
     public void OnClick_StartGame()

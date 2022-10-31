@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Start()
     {
+        Physics2D.IgnoreLayerCollision(6, 6);
         view = GetComponent<PhotonView>();
     }
 
@@ -82,7 +83,6 @@ public class PlayerMovement : MonoBehaviourPun
                 animator.SetBool("crouch", crouch);
             }
         }
-        Physics2D.IgnoreLayerCollision(6, 6);
     }
 
     private void FixedUpdate()

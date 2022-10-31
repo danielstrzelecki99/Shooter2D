@@ -18266,7 +18266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 7522395843720666980}
-  localHealth: 1
   rb: {fileID: 7008765400610643048}
   playerPrefab: {fileID: 7008343939132955052}
   playerCollider: {fileID: 7008765400610643054}

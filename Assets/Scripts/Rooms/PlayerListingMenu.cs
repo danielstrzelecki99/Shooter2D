@@ -84,12 +84,15 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        ShowOrHideStartGameButton(); // check if host player left
-        int index = playerListings.FindIndex(x => x.Player == otherPlayer);
-        if (index != -1)
+        if (PhotonNetwork.CurrentRoom.IsVisible) // check if players are in lobby
         {
-            Destroy(playerListings[index].gameObject);
-            playerListings.RemoveAt(index);
+            ShowOrHideStartGameButton(); // check if host player left
+            int index = playerListings.FindIndex(x => x.Player == otherPlayer);
+            if (index != -1)
+            {
+                Destroy(playerListings[index].gameObject);
+                playerListings.RemoveAt(index);
+            }
         }
     }
 

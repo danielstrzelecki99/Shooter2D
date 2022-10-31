@@ -2,7 +2,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerListingMenu : MonoBehaviourPunCallbacks
 {
@@ -12,6 +14,23 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     private List<PlayerListing> playerListings = new List<PlayerListing>();
     private RoomsCanvases roomsCanvases;
+
+    public GameObject startGameButton;
+    public GameObject readyButton;
+    public TextMeshProUGUI readyButtonText;
+
+    private bool ready = false;
+    private bool host = false;
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        ShowOrHideStartGameButton();
+        SetReady(false);
+        CheckIfPlayerIsHost();
+        if (host)
+            base.photonView.RPC("RPC_ChangeHostPlayer", RpcTarget.AllViaServer, PhotonNetwork.LocalPlayer, host);
+    }
 
     private void Update()
     {
@@ -52,6 +71,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
         else
         {
+            if (host)
+                base.photonView.RPC("RPC_ChangeHostPlayer", RpcTarget.All, PhotonNetwork.LocalPlayer, host); // method which send information about host player to another players when new player join
             PlayerListing listing = Instantiate(playerListing, content);
             if (null != listing)
             {
@@ -61,13 +82,9 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
     }
 
-   // public override void OnPlayerEnteredRoom(Player newPlayer)
-   // {
-     //   AddPlayerListing(newPlayer);
-   // }
-
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        ShowOrHideStartGameButton(); // check if host player left
         int index = playerListings.FindIndex(x => x.Player == otherPlayer);
         if (index != -1)
         {
@@ -76,13 +93,92 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        CheckIfPlayerIsHost();
+
+        base.photonView.RPC("RPC_ChangeHostPlayer", RpcTarget.AllBuffered, newMasterClient, host); // method which send information about host player to another players
+    }
+
     public void OnClick_StartGame()
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            for(int i = 0; i < playerListings.Count; i++) // check if all players are ready
+            {
+                if (playerListings[i].Player != PhotonNetwork.LocalPlayer) // check if player on list is not host player
+                {
+                    if (!playerListings[i].Ready)
+                        return;
+                }
+            }
+
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel(PhotonNetwork.CurrentRoom.CustomProperties["Map"].ToString());
+        }
+    }
+
+    public void ShowOrHideStartGameButton()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            startGameButton.SetActive(true);
+            readyButton.SetActive(false);
+        }
+        else
+        {
+            startGameButton.SetActive(false);
+            readyButton.SetActive(true);
+        }
+    }
+
+    private void SetReady(bool ready)
+    {
+        this.ready = ready;
+        if (ready)
+        {
+            readyButtonText.text = "READY";
+            readyButtonText.color = Color.green;
+        }
+        else
+        {
+            readyButtonText.text = "NOT READY";
+            readyButtonText.color = Color.red;
+        }
+    }
+
+    private void CheckIfPlayerIsHost()
+    {
+        if (PhotonNetwork.IsMasterClient)
+            host = true;
+        else
+            host = false;
+    }
+
+    public void OnClick_Ready()
+    {
+        SetReady(!ready);
+        base.photonView.RPC("RPC_ChangeReadyState", RpcTarget.All, PhotonNetwork.LocalPlayer, ready); // method which send information about ready players to another players
+    }
+
+    [PunRPC]
+    private void RPC_ChangeReadyState(Player player, bool ready)
+    {
+        int index = playerListings.FindIndex(x => x.Player == player);
+        if (index != -1)
+        {
+            playerListings[index].Ready = ready;
+        }
+    }
+
+    [PunRPC]
+    private void RPC_ChangeHostPlayer(Player player, bool host)
+    {
+        int index = playerListings.FindIndex(x => x.Player == player);
+        if (index != -1)
+        {
+            playerListings[index].Host = host;
         }
     }
 }

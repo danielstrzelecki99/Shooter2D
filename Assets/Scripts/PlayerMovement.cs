@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviourPun
                 animator.SetBool("crouch", crouch);
             }
         }
-        Physics2D.IgnoreLayerCollision(3, 3);
+        Physics2D.IgnoreLayerCollision(6, 6);
     }
 
     private void FixedUpdate()

@@ -55,7 +55,11 @@ MonoBehaviour:
   - Update
   - Heal
   - Shot
-  - Reload
+  - RPC_ChangeHostPlayer
+  - RPC_ChangeReadyState
+  - RPC_PickUp
+  - RPC_SpawnItem
+  - ArmorUse
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

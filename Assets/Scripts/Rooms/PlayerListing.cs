@@ -10,9 +10,12 @@ public class PlayerListing : MonoBehaviour
     private Text _text;
 
     public Player Player { get; private set; }
+    public bool Ready = false;
+    public bool Host = false;
     public void SetPlayerInfo(Player player)
     {
         Player = player;
         _text.text = Player.NickName + " lvl: " + Player.CustomProperties["Level"];
+        _text.color = Host ? Color.yellow : (Ready ? Color.green : Color.red);
     }
 }

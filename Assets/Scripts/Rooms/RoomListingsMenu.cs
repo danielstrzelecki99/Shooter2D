@@ -10,7 +10,7 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
     private Transform content;
     [SerializeField] RoomListing roomListing;
 
-    private List<RoomListing> roomListings = new List<RoomListing>();
+    public List<RoomListing> roomListings = new List<RoomListing>();
     private RoomsCanvases roomsCanvases;
 
     public void FirstInitialize(RoomsCanvases canvases)

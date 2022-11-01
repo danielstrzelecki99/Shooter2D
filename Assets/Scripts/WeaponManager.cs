@@ -7,11 +7,14 @@ public class WeaponManager : MonoBehaviour
 {
     private Animator animator;
     public static int CurrentWeaponNo;
-    public Transform firePoint1;
-    public Transform firePoint2;
+    [SerializeField] Transform firePoint1;
+    [SerializeField] Transform firePoint2;
+    [SerializeField] GameObject weapon1;
+    [SerializeField] GameObject weapon2;
+
 
     PhotonView view;
-
+    public bool DisableInputs = false; //when player is dead variable disable inputs
     Gun_Shooting gunShootingScript;
 
     private void Awake()
@@ -28,9 +31,12 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine && Input.GetKeyDown(KeyCode.C))
+        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
-            ChangeWeapon();
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                ChangeWeapon();
+            }
         }
     }
 
@@ -42,6 +48,9 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
+            //gunShootingScript.SetFirePoint(firePoint1);
+            gunShootingScript.SetWeapon(weapon1);
+            //gunShootingScript.SetFireRate(4);
             BulletProjectile.bulleteDamage = 0.3f;
         }
         else //gun
@@ -50,6 +59,9 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
+            //gunShootingScript.SetFirePoint(firePoint2);
+            gunShootingScript.SetWeapon(weapon2);
+            //gunShootingScript.SetFireRate(2);
             BulletProjectile.bulleteDamage = 0.15f;
         }
 

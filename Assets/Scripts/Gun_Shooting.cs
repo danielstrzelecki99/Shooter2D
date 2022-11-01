@@ -4,10 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun.Demo.Asteroids;
 
 public class Gun_Shooting : MonoBehaviourPun
 {
     public Transform gunHolder;
+    public GameObject Bullet;
+    [SerializeField] float fireRate;
+    float ReadyForNextShoot;
+    [SerializeField] Transform firePoint;
+
     private Animator animator;
     private bool shot = false;
     //Variable for flipping the player model
@@ -18,9 +24,10 @@ public class Gun_Shooting : MonoBehaviourPun
 
 
     //Ammo variables
-    public static int currentClip = 5, maxClipSize = 10, currentAmmo = 100, maxAmmoSize = 100;
+    public int AcurrentClip, AmaxClipSize, AcurrentAmmo, AmaxAmmoSize;
 
-
+    WeaponScript weaponController;
+    [SerializeField] private GameObject weapon;
     PhotonView view;
     public bool DisableInputs = false; //when player is dead variable disable inputs
 
@@ -28,10 +35,15 @@ public class Gun_Shooting : MonoBehaviourPun
     {
         animator = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
+        weaponController = weapon.GetComponent<WeaponScript>();
     }
     // Update is called once per frame
     private void Update()
     {
+        AcurrentClip = weaponController.currentClip;
+        AmaxClipSize = weaponController.maxClipSize;
+        AcurrentAmmo = weaponController.currentAmmo;
+        AmaxAmmoSize = weaponController.maxAmmoSize;
         if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
             //rotate gun towards mousePosition
@@ -52,11 +64,24 @@ public class Gun_Shooting : MonoBehaviourPun
             //activate animation fire button is pressed
             if (Input.GetMouseButton(0))
             {
-                shot = true;
+                if (Time.time > ReadyForNextShoot)
+                {
+                    ReadyForNextShoot = Time.time + 1 / weaponController.fireRate;
+                    weaponController.Shot();
+                    shot = true;
+                }
             }
             else
                 shot = false;
             animator.SetBool("shoot", shot);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                weaponController.Reload();
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                weaponController = weapon.GetComponent<WeaponScript>();
+            }
         }
         nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of nickname tag
         healthBar.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of health bar
@@ -78,6 +103,30 @@ public class Gun_Shooting : MonoBehaviourPun
             }
         }
     }
+
+    public void Shot()
+    {
+        if (weaponController.currentClip > 0)
+        {
+            //enable shoting animation
+            shot = true;
+            //Clone the bullet object every thime when shot funciton is involved
+            PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
+            weaponController.currentClip--;
+            Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
+        }
+    }
+    [PunRPC]
+    public void Reload()
+    {
+        int reloadAmount = weaponController.maxClipSize - weaponController.currentClip; //how many bullets to refill cilp
+        if (weaponController.currentAmmo - reloadAmount < 0)
+            reloadAmount = weaponController.currentAmmo;
+        weaponController.currentClip += reloadAmount;
+        weaponController.currentAmmo -= reloadAmount;
+        Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
+    }
+
     [PunRPC]
     private void Flip()
     {
@@ -90,4 +139,18 @@ public class Gun_Shooting : MonoBehaviourPun
     //{
     //    nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     //}
+
+    //Setters and getters
+    public void SetFirePoint(Transform newFirePoint)
+    {
+        firePoint = newFirePoint;
+    }
+    public void SetFireRate(float newFirRate)
+    {
+        fireRate = newFirRate;
+    }
+    public void SetWeapon(GameObject newWeapon)
+    {
+        weapon = newWeapon;
+    }
 }

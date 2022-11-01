@@ -37,8 +37,8 @@ public class WeaponScript : MonoBehaviourPun
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
             currentClip--;
             RcurrentClip = currentClip;
-            Debug.Log($"{currentClip}/{currentAmmo}");
-            Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
+            //Debug.Log($"{currentClip}/{currentAmmo}");
+            //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
         }
     }
 
@@ -51,8 +51,8 @@ public class WeaponScript : MonoBehaviourPun
         currentAmmo -= reloadAmount;
         RcurrentClip = currentClip;
         RcurrentAmmo = currentAmmo;
-        Debug.Log($"{currentClip}/{currentAmmo}");
-        Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
+        //Debug.Log($"{currentClip}/{currentAmmo}");
+        //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
     }
     public void AddAmmo(int ammoAmount)
     {

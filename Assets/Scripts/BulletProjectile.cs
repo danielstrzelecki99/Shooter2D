@@ -34,7 +34,7 @@ public class BulletProjectile : MonoBehaviourPun
         }
         //create variable for enemy
         PhotonView target = collision.gameObject.GetComponent<PhotonView>();
-
+        Debug.Log($"Target: {target}");
         //condition if bullet hits someone
         if(target != null && (!target.IsMine || target.IsRoomView))
         {

@@ -15,22 +15,22 @@ public class ItemsManager : MonoBehaviourPun
     public List<GameObject> spawnObjects = new List<GameObject>();
     public List<Transform> spawnLocations = new List<Transform>();
 
-    private List<GameObject> itemsOnMap = new List<GameObject>();
-
+    PhotonView view;
 
     void Start()
     {
         Physics2D.IgnoreLayerCollision(9, 8);
         InvokeRepeating("SpawnItem", spawnTime, spawnDelay);
+        view = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        //selectedObject = gameObject;
-        if(PlayerEq.destroy == true){
+        if (PlayerEq.destroy == true)
+        {
             PickUpCheck();
             PlayerEq.destroy = false;
-        }
+        }       
     }
 
     public void PickUpCheck()
@@ -63,7 +63,7 @@ public class ItemsManager : MonoBehaviourPun
                 PlayerEq.armorAmount += 1;
             }
         }
-        GetComponent<PhotonView>().RPC("RPC_PickUp", RpcTarget.All);
+        view.RPC("RPC_PickUp", RpcTarget.All);
     }
 
     [PunRPC]
@@ -84,7 +84,7 @@ public class ItemsManager : MonoBehaviourPun
             {
                 int spawnObject = Random.Range(0, spawnObjects.Count);
                 int spawnPosition = Random.Range(0, spawnLocations.Count);
-                GetComponent<PhotonView>().RPC("RPC_SpawnItem", RpcTarget.All, spawnObject, spawnPosition);
+                view.RPC("RPC_SpawnItem", RpcTarget.All, spawnObject, spawnPosition);
             }
             if (spawnLocations.Count > 0)
             {

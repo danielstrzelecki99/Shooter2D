@@ -17,8 +17,9 @@ public class PlayerHealth : MonoBehaviourPun
     public BoxCollider2D playerCollider;
     public GameObject playerCanvas;
     //reference to PlayerMovement script
-    public PlayerMovement playerScript;
-    public Gun_Shooting shootingScript;
+    PlayerMovement playerScript;
+    Gun_Shooting shootingScript;
+    WeaponManager weaponManager;
     //check health level 
     public void CheckHealth()
     {
@@ -28,6 +29,7 @@ public class PlayerHealth : MonoBehaviourPun
             GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon
+            weaponManager.DisableInputs = true; //disable switching guns
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
         }
     }
@@ -63,7 +65,6 @@ public class PlayerHealth : MonoBehaviourPun
         localHealth -= damage;
         CheckHealth();
     }
-
     [PunRPC]
     public void Heal(){
         localHealth = 1;

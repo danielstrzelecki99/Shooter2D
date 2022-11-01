@@ -15,7 +15,7 @@ public class GameManagerScript : MonoBehaviourPun
 
     public TextMeshProUGUI spawnTimer;
     public GameObject respawnUI;
-    private float TimeAmount = 5;
+    private float TimeAmount = 3;
     private bool startRespawn;
 
     public TextMeshProUGUI pingrate;
@@ -45,7 +45,6 @@ public class GameManagerScript : MonoBehaviourPun
     public void Awake()
     {
         instance = this;
-        UpdateAmmoText();
     }
 
     public void Update()
@@ -79,7 +78,7 @@ public class GameManagerScript : MonoBehaviourPun
     //enable the whole respawning system
     public void EnableRespawn()
     {
-        TimeAmount = 5;
+        TimeAmount = 3;
         startRespawn = true;
         respawnUI.SetActive(true);
     }
@@ -95,7 +94,7 @@ public class GameManagerScript : MonoBehaviourPun
             SceneManager.LoadScene("Menu");
         }
     }
-        public void SpawnAfterDeath()
+    public void SpawnAfterDeath()
     {
         System.Random gen = new System.Random();
         int numberOfSpawnPoint = gen.Next(11);
@@ -113,7 +112,6 @@ public class GameManagerScript : MonoBehaviourPun
         myCinemachine.Follow = player.transform;
     }
 
-    [PunRPC]
     public void UpdateAmmoText()
     {
         if (WeaponManager.CurrentWeaponNo == 0) //if weapon is gun 

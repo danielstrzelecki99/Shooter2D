@@ -38,9 +38,10 @@ public class BulletProjectile : MonoBehaviourPun
         //condition if bullet hits someone
         if(target != null && (!target.IsMine || target.IsRoomView))
         {
+            Debug.Log("First condition passed");
             if (target.CompareTag("Player"))
             {
-                //Debug.Log("Player has been shot");
+                Debug.Log("Player has been shot");
                 //update health hitten player
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
             }

@@ -18,6 +18,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public TextMeshProUGUI errorText;
     public Toggle privateGame;
     public InputField roomPasswordInput;
+    public RoomListingsMenu roomListingsMenu;
     private RoomsCanvases roomsCanvases;
     private string selectedMap;
     private Color colorActive = new Color(1, 1, 1, 1);
@@ -71,6 +72,15 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         }
         else
         {
+            string serverName = createInput.text;
+            foreach (RoomListing room in roomListingsMenu.roomListings)
+            {
+                if (room.RoomInfo.Name == serverName)
+                {
+                    errorText.text = "This server name already exists !";
+                    return;
+                }
+            }
             PhotonNetwork.JoinOrCreateRoom(createInput.text, options, TypedLobby.Default);
             createGameMenu.SetActive(false);
         }

@@ -6268,6 +6268,7 @@ MonoBehaviour:
   errorText: {fileID: 1810295496}
   privateGame: {fileID: 1795294163}
   roomPasswordInput: {fileID: 693885082}
+  roomListingsMenu: {fileID: 1842031684}
 --- !u!1 &1273963757
 GameObject:
   m_ObjectHideFlags: 0
@@ -9965,6 +9966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 1004574292}
   roomListing: {fileID: 8698137208643538386, guid: eb0b58d09ec85214b9cfc364869069b6, type: 3}
+  roomListings: []
 --- !u!1 &1851897659
 GameObject:
   m_ObjectHideFlags: 0

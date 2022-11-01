@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5038406783262730883}
   - component: {fileID: 3683014155048376869}
   - component: {fileID: 5952275702941414427}
-  - component: {fileID: 2582091531316056774}
   m_Layer: 9
   m_Name: AmmoPack
   m_TagString: AmmoKit
@@ -124,15 +123,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 2.970746}
   serializedVersion: 2
   m_Radius: 4.500479
---- !u!114 &2582091531316056774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631829774400209642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c985e8c74c7e8fd44bbdcb34bc72b37d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

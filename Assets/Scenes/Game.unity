@@ -8255,6 +8255,8 @@ GameObject:
   m_Component:
   - component: {fileID: 992733346}
   - component: {fileID: 992733345}
+  - component: {fileID: 992733347}
+  - component: {fileID: 992733348}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -8274,18 +8276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f558a8dece0734d9e4c1a2e97da42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObjects:
-  - {fileID: 631829774400209642, guid: ca3373c78b50c4e449790a88520fb658, type: 3}
-  - {fileID: 5481231668434294257, guid: 8c94dd3ef4aac224ab0bddc54d4dc600, type: 3}
-  - {fileID: 4873438547640477184, guid: 1e1d46cbb3e0fdb4b9cc2ba7ead960c2, type: 3}
-  spawnLocations:
-  - {fileID: 459855635}
-  - {fileID: 1788792589}
-  - {fileID: 115390200}
-  - {fileID: 515202809}
-  stopSpawning: 0
-  spawnTime: 1
-  spawnDelay: 5
   iteractInfo: {fileID: 1925641172}
   armorText: {fileID: 1782528528}
   ammoText: {fileID: 285825710}
@@ -8306,6 +8296,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &992733347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992733344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c985e8c74c7e8fd44bbdcb34bc72b37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopSpawning: 0
+  spawnTime: 1
+  spawnDelay: 5
+  spawnObjects:
+  - {fileID: 631829774400209642, guid: ca3373c78b50c4e449790a88520fb658, type: 3}
+  - {fileID: 5481231668434294257, guid: 8c94dd3ef4aac224ab0bddc54d4dc600, type: 3}
+  - {fileID: 4873438547640477184, guid: 1e1d46cbb3e0fdb4b9cc2ba7ead960c2, type: 3}
+  spawnLocations:
+  - {fileID: 459855635}
+  - {fileID: 1788792589}
+  - {fileID: 115390200}
+  - {fileID: 515202809}
+--- !u!114 &992733348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992733344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1006492260
 GameObject:
   m_ObjectHideFlags: 0

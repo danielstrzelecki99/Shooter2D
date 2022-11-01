@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviourPun
 {
     public Image fillImage;
+    public Image armorFillImage;
     public static float localHealth = 1;
+    public static float localArmor = 0;
 
     //variables required to be hidden when player is dead
     public Rigidbody2D rb;
@@ -19,6 +21,11 @@ public class PlayerHealth : MonoBehaviourPun
     //reference to PlayerMovement script
     public PlayerMovement playerScript;
     public Gun_Shooting shootingScript;
+
+    public void Start()
+    {
+        armorFillImage.fillAmount = localArmor;
+    }
     //check health level 
     public void CheckHealth()
     {
@@ -68,6 +75,11 @@ public class PlayerHealth : MonoBehaviourPun
     public void Heal(){
         localHealth = 1;
         fillImage.fillAmount = localHealth;
-        PlayerEq.useAidKit = false;
+    }
+
+    [PunRPC]
+    public void ArmorUse(){
+        localArmor = 1;
+        armorFillImage.fillAmount = localArmor;
     }
 }

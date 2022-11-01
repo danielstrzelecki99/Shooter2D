@@ -140,8 +140,11 @@ public class PlayerMovement : MonoBehaviourPun
     //Interact with items on map methods
     private void OnTriggerStay2D(Collider2D other) {
         if(other.gameObject.tag == "AmmoKit" || other.gameObject.tag == "Armor" || other.gameObject.tag == "AidKit"){
-            interactInfoText = "Press [E] to take item!";
-            pickUpAllowed = true;
+            if (view.IsMine)
+            {
+                interactInfoText = "Press [E] to take item!";
+                pickUpAllowed = true;
+            }
             ItemsManager.selectedObject = other.gameObject;
         }
     }

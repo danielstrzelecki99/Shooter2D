@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1652333981099592714}
   - component: {fileID: 101382414774324335}
   - component: {fileID: 556989815002808424}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: ArmorBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16673,6 +16673,7 @@ GameObject:
   - component: {fileID: 7013250218807092080}
   - component: {fileID: 7185010963848001578}
   - component: {fileID: 2210553467945585060}
+  - component: {fileID: 5763739808433805656}
   m_Layer: 3
   m_Name: Rifle
   m_TagString: Weapon
@@ -16768,6 +16769,28 @@ MonoBehaviour:
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   fireRate: 4
   firePoint: {fileID: 2981141767691014503}
+--- !u!114 &5763739808433805656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7008153050880386164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7008163934158747016
 GameObject:
   m_ObjectHideFlags: 0
@@ -18330,7 +18353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunHolder: {fileID: 3784147708219882753}
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
-  fireRate: 2
   firePoint: {fileID: 7976424847736481237}
   muzzle: {fileID: 7007981753216200356}
   nickName: {fileID: 2053640718700623372}
@@ -20540,7 +20562,7 @@ GameObject:
   - component: {fileID: 1348023624754423270}
   - component: {fileID: 2521838575706912376}
   - component: {fileID: 9137624942611233298}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: ArmorBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20747,6 +20769,7 @@ GameObject:
   - component: {fileID: 4378587241409180007}
   - component: {fileID: 3486943736924034048}
   - component: {fileID: 2207050228221023205}
+  - component: {fileID: 5273810902780490000}
   m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
@@ -20842,6 +20865,28 @@ MonoBehaviour:
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   fireRate: 2
   firePoint: {fileID: 7976424847736481237}
+--- !u!114 &5273810902780490000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550169550785692224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7744405378113379240
 GameObject:
   m_ObjectHideFlags: 0

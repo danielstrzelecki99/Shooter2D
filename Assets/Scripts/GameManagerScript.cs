@@ -27,6 +27,10 @@ public class GameManagerScript : MonoBehaviourPun
     //Dispaly ammo variables
     public TextMeshProUGUI ammoText;
 
+    PhotonView view;
+    Gun_Shooting weaponController;
+    [SerializeField] private GameObject weapon;
+
     public float[,] listOfSpawns =
     {
         {28, 0.2f},
@@ -45,11 +49,14 @@ public class GameManagerScript : MonoBehaviourPun
     public void Awake()
     {
         instance = this;
+        view = GetComponent<PhotonView>();
+        weaponController = weapon.GetComponent<Gun_Shooting>();
     }
 
     public void Update()
     {
         UpdateAmmoText();
+
         if (startRespawn)
         {
             StartRespawn();
@@ -114,13 +121,16 @@ public class GameManagerScript : MonoBehaviourPun
 
     public void UpdateAmmoText()
     {
+        Debug.Log("Update ammo method");
         if (WeaponManager.CurrentWeaponNo == 0) //if weapon is gun 
         {
             ammoText.text = $"{WeaponScript.RcurrentClip}/{"\u221E"}";
+            //ammoText.text = $"{weaponController.AcurrentClip}/{"\u221E"}";
         }
         else //if weapon is riffle
         {
             ammoText.text = $"{WeaponScript.RcurrentClip}/{WeaponScript.RcurrentAmmo}";
+            //ammoText.text = $"{weaponController.AcurrentClip}/{weaponController.AcurrentAmmo}";
         }
     }
 }

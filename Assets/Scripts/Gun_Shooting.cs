@@ -10,7 +10,6 @@ public class Gun_Shooting : MonoBehaviourPun
 {
     public Transform gunHolder;
     public GameObject Bullet;
-    [SerializeField] float fireRate;
     float ReadyForNextShoot;
     [SerializeField] Transform firePoint;
 
@@ -40,12 +39,13 @@ public class Gun_Shooting : MonoBehaviourPun
     // Update is called once per frame
     private void Update()
     {
-        AcurrentClip = weaponController.currentClip;
-        AmaxClipSize = weaponController.maxClipSize;
-        AcurrentAmmo = weaponController.currentAmmo;
-        AmaxAmmoSize = weaponController.maxAmmoSize;
-        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
+        
+        if (view.IsMine && !DisableInputs)
         {
+            AcurrentClip = weaponController.currentClip;
+            AmaxClipSize = weaponController.maxClipSize;
+            AcurrentAmmo = weaponController.currentAmmo;
+            AmaxAmmoSize = weaponController.maxAmmoSize;
             //rotate gun towards mousePosition
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunHolder.position;
             float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
@@ -104,28 +104,28 @@ public class Gun_Shooting : MonoBehaviourPun
         }
     }
 
-    public void Shot()
-    {
-        if (weaponController.currentClip > 0)
-        {
-            //enable shoting animation
-            shot = true;
-            //Clone the bullet object every thime when shot funciton is involved
-            PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
-            weaponController.currentClip--;
-            Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
-        }
-    }
-    [PunRPC]
-    public void Reload()
-    {
-        int reloadAmount = weaponController.maxClipSize - weaponController.currentClip; //how many bullets to refill cilp
-        if (weaponController.currentAmmo - reloadAmount < 0)
-            reloadAmount = weaponController.currentAmmo;
-        weaponController.currentClip += reloadAmount;
-        weaponController.currentAmmo -= reloadAmount;
-        Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
-    }
+    //public void Shot()
+    //{
+    //    if (weaponController.currentClip > 0)
+    //    {
+    //        //enable shoting animation
+    //        shot = true;
+    //        //Clone the bullet object every thime when shot funciton is involved
+    //        PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
+    //        weaponController.currentClip--;
+    //        Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
+    //    }
+    //}
+    //[PunRPC]
+    //public void Reload()
+    //{
+    //    int reloadAmount = weaponController.maxClipSize - weaponController.currentClip; //how many bullets to refill cilp
+    //    if (weaponController.currentAmmo - reloadAmount < 0)
+    //        reloadAmount = weaponController.currentAmmo;
+    //    weaponController.currentClip += reloadAmount;
+    //    weaponController.currentAmmo -= reloadAmount;
+    //    Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
+    //}
 
     [PunRPC]
     private void Flip()
@@ -144,10 +144,6 @@ public class Gun_Shooting : MonoBehaviourPun
     public void SetFirePoint(Transform newFirePoint)
     {
         firePoint = newFirePoint;
-    }
-    public void SetFireRate(float newFirRate)
-    {
-        fireRate = newFirRate;
     }
     public void SetWeapon(GameObject newWeapon)
     {

@@ -42,8 +42,17 @@ public class BulletProjectile : MonoBehaviourPun
             if (target.CompareTag("Player"))
             {
                 Debug.Log("Player has been shot");
-                //update health hitten player
-                target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+
+                //Check if player has armor
+                if(PlayerHealth.slocalArmor > 0)
+                {
+                    //update armor hitten player
+                    target.RPC("ArmorUpdate", RpcTarget.AllBuffered, bulleteDamage);
+                }
+                else {
+                    //update health hitten player
+                    target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+                }
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }

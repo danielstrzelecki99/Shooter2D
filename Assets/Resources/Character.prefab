@@ -376,7 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2000775020092526047}
   - component: {fileID: 7706044400365523679}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Mouth O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 7013581199730833548}
   - component: {fileID: 7184978048685481066}
   - component: {fileID: 7135935747753553756}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Hair F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1490,7 +1490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010620806540831582}
   - component: {fileID: 7184749566858286422}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Mouth F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2176,7 +2176,7 @@ GameObject:
   - component: {fileID: 7010818426446204634}
   - component: {fileID: 7185465974585825626}
   - component: {fileID: 3434563797684989122}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2190,8 +2190,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7007721451662270002}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70679396, w: 0.70741946}
-  m_LocalPosition: {x: 0.19141354, y: -0.2155563, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7067939, w: 0.70741946}
+  m_LocalPosition: {x: 0.19141331, y: -0.21556284, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2208,7 +2208,7 @@ Transform:
   - {fileID: 7013398785516731048}
   - {fileID: 7010954355393952588}
   - {fileID: 7010868231489514254}
-  m_Father: {fileID: 7010506596183800604}
+  m_Father: {fileID: 7010741029605933688}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7185465974585825626
@@ -2426,7 +2426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010872079158974478}
   - component: {fileID: 7185365624048362310}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9005,7 +9005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010678647136576330}
   - component: {fileID: 7185469202298354474}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Mouth B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14798,10 +14798,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7010818426446204634}
   - {fileID: 7013590023909229738}
   m_Father: {fileID: 7010741029605933688}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7007993614416039018
 GameObject:
@@ -15628,7 +15627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010954355393952588}
   - component: {fileID: 7185386000760071816}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Helmet F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16056,7 +16055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010844908524728020}
   - component: {fileID: 7184835760696802768}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Eyes B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16320,7 +16319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010769233420458516}
   - component: {fileID: 7184926586056301626}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Eyes F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16404,7 +16403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7013398785516731048}
   - component: {fileID: 7183435021208125832}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Facial Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16778,7 +16777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7013609713548737526}
   - component: {fileID: 7185204068741345728}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Eyebrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16880,6 +16879,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7010818426446204634}
   - {fileID: 7010506596183800604}
   m_Father: {fileID: 7013650612014128606}
   m_RootOrder: 1
@@ -16998,7 +16998,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010506596183800604}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7184676531374165428
 SpriteRenderer:
@@ -17147,7 +17147,7 @@ GameObject:
   - component: {fileID: 7010666849846534764}
   - component: {fileID: 7185317487090031556}
   - component: {fileID: 5291710604491935179}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Hair S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18092,7 +18092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010624511796835944}
   - component: {fileID: 7184810917218557806}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Hair B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18245,7 +18245,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7008343939132955052}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -18355,6 +18355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillImage: {fileID: 7522395843720666980}
   armorFillImage: {fileID: 9137624942611233298}
+  localHealth: 1
+  localArmor: 0
   rb: {fileID: 7008765400610643048}
   playerPrefab: {fileID: 7008343939132955052}
   playerCollider: {fileID: 7008765400610643054}
@@ -18549,6 +18551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9da59c572f50c40af713265742db37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 7008343939132955052}
 --- !u!1 &7008357681954972710
 GameObject:
   m_ObjectHideFlags: 0
@@ -19404,7 +19407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7010868231489514254}
   - component: {fileID: 7185194054758654910}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Helmet B
   m_TagString: Untagged
   m_Icon: {fileID: 0}

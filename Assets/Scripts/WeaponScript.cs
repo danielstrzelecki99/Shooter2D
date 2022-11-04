@@ -36,7 +36,6 @@ public class WeaponScript : MonoBehaviourPun
             //Clone the bullet object every thime when shot funciton is involved
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
             currentClip--;
-            RcurrentClip = currentClip;
             //Debug.Log($"{currentClip}/{currentAmmo}");
             //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
         }

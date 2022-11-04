@@ -25,23 +25,44 @@ public class BulletProjectile : MonoBehaviourPun
         GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    //void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    //check if PhotonView does not belong to player 
+    //    if (!photonView.IsMine)
+    //    {
+    //        return;
+    //    }
+    //    //create variable for enemy
+    //    PhotonView target = collision.gameObject.GetComponent<PhotonView>();
+    //    Debug.Log($"Target: {target}");
+    //    //condition if bullet hits someone
+    //    if(target != null && (!target.IsMine || target.IsRoomView))
+    //    {
+    //        Debug.Log("First condition passed");
+    //        if (target.CompareTag("Player"))
+    //        {
+    //            Debug.Log("Player has been shot");
+    //            //update health hitten player
+    //            target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+    //        }
+    //        GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
+    //    }
+    //    //destroy bullet on ground/walls
+    //    //Debug.Log("Ground/wall has been shot");
+    //    GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
+    //}
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        //check if PhotonView does not belong to player 
         if (!photonView.IsMine)
         {
             return;
         }
-        //create variable for enemy
         PhotonView target = collision.gameObject.GetComponent<PhotonView>();
-        Debug.Log($"Target: {target}");
-        //condition if bullet hits someone
-        if(target != null && (!target.IsMine || target.IsRoomView))
+        if (target != null && (!target.IsMine || target.IsRoomView))
         {
-            Debug.Log("First condition passed");
             if (target.CompareTag("Player"))
             {
-                Debug.Log("Player has been shot");
+                //Debug.Log("Player has been shot");
                 //update health hitten player
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
             }

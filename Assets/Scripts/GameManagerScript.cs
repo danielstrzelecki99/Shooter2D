@@ -13,12 +13,13 @@ public class GameManagerScript : MonoBehaviourPun
     public GameObject playerPrefab;
     public CinemachineVirtualCamera myCinemachine;
 
+    //respawn variables
     public TextMeshProUGUI spawnTimer;
     public GameObject respawnUI;
-    private float TimeAmount = 3;
+    private float TimeAmount = 4;
     private bool startRespawn;
 
-    public TextMeshProUGUI pingrate;
+    public TextMeshProUGUI pingrate; //variable to display player PingRate 
     //allow access the other classes without the reference
     public static GameManagerScript instance = null;
     //refence to LocalPlayer in PlayerMovement script
@@ -26,10 +27,6 @@ public class GameManagerScript : MonoBehaviourPun
 
     //Dispaly ammo variables
     public TextMeshProUGUI ammoText;
-
-    PhotonView view;
-    Gun_Shooting weaponController;
-    [SerializeField] private GameObject weapon;
 
     public float[,] listOfSpawns =
     {
@@ -49,8 +46,6 @@ public class GameManagerScript : MonoBehaviourPun
     public void Awake()
     {
         instance = this;
-        view = GetComponent<PhotonView>();
-        weaponController = weapon.GetComponent<Gun_Shooting>();
     }
 
     public void Update()
@@ -85,7 +80,7 @@ public class GameManagerScript : MonoBehaviourPun
     //enable the whole respawning system
     public void EnableRespawn()
     {
-        TimeAmount = 3;
+        TimeAmount = 4;
         startRespawn = true;
         respawnUI.SetActive(true);
     }

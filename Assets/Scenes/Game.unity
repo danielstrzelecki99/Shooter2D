@@ -8542,9 +8542,9 @@ MonoBehaviour:
   spawnTime: 1
   spawnDelay: 5
   spawnObjects:
-  - {fileID: 631829774400209642, guid: ca3373c78b50c4e449790a88520fb658, type: 3}
   - {fileID: 5481231668434294257, guid: 8c94dd3ef4aac224ab0bddc54d4dc600, type: 3}
-  - {fileID: 4873438547640477184, guid: 1e1d46cbb3e0fdb4b9cc2ba7ead960c2, type: 3}
+  - {fileID: 5481231668434294257, guid: 8c94dd3ef4aac224ab0bddc54d4dc600, type: 3}
+  - {fileID: 5481231668434294257, guid: 8c94dd3ef4aac224ab0bddc54d4dc600, type: 3}
   spawnLocations:
   - {fileID: 459855635}
   - {fileID: 1788792589}

@@ -8512,7 +8512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &324482521
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11665,7 +11665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopSpawning: 0
   spawnTime: 1
-  spawnDelay: 20
+  spawnDelay: 10
   spawnObjects:
   - {fileID: 5481231668434294257, guid: 8c94dd3ef4aac224ab0bddc54d4dc600, type: 3}
   - {fileID: 631829774400209642, guid: ca3373c78b50c4e449790a88520fb658, type: 3}

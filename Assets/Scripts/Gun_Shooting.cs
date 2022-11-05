@@ -11,7 +11,6 @@ public class Gun_Shooting : MonoBehaviourPun
     public Transform gunHolder;
     public GameObject Bullet;
     float ReadyForNextShoot;
-    [SerializeField] Transform firePoint;
 
     private Animator animator;
     private bool shot = false;
@@ -141,10 +140,6 @@ public class Gun_Shooting : MonoBehaviourPun
     //}
 
     //Setters and getters
-    public void SetFirePoint(Transform newFirePoint)
-    {
-        firePoint = newFirePoint;
-    }
     public void SetWeapon(GameObject newWeapon)
     {
         weapon = newWeapon;

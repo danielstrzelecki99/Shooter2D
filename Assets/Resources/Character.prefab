@@ -18405,7 +18405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunHolder: {fileID: 3784147708219882753}
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
-  firePoint: {fileID: 7976424847736481237}
   muzzle: {fileID: 7007981753216200356}
   nickName: {fileID: 2053640718700623372}
   healthBar: {fileID: 6966435295235964034}
@@ -18430,7 +18429,6 @@ MonoBehaviour:
   fillImage: {fileID: 7522395843720666980}
   armorFillImage: {fileID: 9137624942611233298}
   rb: {fileID: 7008765400610643048}
-  playerPrefab: {fileID: 7008343939132955052}
   playerCollider: {fileID: 7008765400610643054}
   playerCanvas: {fileID: 7067075182976258256}
   playerScript: {fileID: 7008765400610643050}

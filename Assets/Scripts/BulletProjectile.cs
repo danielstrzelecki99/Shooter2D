@@ -65,6 +65,7 @@ public class BulletProjectile : MonoBehaviourPun
                 //Debug.Log("Player has been shot");
                 //update health hitten player
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+                DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100));
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }

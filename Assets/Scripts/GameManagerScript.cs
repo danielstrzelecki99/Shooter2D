@@ -69,6 +69,7 @@ public class GameManagerScript : MonoBehaviourPun
         {
             respawnUI.SetActive(false);
             startRespawn = false;
+            //RelocatePlayer();
             //invoke method to enable inputs (move)
             Debug.Log(LocalPlayer);
             LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
@@ -112,6 +113,13 @@ public class GameManagerScript : MonoBehaviourPun
         }
 
         myCinemachine.Follow = player.transform;
+    }
+    public void RelocatePlayer()
+    {
+        System.Random gen = new System.Random();
+        int numberOfSpawnPoint = gen.Next(11);
+        Vector3 spawnPosition = new Vector3(listOfSpawns[numberOfSpawnPoint, 0], listOfSpawns[numberOfSpawnPoint, 1]);
+        LocalPlayer.transform.localPosition = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
     }
 
     public void UpdateAmmoText()

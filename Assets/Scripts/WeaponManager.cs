@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine  && !DisableInputs)
+        if (view.IsMine && !DisableInputs)
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
@@ -48,7 +48,6 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
-            //gunShootingScript.SetFirePoint(firePoint1);
             gunShootingScript.SetWeapon(weapon1);
             BulletProjectile.bulleteDamage = 0.3f;
         }
@@ -58,7 +57,6 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
-            //gunShootingScript.SetFirePoint(firePoint2);
             gunShootingScript.SetWeapon(weapon2);
             BulletProjectile.bulleteDamage = 0.15f;
         }

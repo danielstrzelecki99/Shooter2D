@@ -7009,6 +7009,7 @@ GameObject:
   - component: {fileID: 579035162}
   - component: {fileID: 579035161}
   - component: {fileID: 579035163}
+  - component: {fileID: 579035164}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7035,7 +7036,6 @@ MonoBehaviour:
   pingrate: {fileID: 255778177}
   LocalPlayer: {fileID: 0}
   ammoText: {fileID: 2000604689}
-  weapon: {fileID: 7008343939132955052, guid: 10018cc639fbab444992b4ef5cb3c772, type: 3}
 --- !u!4 &579035162
 Transform:
   m_ObjectHideFlags: 0
@@ -7073,6 +7073,19 @@ MonoBehaviour:
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &579035164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579035160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c940148b7ec5f4a8d823bb802a620d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pfdamagePopup: {fileID: 4960194346579610451, guid: 974aaa62a4c3e66428a751a636a51a22, type: 3}
 --- !u!1 &606023997
 GameObject:
   m_ObjectHideFlags: 0

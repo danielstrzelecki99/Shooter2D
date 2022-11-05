@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviourPun
     public float localHealth = 1;
     public float localArmor = 0;
     public static float slocalArmor;
+    public static float slocalHealth;
 
     //variables required to be hidden when player is dead
     public Rigidbody2D rb;
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviourPun
     private void Update()
     {
         slocalArmor = localArmor;
+        slocalHealth = localHealth;
     }
     //check health level 
     public void CheckHealth()

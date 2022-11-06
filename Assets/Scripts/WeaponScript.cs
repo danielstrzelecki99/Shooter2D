@@ -14,6 +14,8 @@ public class WeaponScript : MonoBehaviourPun
     [SerializeField] public float fireRate;
     [SerializeField] private Transform firePoint;
 
+    public ParticleSystem muzzleFlash;
+
     PhotonView view;
 
     private void Awake()
@@ -33,6 +35,7 @@ public class WeaponScript : MonoBehaviourPun
     {
         if (currentClip > 0)
         {
+            muzzleFlash.Play();
             //Clone the bullet object every thime when shot funciton is involved
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
             currentClip--;

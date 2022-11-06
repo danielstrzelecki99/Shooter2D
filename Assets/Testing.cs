@@ -18,10 +18,10 @@ public class Testing : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        //if (Input.GetMouseButtonDown(0))
+        //{
             //Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //DamagePopup.Create(cursorPos, 100);
-        }
+        //}
     }
 }

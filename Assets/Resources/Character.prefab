@@ -9718,7 +9718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7010912982400426946
 Transform:
   m_ObjectHideFlags: 0
@@ -9751,7 +9751,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14982,7 +14982,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7008002412952069514}
-  m_LocalRotation: {x: 0, y: -0, z: 0.0000000365729, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0.00000004329783, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16821,6 +16821,7 @@ MonoBehaviour:
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   fireRate: 4
   firePoint: {fileID: 2981141767691014503}
+  muzzleFlash: {fileID: 7171095864826182528}
 --- !u!114 &5763739808433805656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20859,6 +20860,7 @@ MonoBehaviour:
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   fireRate: 2
   firePoint: {fileID: 7976424847736481237}
+  muzzleFlash: {fileID: 2076139200449982960}
 --- !u!114 &5273810902780490000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21058,7 +21060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2540654723283655120
 Transform:
   m_ObjectHideFlags: 0
@@ -21091,7 +21093,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

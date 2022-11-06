@@ -16,7 +16,7 @@ public class GameManagerScript : MonoBehaviourPun
     //respawn variables
     public TextMeshProUGUI spawnTimer;
     public GameObject respawnUI;
-    private float TimeAmount = 4;
+    private float TimeAmount = 3;
     private bool startRespawn;
 
     public TextMeshProUGUI pingrate; //variable to display player PingRate 

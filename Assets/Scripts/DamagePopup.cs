@@ -49,13 +49,13 @@ public class DamagePopup : MonoBehaviour
         {
             //First half of the popup lifetime
             float increaseScaleAmount = .1f;
-            transform.localScale += Vector3.one * increaseScaleAmount * Time.deltaTime;
+            transform.localScale += increaseScaleAmount * Time.deltaTime * Vector3.one;
         }
         else
         {
             //Second half of the popup lifetime
             float descreaseScaleAmount = .1f;
-            transform.localScale -= Vector3.one * descreaseScaleAmount * Time.deltaTime;
+            transform.localScale -= descreaseScaleAmount * Time.deltaTime * Vector3.one;
         }
         disappearTimer -= Time.deltaTime;
         if(disappearTimer < 0)

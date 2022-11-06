@@ -10,14 +10,14 @@ public class BulletProjectile : MonoBehaviourPun
     public Rigidbody2D rb;
     public GameObject impactEffect;
     public float lifeTime = 3f; //time after bullet will be destroyed
-    public static float bulleteDamage = .15f;
+    public static float bulleteDamage;
 
     public void Start()
     {
         //invoke function destroying projectile after 'lifeTime'
         //Invoke("DestroyProjectile", lifeTime);
         rb.velocity = transform.right * speed;
-        bulleteDamage = UnityEngine.Random.Range(.01f, .05f);
+        bulleteDamage = UnityEngine.Random.Range(.05f, .15f);
     }
 
     IEnumerator destroyBullet()

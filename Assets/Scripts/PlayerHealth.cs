@@ -16,14 +16,13 @@ public class PlayerHealth : MonoBehaviourPun
 
     //variables required to be hidden when player is dead
     public Rigidbody2D rb;
-    //public SpriteRenderer sr;
-    public GameObject playerPrefab; //against SpriteRenderer
     public BoxCollider2D playerCollider;
     public GameObject playerCanvas;
-    //reference to PlayerMovement script
-    PlayerMovement playerScript;
-    Gun_Shooting shootingScript;
-    WeaponManager weaponManager;
+
+    //reference to Player script
+    public PlayerMovement playerScript;
+    public Gun_Shooting shootingScript;
+    public WeaponManager weaponManager;
 
     public void Start()
     {
@@ -53,17 +52,17 @@ public class PlayerHealth : MonoBehaviourPun
     {
         rb.gravityScale = 0;
         playerCollider.enabled = false;
-        //sr.enabled = false;
         playerCanvas.SetActive(false);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        Debug.Log("Player model has been destroyed");
     }
     [PunRPC]
     public void Revive()
     {
         rb.gravityScale = 1;
         playerCollider.enabled = true;
-        //sr.enabled = true;
         playerCanvas.SetActive(true);
+        gameObject.SetActive(true);
         localHealth = 1;
         fillImage.fillAmount = localHealth;
         Debug.Log("Player has respawned again");
@@ -71,6 +70,8 @@ public class PlayerHealth : MonoBehaviourPun
     public void EnableInputs()
     {
         playerScript.DisableInputs = false;
+        shootingScript.DisableInputs = false; 
+        weaponManager.DisableInputs = false;
     }
     [PunRPC]
     public void HealthUpdate(float damage)

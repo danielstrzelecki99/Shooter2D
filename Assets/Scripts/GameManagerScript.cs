@@ -69,13 +69,13 @@ public class GameManagerScript : MonoBehaviourPun
         {
             respawnUI.SetActive(false);
             startRespawn = false;
-            //RelocatePlayer();
+            RelocatePlayer();
             //invoke method to enable inputs (move)
             Debug.Log(LocalPlayer);
             LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
             //invoke method Revive from playerHealth
             LocalPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.AllBuffered);
-            SpawnAfterDeath();
+            //SpawnAfterDeath();
         }
     }
     //enable the whole respawning system

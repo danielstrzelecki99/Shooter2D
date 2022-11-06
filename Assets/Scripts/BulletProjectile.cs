@@ -17,7 +17,7 @@ public class BulletProjectile : MonoBehaviourPun
         //invoke function destroying projectile after 'lifeTime'
         //Invoke("DestroyProjectile", lifeTime);
         rb.velocity = transform.right * speed;
-        bulleteDamage = UnityEngine.Random.Range(.1f, .15f);
+        bulleteDamage = UnityEngine.Random.Range(.01f, .05f);
     }
 
     IEnumerator destroyBullet()

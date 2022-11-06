@@ -69,6 +69,7 @@ public class PlayerHealth : MonoBehaviourPun
     }
     public void EnableInputs()
     {
+        Debug.Log($"Enable inputs method");
         playerScript.DisableInputs = false;
         shootingScript.DisableInputs = false; 
         weaponManager.DisableInputs = false;

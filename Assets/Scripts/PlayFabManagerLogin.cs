@@ -26,6 +26,7 @@ public class PlayFabManagerLogin : MonoBehaviour
     public static int playedGames;
     public static int wins;
     public static int isLogged;
+    public static string logStatus;
 
     //Login funcion
     public void LoginButton()
@@ -60,31 +61,16 @@ public class PlayFabManagerLogin : MonoBehaviour
     {
         if(result.Data != null && result.Data.ContainsKey("Username")){
             username = result.Data["Username"].Value;
+            logStatus = result.Data["LoginStatus"].Value;
         }
-        SceneManager.LoadScene("Loading");
-    }
-
-    //Check if accound is already logged
-    public void GetPlayerLoggedStatus(){
-        PlayFabClientAPI.GetPlayerStatistics(new GetPlayerStatisticsRequest(), OnLoggedStatusRecived, OnError);
-    }
-
-    void OnLoggedStatusRecived(GetPlayerStatisticsResult result){
-        foreach(var stat in result.Statistics){
-            if(stat.StatisticName == "isLogged"){
-                isLogged = stat.Value;
-            }
-         }
-
-        if (isLogged == 0) {
-            information.text = "Logged in";
-            GetUsername();
+        if(logStatus == "NotLogged")
+        {
+            SceneManager.LoadScene("Loading");
             GetStatistics();
-            //SetPlayerLoggedStatusToTrue();
-        } else if (isLogged == 1) {
+        } else {
             information.text = "Someone is already logged to this account. Try again later.";
         }
-
+        
     }
 
     //Getting account statistics
@@ -118,7 +104,7 @@ public class PlayFabManagerLogin : MonoBehaviour
     //Funcions after login
     public void OnLoginSuccess(LoginResult result)
     {
-        GetPlayerLoggedStatus();
+        GetUsername();
     }
     
     //PAssword reset

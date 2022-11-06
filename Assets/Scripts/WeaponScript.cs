@@ -14,20 +14,31 @@ public class WeaponScript : MonoBehaviourPun
     [SerializeField] public float fireRate;
     [SerializeField] private Transform firePoint;
 
+    public ParticleSystem muzzleFlash;
+
+    PhotonView view;
+
+    private void Awake()
+    {
+        view = GetComponent<PhotonView>();
+    }
     private void Update()
     {
-        RcurrentClip = currentClip;
-        RcurrentAmmo = currentAmmo;
+        if(view.IsMine)
+        {
+            RcurrentClip = currentClip;
+            RcurrentAmmo = currentAmmo;
+        }
     }
 
     public void Shot()
     {
         if (currentClip > 0)
         {
+            muzzleFlash.Play();
             //Clone the bullet object every thime when shot funciton is involved
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
             currentClip--;
-            Debug.Log($"{currentClip}/{currentAmmo}");
         }
     }
 
@@ -38,7 +49,10 @@ public class WeaponScript : MonoBehaviourPun
             reloadAmount = currentAmmo;
         currentClip += reloadAmount;
         currentAmmo -= reloadAmount;
-        Debug.Log($"{currentClip}/{currentAmmo}");
+        RcurrentClip = currentClip;
+        RcurrentAmmo = currentAmmo;
+        //Debug.Log($"{currentClip}/{currentAmmo}");
+        //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
     }
     public void AddAmmo(int ammoAmount)
     {

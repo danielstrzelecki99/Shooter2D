@@ -10,13 +10,14 @@ public class BulletProjectile : MonoBehaviourPun
     public Rigidbody2D rb;
     public GameObject impactEffect;
     public float lifeTime = 3f; //time after bullet will be destroyed
-    public static float bulleteDamage = 0.15f;
+    public static float bulleteDamage = .15f;
 
     public void Start()
     {
         //invoke function destroying projectile after 'lifeTime'
         //Invoke("DestroyProjectile", lifeTime);
         rb.velocity = transform.right * speed;
+        bulleteDamage = UnityEngine.Random.Range(.1f, .15f);
     }
 
     IEnumerator destroyBullet()
@@ -65,7 +66,8 @@ public class BulletProjectile : MonoBehaviourPun
                 //Debug.Log("Player has been shot");
                 //update health hitten player
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
-                DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100));
+                bool isCriticalHit = UnityEngine.Random.Range(0, 100) < 30;
+                DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100), isCriticalHit);
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }

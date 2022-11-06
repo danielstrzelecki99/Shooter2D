@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 
 public class DamagePopup : MonoBehaviour
 {
@@ -17,11 +18,22 @@ public class DamagePopup : MonoBehaviour
     {
         damageText = transform.GetComponent<TextMeshPro>();
     }
-    public void Setup(int damageAmount)
+    public void Setup(int damageAmount, bool isCriticalHit)
     {
         damageText.SetText(damageAmount.ToString());
-        
-        textColor = damageText.color;
+        if (!isCriticalHit)
+        {
+            //Normal hit
+            damageText.fontSize = 32;
+            textColor = new Color(255, 197, 0, 255);
+        }
+        else
+        {
+            //Critical hit
+            damageText.fontSize = 38;
+            textColor = new Color(255, 43, 0, 255);
+        }
+        damageText.color = textColor;
         disappearTimer = DISAPPEAR_TIMER_MAX;
 
         sortingOrder++;
@@ -60,17 +72,12 @@ public class DamagePopup : MonoBehaviour
     }
     
     //Create a Damage Popup
-    public static DamagePopup Create(Vector3 postion, int damageAmount)
+    public static DamagePopup Create(Vector3 postion, int damageAmount, bool isCriticalHit)
     {
-        Debug.Log("Printing damage");
-        Debug.Log($"GameAssets: {GameAssets.i.pfDamagePopup}");
         Transform damagePopupTransform = Instantiate(GameAssets.i.pfDamagePopup, postion, Quaternion.identity);
-        Debug.Log($"damagePopupTransform: {damagePopupTransform}");
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-        Debug.Log($"DamagePopup: {damagePopup}");
-        damagePopup.Setup(damageAmount);
+        damagePopup.Setup(damageAmount, isCriticalHit);
 
         return damagePopup;
     }
-    
 }

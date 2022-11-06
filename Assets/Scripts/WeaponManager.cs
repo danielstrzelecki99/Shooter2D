@@ -49,7 +49,7 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
             gunShootingScript.SetWeapon(weapon1);
-            BulletProjectile.bulleteDamage = 0.3f;
+            BulletProjectile.bulleteDamage = UnityEngine.Random.Range(.2f, .3f);
         }
         else //gun
         {
@@ -58,7 +58,7 @@ public class WeaponManager : MonoBehaviour
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
             gunShootingScript.SetWeapon(weapon2);
-            BulletProjectile.bulleteDamage = 0.15f;
+            BulletProjectile.bulleteDamage = UnityEngine.Random.Range(.1f, .15f);
         }
 
     }

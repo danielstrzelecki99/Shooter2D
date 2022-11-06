@@ -6,7 +6,7 @@ using UnityEngine.Diagnostics;
 
 public class DamagePopup : MonoBehaviour
 {
-    private const float DISAPPEAR_TIMER_MAX = .7f; //timer for disappear popup
+    private const float DISAPPEAR_TIMER_MAX = 1f; //timer for disappear popup
     private Vector3 moveVector;
     private static int sortingOrder; //variable for displaying last popup on top
     
@@ -64,10 +64,7 @@ public class DamagePopup : MonoBehaviour
             float disappearSpeed = 3f;
             textColor.a -= disappearSpeed * Time.deltaTime;
             damageText.color = textColor;
-            if(textColor.a < 0)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
     

@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Start()
     {
-        Physics2D.IgnoreLayerCollision(6, 6);
+        Physics2D.IgnoreLayerCollision(3, 3);
     }
 
     private void Update()

@@ -36,7 +36,9 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Awake()
     {
-        GameManagerScript.instance.LocalPlayer = gameObject;
+        view = GetComponent<PhotonView>();
+        if (view.IsMine) { GameManagerScript.instance.LocalPlayer = gameObject; }
+        
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -44,12 +46,11 @@ public class PlayerMovement : MonoBehaviourPun
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(6, 6);
-        view = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        GameManagerScript.instance.LocalPlayer = gameObject;
+        //GameManagerScript.instance.LocalPlayer = gameObject;
 
         if (view.IsMine && !DisableInputs)
         {

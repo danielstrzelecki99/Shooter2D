@@ -9,8 +9,10 @@ public class PlayerHealth : MonoBehaviourPun
 {
     public Image fillImage;
     public Image armorFillImage;
-    public static float localHealth = 1;
-    public static float localArmor = 0;
+    public float localHealth = 1;
+    public float localArmor = 0;
+    public static float slocalArmor;
+    public static float slocalHealth;
 
     //variables required to be hidden when player is dead
     public Rigidbody2D rb;
@@ -26,6 +28,11 @@ public class PlayerHealth : MonoBehaviourPun
     {
         armorFillImage.fillAmount = localArmor;
     }
+    private void Update()
+    {
+        slocalArmor = localArmor;
+        slocalHealth = localHealth;
+    }
     //check health level 
     public void CheckHealth()
     {
@@ -39,6 +46,7 @@ public class PlayerHealth : MonoBehaviourPun
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
         }
     }
+
     [PunRPC]
     public void Death()
     {
@@ -78,10 +86,44 @@ public class PlayerHealth : MonoBehaviourPun
         localHealth = 1;
         fillImage.fillAmount = localHealth;
     }
-
+    [PunRPC]
+    public void ArmorUpdate(float damage)
+    {
+        armorFillImage.fillAmount -= damage;
+        localArmor = armorFillImage.fillAmount;
+        localArmor -= damage;
+    }
     [PunRPC]
     public void ArmorUse(){
         localArmor = 1;
         armorFillImage.fillAmount = localArmor;
+    }
+
+    //Checking methods for items system
+        public bool isHealthFull()
+    {
+        if(localHealth == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool isArmorFull()
+    {
+        if(localArmor == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool isArmorUsed()
+    {
+        if(localArmor > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

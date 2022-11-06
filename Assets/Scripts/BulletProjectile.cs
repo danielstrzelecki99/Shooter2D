@@ -68,6 +68,18 @@ public class BulletProjectile : MonoBehaviourPun
                 target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
                 bool isCriticalHit = UnityEngine.Random.Range(0, 100) < 30;
                 DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100), isCriticalHit);
+                Debug.Log("Player has been shot");
+
+                //Check if player has armor
+                if(PlayerHealth.slocalArmor > 0)
+                {
+                    //update armor hitten player
+                    target.RPC("ArmorUpdate", RpcTarget.AllBuffered, bulleteDamage);
+                }
+                else {
+                    //update health hitten player
+                    target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+                }
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
         }

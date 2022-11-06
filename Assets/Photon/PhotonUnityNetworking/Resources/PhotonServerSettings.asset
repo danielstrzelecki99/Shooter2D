@@ -61,6 +61,8 @@ MonoBehaviour:
   - RPC_SpawnItem
   - ArmorUse
   - Reload
+  - ArmorUpdate
+  - isHealthFull
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

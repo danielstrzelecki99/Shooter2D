@@ -26,6 +26,12 @@ public class Gun_Shooting : MonoBehaviourPun
 
     WeaponScript weaponController;
     [SerializeField] private GameObject weapon;
+    [SerializeField] private GameObject riffle;
+    WeaponScript riffleController;
+
+    //ItemsManager itemsController;
+    //[SerializeField] private GameObject items;
+
     PhotonView view;
     public bool DisableInputs = false; //when player is dead variable disable inputs
 
@@ -34,6 +40,8 @@ public class Gun_Shooting : MonoBehaviourPun
         animator = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
         weaponController = weapon.GetComponent<WeaponScript>();
+        riffleController = riffle.GetComponent<WeaponScript>();
+        //itemsController = items.GetComponent<ItemsManager>();
     }
     // Update is called once per frame
     private void Update()
@@ -80,6 +88,11 @@ public class Gun_Shooting : MonoBehaviourPun
             if (Input.GetKeyDown(KeyCode.C))
             {
                 weaponController = weapon.GetComponent<WeaponScript>();
+            }
+            if(ItemsManager.isAmmoPickup)
+            {
+                riffleController.AddAmmo(20);
+                ItemsManager.isAmmoPickup = false;
             }
         }
         nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of nickname tag

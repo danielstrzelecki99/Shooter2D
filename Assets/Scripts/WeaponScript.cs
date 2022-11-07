@@ -51,18 +51,16 @@ public class WeaponScript : MonoBehaviourPun
         currentAmmo -= reloadAmount;
         RcurrentClip = currentClip;
         RcurrentAmmo = currentAmmo;
-        //Debug.Log($"{currentClip}/{currentAmmo}");
+        //Debug.Log($"Actual ammo: {currentClip}/{currentAmmo}");
         //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
     }
     public void AddAmmo(int ammoAmount)
     {
-        if (WeaponManager.CurrentWeaponNo != 0) //add ammo only for riffle
+        currentAmmo += ammoAmount;
+        if (currentAmmo > maxAmmoSize)
         {
-            currentAmmo += ammoAmount;
-            if (currentAmmo > maxAmmoSize)
-            {
-                currentAmmo = maxAmmoSize;
-            }
+            currentAmmo = maxAmmoSize;
         }
+        Debug.Log($"WeaponScript, currentAmmo: {currentAmmo}");
     }
 }

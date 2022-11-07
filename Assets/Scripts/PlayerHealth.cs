@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviourPun
 
     //variables required to be hidden when player is dead
     public Rigidbody2D rb;
-    public BoxCollider2D playerCollider;
     public GameObject playerCanvas;
 
     //reference to Player script
@@ -44,8 +43,8 @@ public class PlayerHealth : MonoBehaviourPun
         if(photonView.IsMine && localHealth <= 0)
         {
             GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
-            playerScript.DisableInputs = true; //disable inputs like jump and move
-            shootingScript.DisableInputs = true; //disable shooting and moving weapon
+            //playerScript.DisableInputs = true; //disable inputs like jump and move
+            //shootingScript.DisableInputs = true; //disable shooting and moving weapon
             //weaponManager.DisableInputs = true; //disable switching guns
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
         }
@@ -55,7 +54,6 @@ public class PlayerHealth : MonoBehaviourPun
     public void Death()
     {
         rb.gravityScale = 0;
-        playerCollider.enabled = false;
         playerCanvas.SetActive(false);
         gameObject.SetActive(false);
         Debug.Log("Player model has been destroyed");
@@ -64,11 +62,12 @@ public class PlayerHealth : MonoBehaviourPun
     public void Revive()
     {
         rb.gravityScale = 1;
-        playerCollider.enabled = true;
         playerCanvas.SetActive(true);
         gameObject.SetActive(true);
+        //set health level and image to 1
         localHealth = 1;
         fillImage.fillAmount = localHealth;
+        //set armor level and image to 1
         localArmor = 0;
         armorFillImage.fillAmount = localArmor;
         Debug.Log("Player has respawned again");

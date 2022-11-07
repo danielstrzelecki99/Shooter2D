@@ -11,11 +11,11 @@ public class BarsManager : MonoBehaviour
     public Image fillArmorImage;
     public TextMeshProUGUI hpInfo;
     public TextMeshProUGUI armorInfo;
-    // PhotonView view;
+     PhotonView view;
 
-    // private void Start() {
-    //     view = GetComponent<PhotonView>();
-    // }
+    private void Start() {
+        view = GetComponent<PhotonView>();
+    }
 
     private void Update() {
             fillHpImage.fillAmount = PlayerHealth.slocalHealth;

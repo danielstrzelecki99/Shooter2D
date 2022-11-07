@@ -23,15 +23,19 @@ public class PlayerHealth : MonoBehaviourPun
     public PlayerMovement playerScript;
     public Gun_Shooting shootingScript;
     public WeaponManager weaponManager;
+    PhotonView view;
 
     public void Start()
     {
         armorFillImage.fillAmount = localArmor;
+        view = GetComponent<PhotonView>();
     }
     private void Update()
     {
-        slocalArmor = localArmor;
-        slocalHealth = localHealth;
+        if(view.IsMine){
+            slocalArmor = localArmor;
+            slocalHealth = localHealth;
+        }
     }
     //check health level 
     public void CheckHealth()
@@ -65,6 +69,8 @@ public class PlayerHealth : MonoBehaviourPun
         gameObject.SetActive(true);
         localHealth = 1;
         fillImage.fillAmount = localHealth;
+        localArmor = 0;
+        armorFillImage.fillAmount = localArmor;
         Debug.Log("Player has respawned again");
     }
     public void EnableInputs()
@@ -93,6 +99,11 @@ public class PlayerHealth : MonoBehaviourPun
         armorFillImage.fillAmount -= damage;
         localArmor = armorFillImage.fillAmount;
         localArmor -= damage;
+        if(localArmor <= 0)
+        {
+            localArmor = 0;
+            localArmor = armorFillImage.fillAmount;
+        }
     }
     [PunRPC]
     public void ArmorUse(){

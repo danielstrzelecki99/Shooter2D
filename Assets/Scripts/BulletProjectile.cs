@@ -59,7 +59,6 @@ public class BulletProjectile : MonoBehaviourPun
             return;
         }
         PhotonView target = collision.gameObject.GetComponent<PhotonView>();
-        Debug.Log("Chuj");
         if (target != null && (!target.IsMine || target.IsRoomView))
         {
             Debug.Log("Target to nie chuj");
@@ -71,7 +70,7 @@ public class BulletProjectile : MonoBehaviourPun
                 bool isCriticalHit = UnityEngine.Random.Range(0, 100) < 30;
                 DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100), isCriticalHit);
                 //Debug.Log("Player has been shot");
-                Debug.Log("sLocalaArmor " + target.GetComponent<PlayerHealth>().localArmor);
+                //Debug.Log("sLocalaArmor " + target.GetComponent<PlayerHealth>().localArmor);
 
                 //Check if player has armor
                 if(target.GetComponent<PlayerHealth>().localArmor > 0)

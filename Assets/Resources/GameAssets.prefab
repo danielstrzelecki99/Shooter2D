@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfDamagePopup: {fileID: 4960194346579610451, guid: 974aaa62a4c3e66428a751a636a51a22, type: 3}
+  weapon: {fileID: 6112593071472787231, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}

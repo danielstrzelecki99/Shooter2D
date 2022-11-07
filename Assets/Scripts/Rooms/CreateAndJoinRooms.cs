@@ -63,9 +63,13 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         customProps.Add("Map", selectedMap);
         if (privateGame.isOn && roomPasswordInput.text != "")
         {
+            customProps.Add("isPrivate", true);
             customProps.Add("RoomPassword", roomPasswordInput.text);
         }
+        else customProps.Add("isPrivate", false);
+
         options.CustomRoomProperties = customProps;
+        options.CustomRoomPropertiesForLobby = new string[2] { "isPrivate", "RoomPassword" };
         if (createInput.text == "")
         {
             errorText.text = "Server name cannot be empty !";
@@ -81,6 +85,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
                     return;
                 }
             }
+
             PhotonNetwork.JoinOrCreateRoom(createInput.text, options, TypedLobby.Default);
             createGameMenu.SetActive(false);
         }

@@ -990,7 +990,6 @@ GameObject:
   m_Component:
   - component: {fileID: 82991265}
   - component: {fileID: 82991264}
-  - component: {fileID: 82991263}
   m_Layer: 0
   m_Name: VC Follow Camera
   m_TagString: Untagged
@@ -998,18 +997,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &82991263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82991262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d5f51e1788645498d831f404d25aab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &82991264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,7 +1344,6 @@ GameObject:
   - component: {fileID: 108943682}
   - component: {fileID: 108943681}
   - component: {fileID: 108943684}
-  - component: {fileID: 108943685}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1465,18 +1451,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &108943685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108943680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d5f51e1788645498d831f404d25aab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &110612224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22362,6 +22336,7 @@ MonoBehaviour:
   - {fileID: 1214628486}
   - {fileID: 295752859}
   - {fileID: 303299850}
+  weapon: {fileID: 0}
 --- !u!114 &1357313251
 MonoBehaviour:
   m_ObjectHideFlags: 0

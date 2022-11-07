@@ -25,8 +25,6 @@ public class PlayFabManagerLogin : MonoBehaviour
     public static int experience;
     public static int playedGames;
     public static int wins;
-    public static int isLogged;
-    public static string logStatus;
 
     //Login funcion
     public void LoginButton()
@@ -61,16 +59,9 @@ public class PlayFabManagerLogin : MonoBehaviour
     {
         if(result.Data != null && result.Data.ContainsKey("Username")){
             username = result.Data["Username"].Value;
-            logStatus = result.Data["LoginStatus"].Value;
         }
-        if(logStatus == "NotLogged")
-        {
             SceneManager.LoadScene("Loading");
             GetStatistics();
-        } else {
-            information.text = "Someone is already logged to this account. Try again later.";
-        }
-        
     }
 
     //Getting account statistics

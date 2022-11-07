@@ -7112,6 +7112,7 @@ GameObject:
   - component: {fileID: 180067208}
   - component: {fileID: 180067207}
   - component: {fileID: 180067211}
+  - component: {fileID: 180067212}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7224,6 +7225,28 @@ MonoBehaviour:
   fillArmorImage: {fileID: 557827183}
   hpInfo: {fileID: 1729556292}
   armorInfo: {fileID: 792059851}
+--- !u!114 &180067212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180067206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &201111897
 GameObject:
   m_ObjectHideFlags: 0

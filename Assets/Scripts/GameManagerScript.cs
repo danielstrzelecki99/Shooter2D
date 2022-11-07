@@ -64,17 +64,15 @@ public class GameManagerScript : MonoBehaviourPun
         //countdown timer
         TimeAmount -= Time.deltaTime;
         spawnTimer.text = "Respawn in: " + TimeAmount.ToString("F0");
-        //check if counter is 0 or lower
-        if(TimeAmount <= 0)
+        if(TimeAmount <= 0) //check if counter is 0 or lower
         {
             respawnUI.SetActive(false);
             startRespawn = false;
             RelocatePlayer();
-            //invoke method to enable inputs (move)
-            Debug.Log(LocalPlayer);
-            LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
             //invoke method Revive from playerHealth
             LocalPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.AllBuffered);
+            //invoke method to enable inputs (move)
+            LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
             //SpawnAfterDeath();
         }
     }

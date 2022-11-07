@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviourPun
             GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon
-            weaponManager.DisableInputs = true; //disable switching guns
+            //weaponManager.DisableInputs = true; //disable switching guns
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
         }
     }
@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviourPun
         Debug.Log($"Enable inputs method");
         playerScript.DisableInputs = false;
         shootingScript.DisableInputs = false; 
-        weaponManager.DisableInputs = false;
+        //weaponManager.DisableInputs = false;
     }
     [PunRPC]
     public void HealthUpdate(float damage)

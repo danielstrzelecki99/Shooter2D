@@ -59,7 +59,6 @@ public class BulletProjectile : MonoBehaviourPun
             return;
         }
         PhotonView target = collision.gameObject.GetComponent<PhotonView>();
-        Debug.Log("Chuj");
         if (target != null && (!target.IsMine || target.IsRoomView))
         {
             Debug.Log("Target to nie chuj");

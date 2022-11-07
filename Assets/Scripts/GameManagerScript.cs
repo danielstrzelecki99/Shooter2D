@@ -72,7 +72,7 @@ public class GameManagerScript : MonoBehaviourPun
             //invoke method Revive from playerHealth
             LocalPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.AllBuffered);
             //invoke method to enable inputs (move)
-            LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
+            //LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
             //SpawnAfterDeath();
         }
     }

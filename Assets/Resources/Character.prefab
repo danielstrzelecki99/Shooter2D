@@ -13253,7 +13253,6 @@ MonoBehaviour:
   localHealth: 1
   localArmor: 0
   rb: {fileID: 7008765400610643048}
-  playerCollider: {fileID: 7008765400610643054}
   playerCanvas: {fileID: 7067075182976258256}
   playerScript: {fileID: 7008765400610643050}
   shootingScript: {fileID: 7197215574491090403}

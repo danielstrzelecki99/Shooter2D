@@ -7221,7 +7221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4e0c106b411b43a893797dd8c51e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillHpImage: {fileID: 1216820916}
+  fillHpImage: {fileID: 1559165385}
   fillArmorImage: {fileID: 557827183}
   hpInfo: {fileID: 1729556292}
   armorInfo: {fileID: 792059851}

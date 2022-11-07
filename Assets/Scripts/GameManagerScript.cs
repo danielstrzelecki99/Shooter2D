@@ -13,12 +13,13 @@ public class GameManagerScript : MonoBehaviourPun
     public GameObject playerPrefab;
     public CinemachineVirtualCamera myCinemachine;
 
+    //respawn variables
     public TextMeshProUGUI spawnTimer;
     public GameObject respawnUI;
-    private float TimeAmount = 5;
+    private float TimeAmount = 3;
     private bool startRespawn;
 
-    public TextMeshProUGUI pingrate;
+    public TextMeshProUGUI pingrate; //variable to display player PingRate 
     //allow access the other classes without the reference
     public static GameManagerScript instance = null;
     //refence to LocalPlayer in PlayerMovement script
@@ -45,12 +46,12 @@ public class GameManagerScript : MonoBehaviourPun
     public void Awake()
     {
         instance = this;
-        UpdateAmmoText();
     }
 
     public void Update()
     {
         UpdateAmmoText();
+
         if (startRespawn)
         {
             StartRespawn();
@@ -63,23 +64,22 @@ public class GameManagerScript : MonoBehaviourPun
         //countdown timer
         TimeAmount -= Time.deltaTime;
         spawnTimer.text = "Respawn in: " + TimeAmount.ToString("F0");
-        //check if counter is 0 or lower
-        if(TimeAmount <= 0)
+        if(TimeAmount <= 0) //check if counter is 0 or lower
         {
             respawnUI.SetActive(false);
             startRespawn = false;
-            //invoke method to enable inputs (move)
-            Debug.Log(LocalPlayer);
-            LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
+            RelocatePlayer();
             //invoke method Revive from playerHealth
             LocalPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.AllBuffered);
-            SpawnAfterDeath();
+            //invoke method to enable inputs (move)
+            //LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
+            //SpawnAfterDeath();
         }
     }
     //enable the whole respawning system
     public void EnableRespawn()
     {
-        TimeAmount = 5;
+        TimeAmount = 4;
         startRespawn = true;
         respawnUI.SetActive(true);
     }
@@ -95,7 +95,7 @@ public class GameManagerScript : MonoBehaviourPun
             SceneManager.LoadScene("Menu");
         }
     }
-        public void SpawnAfterDeath()
+    public void SpawnAfterDeath()
     {
         System.Random gen = new System.Random();
         int numberOfSpawnPoint = gen.Next(11);
@@ -112,17 +112,25 @@ public class GameManagerScript : MonoBehaviourPun
 
         myCinemachine.Follow = player.transform;
     }
+    public void RelocatePlayer()
+    {
+        System.Random gen = new System.Random();
+        int numberOfSpawnPoint = gen.Next(11);
+        Vector3 spawnPosition = new Vector3(listOfSpawns[numberOfSpawnPoint, 0], listOfSpawns[numberOfSpawnPoint, 1]);
+        LocalPlayer.transform.localPosition = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
+    }
 
-    [PunRPC]
     public void UpdateAmmoText()
     {
         if (WeaponManager.CurrentWeaponNo == 0) //if weapon is gun 
         {
             ammoText.text = $"{WeaponScript.RcurrentClip}/{"\u221E"}";
+            //ammoText.text = $"{weaponController.AcurrentClip}/{"\u221E"}";
         }
         else //if weapon is riffle
         {
             ammoText.text = $"{WeaponScript.RcurrentClip}/{WeaponScript.RcurrentAmmo}";
+            //ammoText.text = $"{weaponController.AcurrentClip}/{weaponController.AcurrentAmmo}";
         }
     }
 }

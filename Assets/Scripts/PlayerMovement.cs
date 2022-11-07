@@ -31,34 +31,31 @@ public class PlayerMovement : MonoBehaviourPun
 
     PhotonView view;
 
-    //when player is dead variable disable inputs
-    public bool DisableInputs = false;
+    public bool DisableInputs = false; //when player is dead variable disable inputs
     public Gun_Shooting weapon;
 
     private void Awake()
     {
-        GameManagerScript.instance.LocalPlayer = gameObject;
+        view = GetComponent<PhotonView>();
+        if (view.IsMine) { GameManagerScript.instance.LocalPlayer = gameObject; }
+        
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        Physics2D.IgnoreLayerCollision(6, 6);
-        view = GetComponent<PhotonView>();
+        Physics2D.IgnoreLayerCollision(6,6);
     }
 
     private void Update()
     {
-        GameManagerScript.instance.LocalPlayer = gameObject;
-        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
+        //GameManagerScript.instance.LocalPlayer = gameObject;
+
+        if (view.IsMine && !DisableInputs)
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-        }
-
-        if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
-        {
             if (Input.GetButtonDown("Jump"))
             {
                 if (grounded || doubleJump)
@@ -134,7 +131,6 @@ public class PlayerMovement : MonoBehaviourPun
             grounded = true;
             //Debug.Log(other.gameObject.tag);
         }
-       
     }
 
     //Interact with items on map methods

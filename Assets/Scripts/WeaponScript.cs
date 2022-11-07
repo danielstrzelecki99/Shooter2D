@@ -8,40 +8,34 @@ public class WeaponScript : MonoBehaviourPun
 {
     //Ammo variables
     public int currentClip, maxClipSize, currentAmmo, maxAmmoSize;
-    public static int RcurrentClip, RmaxClipSize, RcurrentAmmo, RmaxAmmoSize;
+    public static int RcurrentClip, RcurrentAmmo;
 
     public GameObject Bullet;
-    [SerializeField] private float fireRate;
-    float ReadyForNextShoot;
+    [SerializeField] public float fireRate;
     [SerializeField] private Transform firePoint;
 
+    public ParticleSystem muzzleFlash;
+
+    PhotonView view;
+
+    private void Awake()
+    {
+        view = GetComponent<PhotonView>();
+    }
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if(view.IsMine)
         {
-            if (Time.time > ReadyForNextShoot)
-            {
-                ReadyForNextShoot = Time.time + 1 / fireRate;
-                Shot();
-            }
+            RcurrentClip = currentClip;
+            RcurrentAmmo = currentAmmo;
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Reload();
-        }
-        RcurrentClip = currentClip;
-        RmaxClipSize = maxClipSize;
-        RcurrentAmmo = currentAmmo;
-        RmaxAmmoSize = maxAmmoSize;
     }
 
-    [PunRPC]
-    private void Shot()
+    public void Shot()
     {
         if (currentClip > 0)
         {
-            //enable shoting animation
-            //shot = true;
+            muzzleFlash.Play();
             //Clone the bullet object every thime when shot funciton is involved
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
             currentClip--;
@@ -55,16 +49,18 @@ public class WeaponScript : MonoBehaviourPun
             reloadAmount = currentAmmo;
         currentClip += reloadAmount;
         currentAmmo -= reloadAmount;
+        RcurrentClip = currentClip;
+        RcurrentAmmo = currentAmmo;
+        //Debug.Log($"Actual ammo: {currentClip}/{currentAmmo}");
+        //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
     }
     public void AddAmmo(int ammoAmount)
     {
-        if (WeaponManager.CurrentWeaponNo != 0) //add ammo only for riffle
+        currentAmmo += ammoAmount;
+        if (currentAmmo > maxAmmoSize)
         {
-            currentAmmo += ammoAmount;
-            if (currentAmmo > maxAmmoSize)
-            {
-                currentAmmo = maxAmmoSize;
-            }
+            currentAmmo = maxAmmoSize;
         }
+        Debug.Log($"WeaponScript, currentAmmo: {currentAmmo}");
     }
 }

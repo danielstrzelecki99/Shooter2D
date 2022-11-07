@@ -11,7 +11,20 @@ public class PlayerEq : MonoBehaviourPunCallbacks
     public static int aidKitAmount = 0;
     public static bool destroy = false;
     public static bool useAidKit = false;
+    
+    PhotonView view;
+    PlayerHealth playerHealth;
+    PlayerHealth playerArmor;
+    public GameObject player;
 
+    private void Awake() {
+        playerHealth = player.GetComponent<PlayerHealth>();
+        playerArmor = player.GetComponent<PlayerHealth>();
+    }
+    public void Start()
+    {
+         view = GetComponent<PhotonView>();
+    }
     public override void OnEnable()
     {
         armorAmount = 0;
@@ -21,16 +34,18 @@ public class PlayerEq : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if(PlayerMovement.pickUpAllowed == true && Input.GetKeyDown(KeyCode.E)){
-            destroy = true;
-        }
-        if(aidKitAmount > 0 && Input.GetKeyDown(KeyCode.F) && PlayerHealth.localHealth != 1){
-            aidKitAmount -= 1;
-            GetComponent<PhotonView>().RPC("Heal", RpcTarget.AllBuffered);
-        }
-        if(armorAmount > 0 && Input.GetKeyDown(KeyCode.G) && PlayerHealth.localArmor != 1){
-            armorAmount -= 1;
-            GetComponent<PhotonView>().RPC("ArmorUse", RpcTarget.AllBuffered);
+        if(view.IsMine){
+            if(PlayerMovement.pickUpAllowed == true && Input.GetKeyDown(KeyCode.E)){
+                destroy = true;
+            }
+            if(aidKitAmount > 0 && Input.GetKeyDown(KeyCode.F) && !playerHealth.isHealthFull()){
+                    aidKitAmount -= 1;
+                    GetComponent<PhotonView>().RPC("Heal", RpcTarget.AllBuffered);
+            }
+            if(armorAmount > 0 && Input.GetKeyDown(KeyCode.G) && !playerArmor.isArmorFull()){
+                armorAmount -= 1;
+                GetComponent<PhotonView>().RPC("ArmorUse", RpcTarget.AllBuffered);
+            }
         }
     }
 }

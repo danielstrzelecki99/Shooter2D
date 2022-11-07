@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4711363732674924711}
   - component: {fileID: 5866474997239677892}
   - component: {fileID: -7727069556598999733}
-  - component: {fileID: -4251389050470120669}
+  - component: {fileID: 7852778026814984760}
   m_Layer: 8
   m_Name: Bullet
   m_TagString: Untagged
@@ -136,7 +136,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.07313018, y: 0}
@@ -250,7 +250,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &-4251389050470120669
+--- !u!114 &7852778026814984760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 1
+  observableSearch: 2
   ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0

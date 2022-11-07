@@ -17,11 +17,17 @@ public class ItemsManager : MonoBehaviourPun
 
     PhotonView view;
 
+    [SerializeField] private GameObject weapon;
+    WeaponScript weaponController;
+
+    public static bool isAmmoPickup= false;
+
     void Start()
     {
         Physics2D.IgnoreLayerCollision(9, 8);
         InvokeRepeating("SpawnItem", spawnTime, spawnDelay);
         view = GetComponent<PhotonView>();
+        weaponController = weapon.GetComponent<WeaponScript>();
     }
 
     void Update()
@@ -51,7 +57,10 @@ public class ItemsManager : MonoBehaviourPun
                 return;
             }
             else{
-                PlayerEq.ammoAmount += 1;
+                isAmmoPickup = true;
+                //PlayerEq.ammoAmount += 1;
+                Debug.Log("Adding ammo to riffle");
+                //weaponController.currentAmmo += 20;
             }
         } else if (selectedObject.tag == "Armor"){
             if(PlayerEq.armorAmount == 2){

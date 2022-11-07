@@ -9,22 +9,32 @@ public class PlayerHealth : MonoBehaviourPun
 {
     public Image fillImage;
     public Image armorFillImage;
-    public static float localHealth = 1;
-    public static float localArmor = 0;
+    public float localHealth = 1;
+    public float localArmor = 0;
+    public static float slocalArmor;
+    public static float slocalHealth;
 
     //variables required to be hidden when player is dead
     public Rigidbody2D rb;
-    //public SpriteRenderer sr;
-    public GameObject playerPrefab; //against SpriteRenderer
-    public BoxCollider2D playerCollider;
     public GameObject playerCanvas;
-    //reference to PlayerMovement script
+
+    //reference to Player script
     public PlayerMovement playerScript;
     public Gun_Shooting shootingScript;
+    public WeaponManager weaponManager;
+    PhotonView view;
 
     public void Start()
     {
         armorFillImage.fillAmount = localArmor;
+        view = GetComponent<PhotonView>();
+    }
+    private void Update()
+    {
+        if(view.IsMine){
+            slocalArmor = localArmor;
+            slocalHealth = localHealth;
+        }
     }
     //check health level 
     public void CheckHealth()
@@ -33,34 +43,41 @@ public class PlayerHealth : MonoBehaviourPun
         if(photonView.IsMine && localHealth <= 0)
         {
             GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
-            playerScript.DisableInputs = true; //disable inputs like jump and move
-            shootingScript.DisableInputs = true; //disable shooting and moving weapon
+            //playerScript.DisableInputs = true; //disable inputs like jump and move
+            //shootingScript.DisableInputs = true; //disable shooting and moving weapon
+            //weaponManager.DisableInputs = true; //disable switching guns
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
         }
     }
+
     [PunRPC]
     public void Death()
     {
         rb.gravityScale = 0;
-        playerCollider.enabled = false;
-        //sr.enabled = false;
         playerCanvas.SetActive(false);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        Debug.Log("Player model has been destroyed");
     }
     [PunRPC]
     public void Revive()
     {
         rb.gravityScale = 1;
-        playerCollider.enabled = true;
-        //sr.enabled = true;
         playerCanvas.SetActive(true);
+        gameObject.SetActive(true);
+        //set health level and image to 1
         localHealth = 1;
         fillImage.fillAmount = localHealth;
+        //set armor level and image to 1
+        localArmor = 0;
+        armorFillImage.fillAmount = localArmor;
         Debug.Log("Player has respawned again");
     }
     public void EnableInputs()
     {
+        Debug.Log($"Enable inputs method");
         playerScript.DisableInputs = false;
+        shootingScript.DisableInputs = false; 
+        //weaponManager.DisableInputs = false;
     }
     [PunRPC]
     public void HealthUpdate(float damage)
@@ -70,16 +87,54 @@ public class PlayerHealth : MonoBehaviourPun
         localHealth -= damage;
         CheckHealth();
     }
-
     [PunRPC]
     public void Heal(){
         localHealth = 1;
         fillImage.fillAmount = localHealth;
     }
-
+    [PunRPC]
+    public void ArmorUpdate(float damage)
+    {
+        armorFillImage.fillAmount -= damage;
+        localArmor = armorFillImage.fillAmount;
+        localArmor -= damage;
+        if(localArmor <= 0)
+        {
+            localArmor = 0;
+            localArmor = armorFillImage.fillAmount;
+        }
+    }
     [PunRPC]
     public void ArmorUse(){
         localArmor = 1;
         armorFillImage.fillAmount = localArmor;
+    }
+
+    //Checking methods for items system
+        public bool isHealthFull()
+    {
+        if(localHealth == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool isArmorFull()
+    {
+        if(localArmor == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool isArmorUsed()
+    {
+        if(localArmor > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

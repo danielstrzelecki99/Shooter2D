@@ -36,6 +36,11 @@ public class PlayFabManagerRegister : MonoBehaviour
             information.text = "The username is empty!";
             return;
         }
+        else if(usernameInput.text.Length > 11)
+        {
+            information.text = "The username is too long!";
+            return;
+        }
         else 
         {
             var request = new RegisterPlayFabUserRequest {
@@ -66,7 +71,7 @@ public class PlayFabManagerRegister : MonoBehaviour
     //Setting username
     public void SetPlayerName(){
         var request = new UpdateUserTitleDisplayNameRequest {
-                DisplayName = usernameInput.text,
+                DisplayName = usernameInput.text
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
     }
@@ -81,12 +86,11 @@ public class PlayFabManagerRegister : MonoBehaviour
     public void SetPlayerStatistics(){
         var request = new UpdatePlayerStatisticsRequest {
             Statistics = new List<StatisticUpdate>{
-                new StatisticUpdate {StatisticName = "Level", Value = 0},
+                new StatisticUpdate {StatisticName = "Level", Value = 1},
                 new StatisticUpdate {StatisticName = "PlayedGames", Value = 0},
                 new StatisticUpdate {StatisticName = "Wins", Value = 0},
                 new StatisticUpdate {StatisticName = "Experience", Value = 0},
-                new StatisticUpdate {StatisticName = "Coins", Value = 0},
-                new StatisticUpdate {StatisticName = "isLogged", Value = 0},
+                new StatisticUpdate {StatisticName = "Coins", Value = 0}
             }
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);

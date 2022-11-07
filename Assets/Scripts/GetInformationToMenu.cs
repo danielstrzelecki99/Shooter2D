@@ -32,19 +32,18 @@ public class GetInformationToMenu : MonoBehaviour
         coinsStat.text = "GIT coins: " + PlayFabManagerLogin.coins.ToString();
     }
 
-        //Setting account status
+    //Setting account status
     public void SetPlayerLoggedStatusToTrue(){
-        var request = new UpdatePlayerStatisticsRequest {
-            Statistics = new List<StatisticUpdate>{
-                new StatisticUpdate {StatisticName = "isLogged", Value = 1},
+        var request = new UpdateUserDataRequest {
+            Data = new Dictionary<string, string> {
+                {"LoginStatus", "Logged"}
             }
         };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
     }
 
-    void OnUpdateStatistics(UpdatePlayerStatisticsResult result)
-    {
-        Debug.Log("Logged status has been updated");
+    void OnDataSend(UpdateUserDataResult result){
+        Debug.Log("User data updated");
     }
 
      void OnError(PlayFabError error)

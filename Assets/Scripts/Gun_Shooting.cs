@@ -57,7 +57,7 @@ public class Gun_Shooting : MonoBehaviourPun
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunHolder.position;
             float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
             gunHolder.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-            if (rotZ < 97 && rotZ > -89)
+            if (rotZ < 90 && rotZ > -89)
             {
                 //Debug.Log("Facing right");
                 gunHolder.transform.Rotate(0f, 0f, gunHolder.transform.rotation.z);

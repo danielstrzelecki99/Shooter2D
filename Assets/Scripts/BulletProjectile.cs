@@ -35,16 +35,30 @@ public class BulletProjectile : MonoBehaviourPun
     //    }
     //    //create variable for enemy
     //    PhotonView target = collision.gameObject.GetComponent<PhotonView>();
-    //    Debug.Log($"Target: {target}");
     //    //condition if bullet hits someone
-    //    if(target != null && (!target.IsMine || target.IsRoomView))
+    //    if (target != null && (!target.IsMine || target.IsRoomView))
     //    {
-    //        Debug.Log("First condition passed");
     //        if (target.CompareTag("Player"))
     //        {
-    //            Debug.Log("Player has been shot");
+    //            //Debug.Log("Player has been shot");
     //            //update health hitten player
     //            target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+    //            bool isCriticalHit = UnityEngine.Random.Range(0, 100) < 30;
+    //            DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100), isCriticalHit);
+    //            //Debug.Log("Player has been shot");
+    //            //Debug.Log("sLocalaArmor " + target.GetComponent<PlayerHealth>().localArmor);
+
+    //            //Check if player has armor
+    //            if (target.GetComponent<PlayerHealth>().localArmor > 0)
+    //            {
+    //                //update armor hitten player
+    //                target.RPC("ArmorUpdate", RpcTarget.AllBuffered, bulleteDamage);
+    //            }
+    //            else
+    //            {
+    //                //update health hitten player
+    //                target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+    //            }
     //        }
     //        GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
     //    }
@@ -54,11 +68,15 @@ public class BulletProjectile : MonoBehaviourPun
     //}
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log($"CollisionMethod: {collision}");
+        //check if PhotonView does not belong to player 
         if (!photonView.IsMine)
         {
             return;
         }
+        //create variable for enemy
         PhotonView target = collision.gameObject.GetComponent<PhotonView>();
+        //condition if bullet hits someone
         if (target != null && (!target.IsMine || target.IsRoomView))
         {
             if (target.CompareTag("Player"))

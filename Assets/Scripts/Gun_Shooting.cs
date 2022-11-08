@@ -142,7 +142,7 @@ public class Gun_Shooting : MonoBehaviourPun
     [PunRPC]
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
+        // Switch way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
     }

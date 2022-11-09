@@ -14,12 +14,12 @@ public class ItemsManager : MonoBehaviourPun
     public float spawnDelay;
     public List<GameObject> spawnObjects = new List<GameObject>();
     public List<Transform> spawnLocations = new List<Transform>();
-
+    private List<Transform> spawnLocationsOriginal;
     PhotonView view;
-
     [SerializeField] private GameObject weapon;
     WeaponScript weaponController;
-
+    public Transform localizationToAdd;
+    
     public static bool isAmmoPickup= false;
 
     void Start()
@@ -27,7 +27,9 @@ public class ItemsManager : MonoBehaviourPun
         Physics2D.IgnoreLayerCollision(9, 8);
         InvokeRepeating("SpawnItem", spawnTime, spawnDelay);
         view = GetComponent<PhotonView>();
+        localizationToAdd = GetComponent<Transform>();
         weaponController = weapon.GetComponent<WeaponScript>();
+        spawnLocationsOriginal = new List<Transform>(spawnLocations);
     }
 
     void Update()
@@ -78,7 +80,20 @@ public class ItemsManager : MonoBehaviourPun
     [PunRPC]
     public void RPC_PickUp()
     {
+        localizationToAdd = selectedObject.GetComponent<Transform>();
+        Debug.Log("item position: " + localizationToAdd.position);
+        foreach(Transform spot in spawnLocationsOriginal){
+            Debug.Log("Spotpositio: " + spot.position);
+            if(spot.position == localizationToAdd.position){
+                spawnLocations.Add(spot);
+                break;
+            }
+        }
         Destroy(selectedObject);
+        if(stopSpawning == true){
+            stopSpawning = false;
+            InvokeRepeating("SpawnItem", (spawnTime+10), spawnDelay);
+        }
     }
 
     public void SpawnItem()
@@ -113,5 +128,6 @@ public class ItemsManager : MonoBehaviourPun
         Transform locationToSpawn = spawnLocations[spawnPosition];
         Instantiate(itemToSpawn, locationToSpawn);
         spawnLocations.Remove(locationToSpawn);
+        Debug.Log("Spawned. Pozostało lokalizacji: " + spawnLocations.Count);
     }
 }

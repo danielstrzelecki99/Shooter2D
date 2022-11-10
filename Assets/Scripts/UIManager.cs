@@ -10,12 +10,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI armorText;
     [SerializeField] TextMeshProUGUI firstAidText;
     [SerializeField] TextMeshProUGUI itemInfo;
+    [SerializeField] TextMeshProUGUI kills;
+    [SerializeField] TextMeshProUGUI deaths;
+    [SerializeField] TextMeshProUGUI damageDealt;
     PhotonView view;
 
     void Update(){
             iteractInfo.text = PlayerMovement.interactInfoText;
             armorText.text = "[G] " + PlayerEq.armorAmount.ToString();
             firstAidText.text = "[F] " +  PlayerEq.aidKitAmount.ToString();
+            kills.text = PlayerEq.killsInGame.ToString();
+            deaths.text = PlayerEq.deathsInGame.ToString();
+            damageDealt.text = PlayerEq.damageDealtInGame.ToString();
             if(ItemsManager.interval > 0){
                 itemInfo.text = ItemsManager.itemInfoText;
                 ItemsManager.interval -= Time.deltaTime;

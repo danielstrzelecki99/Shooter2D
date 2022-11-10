@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using PlayFab;
+using PlayFab.ClientModels;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -38,5 +41,27 @@ public class Timer : MonoBehaviour
     private void OnEnd()
     {
         Debug.Log("Time ended");
+        UpdatePlayerStatistics();
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void UpdatePlayerStatistics(){
+        var request = new UpdatePlayerStatisticsRequest {
+            Statistics = new List<StatisticUpdate>{
+                new StatisticUpdate {StatisticName = "PlayedGames", Value = PlayFabManagerLogin.playedGames + 1},
+                new StatisticUpdate {StatisticName = "Experience", Value = PlayFabManagerLogin.experience + PlayerEq.killsInGame},
+            }
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);
+    }
+
+    void OnUpdateStatistics(UpdatePlayerStatisticsResult result)
+    {
+        Debug.Log("Statistics added");
+    }
+
+    void OnError(PlayFabError error)
+    {
+        Debug.Log(error.GenerateErrorReport());
     }
 }

@@ -9,6 +9,9 @@ public class PlayerEq : MonoBehaviourPunCallbacks
     public static int armorAmount = 0;
     public static int ammoAmount = 0;
     public static int aidKitAmount = 0;
+    public static int killsInGame = 0;
+    public static int deathsInGame = 0;
+    public static int damageDealtInGame = 0;
     public static bool destroy = false;
     public static bool useAidKit = false;
     

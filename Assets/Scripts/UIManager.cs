@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI kills;
     [SerializeField] TextMeshProUGUI deaths;
     [SerializeField] TextMeshProUGUI damageDealt;
+    [SerializeField] TextMeshProUGUI points;
     PhotonView view;
 
     void Update(){
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
             kills.text = PlayerEq.killsInGame.ToString();
             deaths.text = PlayerEq.deathsInGame.ToString();
             damageDealt.text = PlayerEq.damageDealtInGame.ToString();
+            points.text = PlayerEq.pointsInGame.ToString();
             if(ItemsManager.interval > 0){
                 itemInfo.text = ItemsManager.itemInfoText;
                 ItemsManager.interval -= Time.deltaTime;

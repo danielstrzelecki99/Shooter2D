@@ -42,14 +42,14 @@ public class Timer : MonoBehaviour
     {
         Debug.Log("Time ended");
         UpdatePlayerStatistics();
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("GameEnd");
     }
 
     public void UpdatePlayerStatistics(){
         var request = new UpdatePlayerStatisticsRequest {
             Statistics = new List<StatisticUpdate>{
                 new StatisticUpdate {StatisticName = "PlayedGames", Value = PlayFabManagerLogin.playedGames + 1},
-                new StatisticUpdate {StatisticName = "Experience", Value = PlayFabManagerLogin.experience + PlayerEq.killsInGame},
+                new StatisticUpdate {StatisticName = "Experience", Value = (int)(PlayFabManagerLogin.experience + PlayerEq.pointsInGame/10)},
             }
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);

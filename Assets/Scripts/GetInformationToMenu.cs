@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEditor;
 
 public class GetInformationToMenu : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GetInformationToMenu : MonoBehaviour
         levelInfo.text = "Level: " + PlayFabManagerLogin.level.ToString();
         coinsInfo.text = "GIT coins: " + PlayFabManagerLogin.coins.ToString();
         nameInfo.text = "Welcome back " + PlayFabManagerLogin.username + "!";
+        Debug.Log("Got Info!");
     }
 
     public void GetAccountStats() {
@@ -30,6 +32,7 @@ public class GetInformationToMenu : MonoBehaviour
         winsStat.text = "Won games: " + PlayFabManagerLogin.wins.ToString();
         gamesStat.text = "Played games: " + PlayFabManagerLogin.playedGames.ToString();
         coinsStat.text = "GIT coins: " + PlayFabManagerLogin.coins.ToString();
+        Debug.Log("Got Stats!");
     }
 
     void OnDataSend(UpdateUserDataResult result){
@@ -40,7 +43,6 @@ public class GetInformationToMenu : MonoBehaviour
     {
         Debug.Log(error.GenerateErrorReport());
     }
-
     void Start() {
         GetAccountInfo();
         GetAccountStats();

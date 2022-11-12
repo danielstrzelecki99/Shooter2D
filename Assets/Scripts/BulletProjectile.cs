@@ -68,7 +68,6 @@ public class BulletProjectile : MonoBehaviourPun
     //}
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"CollisionMethod: {collision}");
         //check if PhotonView does not belong to player 
         if (!photonView.IsMine)
         {

@@ -54,6 +54,7 @@ public class Gun_Shooting : MonoBehaviourPun
             AmaxClipSize = weaponController.maxClipSize;
             AcurrentAmmo = weaponController.currentAmmo;
             AmaxAmmoSize = weaponController.maxAmmoSize;
+            //invoke methods to rotate gun and forearm
             FlipWeapon(gunHolder, 0);
             FlipWeapon(forearmHolder, WeaponManager.CurrentWeaponNo);
 
@@ -79,8 +80,10 @@ public class Gun_Shooting : MonoBehaviourPun
             if (Input.GetKeyDown(KeyCode.C))
             {
                 weaponController = weapon.GetComponent<WeaponScript>();
+                //reset rotation of the foreArm when switched to riffle
+                forearmHolder.transform.localRotation = Quaternion.identity;
             }
-            if(ItemsManager.isAmmoPickup)
+            if (ItemsManager.isAmmoPickup)
             {
                 riffleController.AddAmmo(20);
                 ItemsManager.isAmmoPickup = false;
@@ -130,22 +133,22 @@ public class Gun_Shooting : MonoBehaviourPun
     //    Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
     //}
 
-    private void FlipWeapon(Transform transToRotate, int isRiffle)
+    private void FlipWeapon(Transform objectToRotate, int isRiffle)
     {
         if (isRiffle == 0)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transToRotate.position;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - objectToRotate.position;
             float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-            transToRotate.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-            if (rotZ < 97 && rotZ > -89)
+            objectToRotate.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+            if (rotZ < 97 && rotZ > -95)
             {
                 //Debug.Log("Facing right");
-                transToRotate.transform.Rotate(0f, 0f, transToRotate.transform.rotation.z);
+                objectToRotate.transform.Rotate(0f, 0f, objectToRotate.transform.rotation.z);
             }
             else
             {
                 //Debug.Log("Facing left");
-                transToRotate.transform.Rotate(180f, 0f, transToRotate.transform.rotation.z);
+                objectToRotate.transform.Rotate(180f, 0f, objectToRotate.transform.rotation.z);
             }
         }
     }

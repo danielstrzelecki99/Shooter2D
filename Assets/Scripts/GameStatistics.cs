@@ -14,17 +14,16 @@ public class GameStatistics : MonoBehaviour
     [SerializeField] TextMeshProUGUI deaths;
     [SerializeField] TextMeshProUGUI damageDealt;
     [SerializeField] TextMeshProUGUI points;
+    [SerializeField] TextMeshProUGUI level;
+    [SerializeField] TextMeshProUGUI toNextLevel;
+    [SerializeField] Image fillLevelImage;
+    public float toFill;
     public Button switchToMenu;
     PhotonView view;
-
     void Start()
     {
-        view = GetComponent<PhotonView>();
-
-            kills.text = "Kills: " + PlayerEq.killsInGame.ToString();
-            deaths.text = "Deaths: " + PlayerEq.deathsInGame.ToString();
-            damageDealt.text = "Damage dealt to enemy: " + PlayerEq.damageDealtInGame.ToString();
-            points.text = "Points: " + PlayerEq.pointsInGame.ToString();
+            GetStatistics();
+            view = GetComponent<PhotonView>();
             switchToMenu.onClick.AddListener(() => { SwitchToMenu();});
     }
     public void GetStatistics()
@@ -52,6 +51,8 @@ public class GameStatistics : MonoBehaviour
                 PlayFabManagerLogin.wins = stat.Value;
             }
         }
+        Debug.Log(PlayFabManagerLogin.level);
+        ShowStatistics();
     }
     void OnError(PlayFabError error)
     {
@@ -59,7 +60,21 @@ public class GameStatistics : MonoBehaviour
     }
     public void SwitchToMenu()
     {
-        GetStatistics();
         SceneManager.LoadScene("Menu");
+    }
+
+    public void ShowStatistics()
+    {
+        Debug.Log("Wyświetlenie danych");
+        kills.text = "Kills: " + PlayerEq.killsInGame.ToString();
+        deaths.text = "Deaths: " + PlayerEq.deathsInGame.ToString();
+        damageDealt.text = "Damage dealt to enemy: " + PlayerEq.damageDealtInGame.ToString();
+        points.text = "Points: " + PlayerEq.pointsInGame.ToString();
+        level.text = PlayFabManagerLogin.level.ToString();
+        toFill = (float)((float)PlayFabManagerLogin.experience / 1000f);
+        toNextLevel.text = PlayFabManagerLogin.experience.ToString() + " / 1000";
+        fillLevelImage.fillAmount = toFill;
+        Debug.Log("Fill image: " + toFill);
+        Debug.Log("Exp: " + PlayFabManagerLogin.experience);
     }
 }

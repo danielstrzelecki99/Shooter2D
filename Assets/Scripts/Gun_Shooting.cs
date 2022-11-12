@@ -9,6 +9,7 @@ using Photon.Pun.Demo.Asteroids;
 public class Gun_Shooting : MonoBehaviourPun
 {
     public Transform gunHolder;
+    public Transform forearmHolder;
     public GameObject Bullet;
     float ReadyForNextShoot;
 
@@ -53,22 +54,11 @@ public class Gun_Shooting : MonoBehaviourPun
             AmaxClipSize = weaponController.maxClipSize;
             AcurrentAmmo = weaponController.currentAmmo;
             AmaxAmmoSize = weaponController.maxAmmoSize;
-            //rotate gun towards mousePosition
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunHolder.position;
-            float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-            gunHolder.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-            if (rotZ < 97 && rotZ > -89)
-            {
-                //Debug.Log("Facing right");
-                gunHolder.transform.Rotate(0f, 0f, gunHolder.transform.rotation.z);
-            }
-            else
-            {
-                //Debug.Log("Facing left");
-                gunHolder.transform.Rotate(180f, 0f, gunHolder.transform.rotation.z);
-            }
+            //invoke methods to rotate gun and forearm
+            FlipWeapon(gunHolder, 0);
+            FlipWeapon(forearmHolder, WeaponManager.CurrentWeaponNo);
 
-            //activate animation fire button is pressed
+            //activate animation when fire button is pressed
             if (Input.GetMouseButton(0))
             {
                 if (Time.time > ReadyForNextShoot)
@@ -81,15 +71,19 @@ public class Gun_Shooting : MonoBehaviourPun
             else
                 shot = false;
             animator.SetBool("shoot", shot);
+            //reload weapon when R button is pressed
             if (Input.GetKeyDown(KeyCode.R))
             {
                 weaponController.Reload();
             }
+            //switch reference to weapon when C button is pressed
             if (Input.GetKeyDown(KeyCode.C))
             {
                 weaponController = weapon.GetComponent<WeaponScript>();
+                //reset rotation of the foreArm when switched to riffle
+                forearmHolder.transform.localRotation = Quaternion.identity;
             }
-            if(ItemsManager.isAmmoPickup)
+            if (ItemsManager.isAmmoPickup)
             {
                 riffleController.AddAmmo(20);
                 ItemsManager.isAmmoPickup = false;
@@ -139,10 +133,30 @@ public class Gun_Shooting : MonoBehaviourPun
     //    Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
     //}
 
+    private void FlipWeapon(Transform objectToRotate, int isRiffle)
+    {
+        if (isRiffle == 0)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - objectToRotate.position;
+            float rotZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            objectToRotate.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+            if (rotZ < 97 && rotZ > -95)
+            {
+                //Debug.Log("Facing right");
+                objectToRotate.transform.Rotate(0f, 0f, objectToRotate.transform.rotation.z);
+            }
+            else
+            {
+                //Debug.Log("Facing left");
+                objectToRotate.transform.Rotate(180f, 0f, objectToRotate.transform.rotation.z);
+            }
+        }
+    }
+
     [PunRPC]
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
+        // Switch way the player is labelled as facing.
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
     }

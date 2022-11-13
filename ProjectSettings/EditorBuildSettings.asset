@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EveningMap.unity
     guid: 71d8e3235e32e33439ab2120565827b6
+  - enabled: 1
+    path: Assets/Scenes/LoadingStats.unity
+    guid: acd3ff0b8ab89b84288d5ddc7ca789ef
+  - enabled: 1
+    path: Assets/Scenes/GameEnd.unity
+    guid: 8565c7eef5b85c3409219eb51570f648
   m_configObjects: {}

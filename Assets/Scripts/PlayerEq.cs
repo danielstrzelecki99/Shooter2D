@@ -9,6 +9,10 @@ public class PlayerEq : MonoBehaviourPunCallbacks
     public static int armorAmount = 0;
     public static int ammoAmount = 0;
     public static int aidKitAmount = 0;
+    public static int killsInGame = 0;
+    public static int deathsInGame = 0;
+    public static int damageDealtInGame = 0;
+    public static float pointsInGame = 0;
     public static bool destroy = false;
     public static bool useAidKit = false;
     
@@ -46,6 +50,12 @@ public class PlayerEq : MonoBehaviourPunCallbacks
                 armorAmount -= 1;
                 GetComponent<PhotonView>().RPC("ArmorUse", RpcTarget.AllBuffered);
             }
+            UpdatePoints();
         }
+    }
+
+    public void UpdatePoints()
+    {
+        pointsInGame = (killsInGame * 100 + damageDealtInGame/10);
     }
 }

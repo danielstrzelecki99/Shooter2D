@@ -42,11 +42,13 @@ public class PlayerHealth : MonoBehaviourPun
         //condition only for specific (local) 
         if(photonView.IsMine && localHealth <= 0)
         {
+            localHealth = 0;
             GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon
             weaponManager.DisableInputs = true; //disable switching guns
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
+            PlayerEq.deathsInGame += 1;
         }
     }
 

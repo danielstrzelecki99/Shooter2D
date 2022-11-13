@@ -93,10 +93,16 @@ public class BulletProjectile : MonoBehaviourPun
                 {
                     //update armor hitten player
                     target.RPC("ArmorUpdate", RpcTarget.AllBuffered, bulleteDamage);
+                    PlayerEq.damageDealtInGame += (int)(bulleteDamage * 100);
                 }
                 else {
                     //update health hitten player
                     target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+                    PlayerEq.damageDealtInGame += (int)(bulleteDamage * 100);
+                    if(target.GetComponent<PlayerHealth>().localHealth <= 0)
+                    {
+                        PlayerEq.killsInGame += 1;
+                    }
                 }
             }
             GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);

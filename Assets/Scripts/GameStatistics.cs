@@ -16,8 +16,10 @@ public class GameStatistics : MonoBehaviour
     [SerializeField] TextMeshProUGUI points;
     [SerializeField] TextMeshProUGUI level;
     [SerializeField] TextMeshProUGUI toNextLevel;
+    [SerializeField] TextMeshProUGUI coins;
     [SerializeField] Image fillLevelImage;
     public float toFill;
+    public int earnedCoins;
     public Button switchToMenu;
     PhotonView view;
     void Start()
@@ -51,8 +53,7 @@ public class GameStatistics : MonoBehaviour
                 PlayFabManagerLogin.wins = stat.Value;
             }
         }
-        Debug.Log(PlayFabManagerLogin.level);
-        ShowStatistics();
+        Invoke("ShowStatistics", 1);
     }
     void OnError(PlayFabError error)
     {
@@ -65,16 +66,15 @@ public class GameStatistics : MonoBehaviour
 
     public void ShowStatistics()
     {
-        Debug.Log("Wyświetlenie danych");
         kills.text = "Kills: " + PlayerEq.killsInGame.ToString();
         deaths.text = "Deaths: " + PlayerEq.deathsInGame.ToString();
         damageDealt.text = "Damage dealt to enemy: " + PlayerEq.damageDealtInGame.ToString();
         points.text = "Points: " + PlayerEq.pointsInGame.ToString();
         level.text = PlayFabManagerLogin.level.ToString();
+        earnedCoins = (int)(PlayerEq.pointsInGame/10);
+        coins.text = "Earned coins: " + earnedCoins.ToString();
         toFill = (float)((float)PlayFabManagerLogin.experience / 1000f);
         toNextLevel.text = PlayFabManagerLogin.experience.ToString() + " / 1000";
         fillLevelImage.fillAmount = toFill;
-        Debug.Log("Fill image: " + toFill);
-        Debug.Log("Exp: " + PlayFabManagerLogin.experience);
     }
 }

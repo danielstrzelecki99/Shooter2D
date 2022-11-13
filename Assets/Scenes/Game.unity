@@ -463,6 +463,9 @@ MonoBehaviour:
   fill: {fileID: 1820461923}
   text: {fileID: 794683665}
   duration: 90
+  currentLevel: 0
+  currentExp: 0
+  currentCoins: 0
 --- !u!114 &153007439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11950,7 +11953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopSpawning: 0
   spawnTime: 1
-  spawnDelay: 10
+  spawnDelay: 5
   spawnObjects:
   - {fileID: 5481231668434294257, guid: 8c94dd3ef4aac224ab0bddc54d4dc600, type: 3}
   - {fileID: 4873438547640477184, guid: 1e1d46cbb3e0fdb4b9cc2ba7ead960c2, type: 3}
@@ -11959,6 +11962,33 @@ MonoBehaviour:
   - {fileID: 459855635}
   - {fileID: 1788792589}
   - {fileID: 115390200}
+  - {fileID: 515202809}
+  - {fileID: 145892383}
+  - {fileID: 1244964951}
+  - {fileID: 2042398342}
+  - {fileID: 907778708}
+  - {fileID: 932096352}
+  - {fileID: 1416424191}
+  - {fileID: 28953128}
+  - {fileID: 1134051741}
+  - {fileID: 1958934645}
+  - {fileID: 1199718495}
+  - {fileID: 1407332409}
+  - {fileID: 2008554171}
+  - {fileID: 1336904602}
+  - {fileID: 822390293}
+  - {fileID: 2104177344}
+  - {fileID: 424947570}
+  - {fileID: 1663282908}
+  - {fileID: 1545736231}
+  - {fileID: 1387716018}
+  - {fileID: 17784927}
+  - {fileID: 862030819}
+  - {fileID: 1073098125}
+  - {fileID: 1133649690}
+  - {fileID: 261601634}
+  - {fileID: 470778996}
+  - {fileID: 832917456}
   weapon: {fileID: 6112593071472787231, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
   localizationToAdd: {fileID: 0}
 --- !u!114 &992733348
@@ -12858,7 +12888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300022, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db1889e9ba4e71e4482b22ff0e2f61c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

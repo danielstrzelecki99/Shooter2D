@@ -46,10 +46,9 @@ public class Timer : MonoBehaviour
 
     private void OnEnd()
     {
-        Debug.Log("Time ended");
         statisticUpdate();
         UpdatePlayerStatistics();
-        SceneManager.LoadScene("GameEnd");
+        SceneManager.LoadScene("LoadingStats");
     }
 
     public void statisticUpdate()
@@ -64,7 +63,6 @@ public class Timer : MonoBehaviour
         }
         else {currentLevel = PlayFabManagerLogin.level;
         }
-        Debug.Log("Stats have been updated!");
     }
 
     public void UpdatePlayerStatistics(){

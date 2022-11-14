@@ -6,11 +6,13 @@ using TMPro;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private Image fill;
     [SerializeField] private TextMeshProUGUI text;
+    public GameObject endGameUI;
 
     public int duration;
     private int remainingDuration;
@@ -48,6 +50,14 @@ public class Timer : MonoBehaviour
     {
         statisticUpdate();
         UpdatePlayerStatistics();
+        PhotonNetwork.LeaveRoom();
+        endGameUI.SetActive(true);
+        Invoke("nextScene", 4);
+        
+    }
+
+    public void nextScene()
+    {
         SceneManager.LoadScene("LoadingStats");
     }
 

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainMenuBackgroundCloud
+  m_Name: MainMenuBullets
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,7 +22,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -56.8
+        value: -57.76
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -30,8 +30,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 30.016666
-        value: 70.5
+        time: 0.75
+        value: 65.3
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -42,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud1
+    path: MenuBackgroundElem/Bullets/Bullet1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -50,7 +50,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -59.000004
+        value: -34
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -58,8 +58,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 30.016666
-        value: 68.299995
+        time: 0.75
+        value: 28.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -69,8 +69,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud
+    attribute: m_AnchoredPosition.y
+    path: MenuBackgroundElem/Bullets/Bullet1
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -82,15 +82,15 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3808534626
+      path: 2056464097
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1841365151
-      attribute: 1460864421
+      path: 2056464097
+      attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
@@ -101,7 +101,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 30.016666
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -122,7 +122,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -56.8
+        value: -57.76
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -130,8 +130,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 30.016666
-        value: 70.5
+        time: 0.75
+        value: 65.3
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -142,7 +142,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud1
+    path: MenuBackgroundElem/Bullets/Bullet1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -150,7 +150,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -59.000004
+        value: -34
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -158,8 +158,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 30.016666
-        value: 68.299995
+        time: 0.75
+        value: 28.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -169,8 +169,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud
+    attribute: m_AnchoredPosition.y
+    path: MenuBackgroundElem/Bullets/Bullet1
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

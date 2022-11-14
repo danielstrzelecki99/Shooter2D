@@ -6,6 +6,7 @@ using TMPro;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class Timer : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class Timer : MonoBehaviour
     {
         statisticUpdate();
         UpdatePlayerStatistics();
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("LoadingStats");
     }
 

@@ -8,7 +8,7 @@ using Photon.Pun;
 using PlayFab;
 using PlayFab.ClientModels;
 
-public class GameStatistics : MonoBehaviour
+public class GameStatistics : MonoBehaviourPunCallbacks
 {
     [SerializeField] TextMeshProUGUI kills;
     [SerializeField] TextMeshProUGUI deaths;
@@ -22,6 +22,13 @@ public class GameStatistics : MonoBehaviour
     public int earnedCoins;
     public Button switchToMenu;
     PhotonView view;
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        Cursor.visible = true;
+    }
+
     void Start()
     {
             GetStatistics();

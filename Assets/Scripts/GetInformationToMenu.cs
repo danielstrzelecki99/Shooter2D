@@ -6,8 +6,9 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEditor;
+using Photon.Pun;
 
-public class GetInformationToMenu : MonoBehaviour
+public class GetInformationToMenu : MonoBehaviourPunCallbacks
 {
     //Menu
     [SerializeField] TextMeshProUGUI levelInfo;
@@ -43,7 +44,10 @@ public class GetInformationToMenu : MonoBehaviour
     {
         Debug.Log(error.GenerateErrorReport());
     }
-    void Start() {
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
         GetAccountInfo();
         GetAccountStats();
     }

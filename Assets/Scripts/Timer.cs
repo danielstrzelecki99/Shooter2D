@@ -60,7 +60,6 @@ public class Timer : MonoBehaviour
         PhotonNetwork.LeaveRoom();
         endGameUI.SetActive(true);
         Invoke("nextScene", 4);
-        
     }
 
     public void nextScene()

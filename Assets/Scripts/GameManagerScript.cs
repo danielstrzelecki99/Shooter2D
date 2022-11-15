@@ -79,7 +79,7 @@ public class GameManagerScript : MonoBehaviourPun
     //enable the whole respawning system
     public void EnableRespawn()
     {
-        TimeAmount = 4;
+        TimeAmount = 3;
         startRespawn = true;
         respawnUI.SetActive(true);
     }

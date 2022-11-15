@@ -13,16 +13,23 @@ public class Timer : MonoBehaviour
     [SerializeField] private Image fill;
     [SerializeField] private TextMeshProUGUI text;
     public GameObject endGameUI;
-
+    public GameObject quitGameUI;
+    public Button quitButton;
+    public Button yesButton;
+    public Button noButton;
     public int duration;
     private int remainingDuration;
     public int currentLevel;
     public int currentExp;
     public int currentCoins;
+    public bool leaveBeforeEnd = false;
 
     private void Start()
     {
         Being(duration);
+        quitButton.onClick.AddListener(() => { showQuitUI();});
+        noButton.onClick.AddListener(() => { hideQuitUI();});
+        yesButton.onClick.AddListener(() => { LeaveRoom();});
     }
 
     private void Being(int Second)
@@ -60,10 +67,40 @@ public class Timer : MonoBehaviour
         SceneManager.LoadScene("LoadingStats");
     }
 
+    public void showQuitUI()
+    {
+        quitGameUI.SetActive(true);
+    }
+
+    public void hideQuitUI()
+    {
+        quitGameUI.SetActive(false);
+    }
+
+    public void LeaveRoom()
+    {
+        leaveBeforeEnd = true;
+        if (PhotonNetwork.InRoom)
+        {
+            quitGameUI.SetActive(false);
+            OnEnd();
+        }
+        else
+        {
+            OnEnd();
+        }
+    }
+
     public void statisticUpdate()
     {
-        currentExp = (int)(PlayFabManagerLogin.experience + PlayerEq.pointsInGame);
-        currentCoins = (int)(PlayFabManagerLogin.coins + PlayerEq.pointsInGame/10);
+        if(leaveBeforeEnd == false){
+            currentExp = (int)(PlayFabManagerLogin.experience + PlayerEq.pointsInGame);
+            currentCoins = (int)(PlayFabManagerLogin.coins + PlayerEq.pointsInGame/10);
+        }
+        else {
+            currentExp = (int)(PlayFabManagerLogin.experience + (PlayerEq.pointsInGame/2));
+            currentCoins = (int)(PlayFabManagerLogin.coins + ((PlayerEq.pointsInGame/10)/2));
+        }
         if (currentExp >= 1000)
         {
             int levelToAdd = currentExp/1000;

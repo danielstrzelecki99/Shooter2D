@@ -83,18 +83,7 @@ public class GameManagerScript : MonoBehaviourPun
         startRespawn = true;
         respawnUI.SetActive(true);
     }
-    public void LeaveRoom()
-    {
-        if (PhotonNetwork.InRoom)
-        {
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LoadLevel("Menu");
-        }
-        else
-        {
-            SceneManager.LoadScene("Menu");
-        }
-    }
+
     public void SpawnAfterDeath()
     {
         System.Random gen = new System.Random();

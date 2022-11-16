@@ -60,8 +60,7 @@ public class PlayFabManagerLogin : MonoBehaviour
         if(result.Data != null && result.Data.ContainsKey("Username")){
             username = result.Data["Username"].Value;
         }
-            SceneManager.LoadScene("Loading");
-            GetStatistics();
+        GetStatistics();
     }
 
     //Getting account statistics
@@ -72,7 +71,6 @@ public class PlayFabManagerLogin : MonoBehaviour
 
     void OnStatisticsRecived(GetPlayerStatisticsResult result)
     {
-        Debug.Log("I got statistics!");
         foreach(var stat in result.Statistics){
             if(stat.StatisticName == "Level"){
                 level = stat.Value;
@@ -90,12 +88,15 @@ public class PlayFabManagerLogin : MonoBehaviour
                 wins = stat.Value;
             }
         }
+
+        ConnectToServer connect = new ConnectToServer();
+        connect.ConnectToServerWithSettings(); //connect to server when data from database arrived
     }
 
     //Funcions after login
     public void OnLoginSuccess(LoginResult result)
     {
-        GetUsername();
+        SceneManager.LoadScene("Loading");
     }
     
     //PAssword reset

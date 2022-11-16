@@ -6,7 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class ConnectToServer : MonoBehaviourPunCallbacks
 {
+    private PlayFabManagerLogin managerLogin;
     void Start()
+    {
+        managerLogin = new PlayFabManagerLogin();
+        managerLogin.GetUsername(); // when loading screen appers, we are sending request to database api
+    }
+
+    public void ConnectToServerWithSettings()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NickName = PlayFabManagerLogin.username;

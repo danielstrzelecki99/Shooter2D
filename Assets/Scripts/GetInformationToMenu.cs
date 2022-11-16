@@ -14,6 +14,8 @@ public class GetInformationToMenu : MonoBehaviourPunCallbacks
     [SerializeField] TextMeshProUGUI levelInfo;
     [SerializeField] TextMeshProUGUI coinsInfo;
     [SerializeField] TextMeshProUGUI nameInfo;
+    [SerializeField] TextMeshProUGUI expInfo;
+    [SerializeField] Image fillLevelImage;
 
     //Statistics
     [SerializeField] TextMeshProUGUI levelStat;
@@ -22,9 +24,11 @@ public class GetInformationToMenu : MonoBehaviourPunCallbacks
     [SerializeField] TextMeshProUGUI coinsStat;
 
     public void GetAccountInfo() {
-        levelInfo.text = "Level: " + PlayFabManagerLogin.level.ToString();
+        levelInfo.text = PlayFabManagerLogin.level.ToString();
         coinsInfo.text = "GIT coins: " + PlayFabManagerLogin.coins.ToString();
         nameInfo.text = "Welcome back " + PlayFabManagerLogin.username + "!";
+        expInfo.text = PlayFabManagerLogin.experience.ToString() + "/1000";
+        fillLevelImage.fillAmount = (float)((float)PlayFabManagerLogin.experience / 1000f);
         Debug.Log("Got Info!");
     }
 

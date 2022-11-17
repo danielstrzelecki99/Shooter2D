@@ -13258,6 +13258,7 @@ MonoBehaviour:
   playerScript: {fileID: 7008765400610643050}
   shootingScript: {fileID: 7197215574491090403}
   weaponManager: {fileID: 7878504907076256891}
+  riffle: {fileID: 7008153050880386164}
 --- !u!114 &-6113115038188728013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15779,6 +15780,10 @@ PrefabInstance:
     - target: {fileID: 3114463134887842511, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
       propertyPath: currentAmmo
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114463134887842511, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
+      propertyPath: currentClip
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6107352751312795675, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
       propertyPath: m_RootOrder

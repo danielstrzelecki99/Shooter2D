@@ -24,10 +24,15 @@ public class PlayerHealth : MonoBehaviourPun
     public WeaponManager weaponManager;
     PhotonView view;
 
+    //variables to reset ammo in riffle when respawn 
+    [SerializeField] private GameObject riffle;
+    WeaponScript riffleController;
+
     public void Start()
     {
         armorFillImage.fillAmount = localArmor;
         view = GetComponent<PhotonView>();
+        riffleController = riffle.GetComponent<WeaponScript>();
     }
     private void Update()
     {
@@ -73,6 +78,8 @@ public class PlayerHealth : MonoBehaviourPun
         localArmor = 0;
         armorFillImage.fillAmount = localArmor;
         Debug.Log("Player has respawned again");
+        riffleController.currentClip = 20;
+        riffleController.currentAmmo = 40;
     }
     public void EnableInputs()
     {

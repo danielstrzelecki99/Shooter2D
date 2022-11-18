@@ -40,7 +40,7 @@ AnimationClip:
     - time: 1.5
       value: {fileID: -1443890582, guid: 80b56071c13d4854cb913a323961d9a6, type: 3}
     attribute: m_Sprite
-    path: MenuBackgroundElem/CampFire
+    path: CampFire
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_SampleRate: 60
@@ -51,7 +51,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1155844403
+      path: 2078398608
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114

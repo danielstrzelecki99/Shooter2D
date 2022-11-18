@@ -17,7 +17,7 @@ public class BulletProjectile : MonoBehaviourPun
         //invoke function destroying projectile after 'lifeTime'
         //Invoke("DestroyProjectile", lifeTime);
         rb.velocity = transform.right * speed;
-        bulleteDamage = UnityEngine.Random.Range(.05f, .15f);
+        bulleteDamage = UnityEngine.Random.Range(.13f, .18f);
     }
 
     IEnumerator destroyBullet()
@@ -26,47 +26,7 @@ public class BulletProjectile : MonoBehaviourPun
         GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
     }
 
-    //void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    //check if PhotonView does not belong to player 
-    //    if (!photonView.IsMine)
-    //    {
-    //        return;
-    //    }
-    //    //create variable for enemy
-    //    PhotonView target = collision.gameObject.GetComponent<PhotonView>();
-    //    //condition if bullet hits someone
-    //    if (target != null && (!target.IsMine || target.IsRoomView))
-    //    {
-    //        if (target.CompareTag("Player"))
-    //        {
-    //            //Debug.Log("Player has been shot");
-    //            //update health hitten player
-    //            target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
-    //            bool isCriticalHit = UnityEngine.Random.Range(0, 100) < 30;
-    //            DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100), isCriticalHit);
-    //            //Debug.Log("Player has been shot");
-    //            //Debug.Log("sLocalaArmor " + target.GetComponent<PlayerHealth>().localArmor);
-
-    //            //Check if player has armor
-    //            if (target.GetComponent<PlayerHealth>().localArmor > 0)
-    //            {
-    //                //update armor hitten player
-    //                target.RPC("ArmorUpdate", RpcTarget.AllBuffered, bulleteDamage);
-    //            }
-    //            else
-    //            {
-    //                //update health hitten player
-    //                target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
-    //            }
-    //        }
-    //        GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
-    //    }
-    //    //destroy bullet on ground/walls
-    //    //Debug.Log("Ground/wall has been shot");
-    //    GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
-    //}
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         //check if PhotonView does not belong to player 
         if (!photonView.IsMine)
@@ -84,7 +44,7 @@ public class BulletProjectile : MonoBehaviourPun
                 //update health hitten player
                 //target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
                 bool isCriticalHit = UnityEngine.Random.Range(0, 100) < 30;
-                DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100), isCriticalHit);
+                DamagePopup.Create(target.transform.position, (int)(bulleteDamage* 100), isCriticalHit);
                 //Debug.Log("Player has been shot");
                 //Debug.Log("sLocalaArmor " + target.GetComponent<PlayerHealth>().localArmor);
 
@@ -93,13 +53,14 @@ public class BulletProjectile : MonoBehaviourPun
                 {
                     //update armor hitten player
                     target.RPC("ArmorUpdate", RpcTarget.AllBuffered, bulleteDamage);
-                    PlayerEq.damageDealtInGame += (int)(bulleteDamage * 100);
+                    PlayerEq.damageDealtInGame += (int) (bulleteDamage* 100);
                 }
-                else {
+                else
+                {
                     //update health hitten player
                     target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
                     PlayerEq.damageDealtInGame += (int)(bulleteDamage * 100);
-                    if(target.GetComponent<PlayerHealth>().localHealth <= 0)
+                    if (target.GetComponent<PlayerHealth>().localHealth <= 0)
                     {
                         PlayerEq.killsInGame += 1;
                     }
@@ -111,6 +72,51 @@ public class BulletProjectile : MonoBehaviourPun
         //Debug.Log("Ground/wall has been shot");
         GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
     }
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    //check if PhotonView does not belong to player 
+    //    if (!photonView.IsMine)
+    //    {
+    //        return;
+    //    }
+    //    //create variable for enemy
+    //    PhotonView target = collision.gameObject.GetComponent<PhotonView>();
+    //    //condition if bullet hits someone
+    //    if (target != null && (!target.IsMine || target.IsRoomView))
+    //    {
+    //        if (target.CompareTag("Player"))
+    //        {
+    //            //Debug.Log("Player has been shot");
+    //            //update health hitten player
+    //            //target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+    //            bool isCriticalHit = UnityEngine.Random.Range(0, 100) < 30;
+    //            DamagePopup.Create(target.transform.position, (int)(bulleteDamage * 100), isCriticalHit);
+    //            //Debug.Log("Player has been shot");
+    //            //Debug.Log("sLocalaArmor " + target.GetComponent<PlayerHealth>().localArmor);
+
+    //            //Check if player has armor
+    //            if(target.GetComponent<PlayerHealth>().localArmor > 0)
+    //            {
+    //                //update armor hitten player
+    //                target.RPC("ArmorUpdate", RpcTarget.AllBuffered, bulleteDamage);
+    //                PlayerEq.damageDealtInGame += (int)(bulleteDamage * 100);
+    //            }
+    //            else {
+    //                //update health hitten player
+    //                target.RPC("HealthUpdate", RpcTarget.AllBuffered, bulleteDamage);
+    //                PlayerEq.damageDealtInGame += (int)(bulleteDamage * 100);
+    //                if(target.GetComponent<PlayerHealth>().localHealth <= 0)
+    //                {
+    //                    PlayerEq.killsInGame += 1;
+    //                }
+    //            }
+    //        }
+    //        GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
+    //    }
+    //    //destroy bullet on ground/walls
+    //    //Debug.Log("Ground/wall has been shot");
+    //    GetComponent<PhotonView>().RPC("DestroyProjectile", RpcTarget.AllBuffered);
+    //}
 
     [PunRPC]
     public void DestroyProjectile()

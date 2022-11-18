@@ -31,7 +31,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 40.066666
-        value: 68.5
+        value: 64
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -42,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud2
+    path: MoveCloud2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -58,8 +58,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 40.033333
-        value: 71
+        time: 40.066666
+        value: 67.380005
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud3
+    path: MoveCloud3
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -82,14 +82,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2047406552
+      path: 2509373701
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 219136334
+      path: 3801428371
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
@@ -131,7 +131,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 40.066666
-        value: 68.5
+        value: 64
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -142,7 +142,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud2
+    path: MoveCloud2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -158,8 +158,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 40.033333
-        value: 71
+        time: 40.066666
+        value: 67.380005
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -170,7 +170,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: MenuBackgroundElem/MoveCloud3
+    path: MoveCloud3
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

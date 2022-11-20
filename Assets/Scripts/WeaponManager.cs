@@ -9,18 +9,21 @@ public class WeaponManager : MonoBehaviour
     public static int CurrentWeaponNo;
     [SerializeField] Transform firePoint1;
     [SerializeField] Transform firePoint2;
-    [SerializeField] GameObject weapon1;
-    [SerializeField] GameObject weapon2;
+    [SerializeField] private GameObject weapon1;
+    [SerializeField] private GameObject weapon2;
 
 
     PhotonView view;
     public bool DisableInputs = false; //when player is dead variable disable inputs
     Gun_Shooting gunShootingScript;
+    [SerializeField] private GameObject bullet;
+    BulletProjectile bulletController;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         gunShootingScript = GetComponent<Gun_Shooting>();
+        bulletController = bullet.GetComponent<BulletProjectile>();
     }
     // Start is called before the first frame update
     void Start()
@@ -36,30 +39,52 @@ public class WeaponManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 ChangeWeapon();
+                Debug.Log($"Current weapon no: {CurrentWeaponNo}");
             }
         }
     }
 
-    private void ChangeWeapon()
+    public void ChangeWeapon()
     {
-        if (CurrentWeaponNo == 0) //riffle
+        Debug.Log($"Changing weapon, current weapon no: {CurrentWeaponNo}");
+        if (CurrentWeaponNo == 0) //change to riffle
         {
             CurrentWeaponNo += 1;
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
+            //change ammo, fire point, fire rate to riffle
             gunShootingScript.SetWeapon(weapon1);
-            BulletProjectile.bulleteDamage = UnityEngine.Random.Range(.23f, .28f);
+            bulletController.minDmg = 0.19f;
+            bulletController.maxDmg = 0.24f;
         }
-        else //gun
+        else //change to gun
         {
             CurrentWeaponNo -= 1;
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);
+            //change ammo, fire point, fire rate to gun
             gunShootingScript.SetWeapon(weapon2);
-            BulletProjectile.bulleteDamage = UnityEngine.Random.Range(.13f, .18f);
+            bulletController.minDmg = 0.13f;
+            bulletController.maxDmg = 0.18f;
         }
-
+        Debug.Log($"Changing weapon, current weapon no after change: {CurrentWeaponNo}");
+    }
+    public void ResetWeapon()
+    {
+        if (CurrentWeaponNo == 0) 
+        {
+            animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
+            animator.SetLayerWeight(CurrentWeaponNo, 1);
+        }
+        else
+        {
+            animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
+            animator.SetLayerWeight(CurrentWeaponNo, 1);
+        }
+        CurrentWeaponNo = 0;
+        gunShootingScript.SetWeapon(weapon1);
+        animator.SetBool("riffle", false);
     }
 }

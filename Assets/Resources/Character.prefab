@@ -13194,7 +13194,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   DisableInputs: 0
-  weapon: {fileID: 7197215574491090403}
 --- !u!114 &7878504907076256891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13212,6 +13211,7 @@ MonoBehaviour:
   weapon1: {fileID: 7008153050880386164}
   weapon2: {fileID: 7550169550785692224}
   DisableInputs: 0
+  bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
 --- !u!114 &7197215574491090403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13259,6 +13259,7 @@ MonoBehaviour:
   shootingScript: {fileID: 7197215574491090403}
   weaponManager: {fileID: 7878504907076256891}
   riffle: {fileID: 7008153050880386164}
+  weapon1: {fileID: 7550169550785692224}
 --- !u!114 &-6113115038188728013
 MonoBehaviour:
   m_ObjectHideFlags: 0

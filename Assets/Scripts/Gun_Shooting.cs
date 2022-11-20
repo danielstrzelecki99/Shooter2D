@@ -79,6 +79,7 @@ public class Gun_Shooting : MonoBehaviourPun
             //switch reference to weapon when C button is pressed
             if (Input.GetKeyDown(KeyCode.C))
             {
+                //load weapon settings 
                 weaponController = weapon.GetComponent<WeaponScript>();
                 //reset rotation of the foreArm when switched to riffle
                 forearmHolder.transform.localRotation = Quaternion.identity;

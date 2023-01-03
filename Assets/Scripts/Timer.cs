@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private Image fill;
     [SerializeField] private TextMeshProUGUI text;
+    public GameObject clockObject;
     public GameObject endGameUI;
     public GameObject quitGameUI;
     public Button quitButton;
@@ -23,13 +24,25 @@ public class Timer : MonoBehaviour
     public int currentExp;
     public int currentCoins;
     public bool leaveBeforeEnd = false;
+    //allow access the other classes without the reference
+    public static Timer instance = null;
 
     private void Start()
     {
-        Being(duration);
-        quitButton.onClick.AddListener(() => { showQuitUI();});
-        noButton.onClick.AddListener(() => { hideQuitUI();});
-        yesButton.onClick.AddListener(() => { LeaveRoom();});
+        instance = this;
+        if (PhotonNetwork.CurrentRoom.CustomProperties["GameMode"].ToString() == "Deathmatch")
+        {
+            Being(duration);
+            clockObject.transform.localScale = new Vector3(1, 1, 1); //show clock
+        }
+        else
+        {
+            clockObject.transform.localScale = new Vector3(0, 0, 0); //hide clock
+        }
+
+        quitButton.onClick.AddListener(() => { showQuitUI(); });
+        noButton.onClick.AddListener(() => { hideQuitUI(); });
+        yesButton.onClick.AddListener(() => { LeaveRoom(); });
     }
 
     private void Being(int Second)
@@ -53,7 +66,7 @@ public class Timer : MonoBehaviour
         OnEnd();
     }
 
-    private void OnEnd()
+    public void OnEnd()
     {
         statisticUpdate();
         UpdatePlayerStatistics();

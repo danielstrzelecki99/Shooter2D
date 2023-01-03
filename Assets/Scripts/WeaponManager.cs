@@ -39,16 +39,16 @@ public class WeaponManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 ChangeWeapon();
-                Debug.Log($"Current weapon no: {CurrentWeaponNo}");
+                //Debug.Log($"Current weapon no: {CurrentWeaponNo}");
             }
         }
     }
-
+    [PunRPC]
     public void ChangeWeapon()
     {
-        Debug.Log($"Changing weapon, current weapon no: {CurrentWeaponNo}");
-        if (CurrentWeaponNo == 0) //change to riffle
+        if (CurrentWeaponNo == 0) //change from gun --> riffle
         {
+            Debug.Log($"Current weapon no: {CurrentWeaponNo}, changing to riffle");
             CurrentWeaponNo += 1;
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
@@ -58,8 +58,9 @@ public class WeaponManager : MonoBehaviour
             bulletController.minDmg = 0.19f;
             bulletController.maxDmg = 0.24f;
         }
-        else //change to gun
+        else //change from riffle --> gun 
         {
+            Debug.Log($"Current weapon no: {CurrentWeaponNo}, changing to gun");
             CurrentWeaponNo -= 1;
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
@@ -69,22 +70,5 @@ public class WeaponManager : MonoBehaviour
             bulletController.minDmg = 0.13f;
             bulletController.maxDmg = 0.18f;
         }
-        Debug.Log($"Changing weapon, current weapon no after change: {CurrentWeaponNo}");
-    }
-    public void ResetWeapon()
-    {
-        if (CurrentWeaponNo == 0) 
-        {
-            animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
-            animator.SetLayerWeight(CurrentWeaponNo, 1);
-        }
-        else
-        {
-            animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
-            animator.SetLayerWeight(CurrentWeaponNo, 1);
-        }
-        CurrentWeaponNo = 0;
-        gunShootingScript.SetWeapon(weapon1);
-        animator.SetBool("riffle", false);
     }
 }

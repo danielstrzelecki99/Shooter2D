@@ -15780,7 +15780,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3114463134887842511, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
       propertyPath: currentAmmo
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3114463134887842511, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
       propertyPath: currentClip

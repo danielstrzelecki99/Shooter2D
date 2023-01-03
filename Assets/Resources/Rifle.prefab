@@ -184,9 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e276a53af2ac644992cbe43315d298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentClip: 10
+  currentClip: 20
   maxClipSize: 20
-  currentAmmo: 40
+  currentAmmo: 20
   maxAmmoSize: 80
   Bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   fireRate: 4

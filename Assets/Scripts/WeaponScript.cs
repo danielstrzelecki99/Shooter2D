@@ -35,9 +35,11 @@ public class WeaponScript : MonoBehaviourPun
     {
         if (currentClip > 0)
         {
+            //create muzzle effect
             muzzleFlash.Play();
-            //Clone the bullet object every thime when shot funciton is involved
+            //Clone the bullet object every time when shot funciton is involved
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
+            //Substract ammo from clip
             currentClip--;
         }
     }

@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviourPun
     //test variables
     Gun_Shooting gunShootingController;
     [SerializeField] private GameObject weapon1;
+    WeaponScript gunController;
 
     public void Start()
     {
@@ -38,6 +39,7 @@ public class PlayerHealth : MonoBehaviourPun
         view = GetComponent<PhotonView>();
         riffleController = riffle.GetComponent<WeaponScript>();
         gunShootingController = GetComponent<Gun_Shooting>();
+        gunController = weapon1.GetComponent<WeaponScript>();
     }
     private void Update()
     {
@@ -56,7 +58,7 @@ public class PlayerHealth : MonoBehaviourPun
             GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon
-            //weaponManager.DisableInputs = true; //disable switching guns
+            weaponManager.DisableInputs = true; //disable switching guns
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
             PlayerEq.deathsInGame += 1;
         }
@@ -65,15 +67,16 @@ public class PlayerHealth : MonoBehaviourPun
     [PunRPC]
     public void Death()
     {
+        Debug.Log($"Player: {gameObject}");
         rb.gravityScale = 0;
         playerCanvas.SetActive(false);
         gameObject.SetActive(false);
-        //weaponManager.ResetWeapon();
         if (WeaponManager.CurrentWeaponNo == 1)
         {
             Debug.Log("Changing weapon after death from gun to riffle");
             weaponManager.ChangeWeapon();
         }
+        gunShootingController.UpdateWeaponSettings();
         Debug.Log("Player model has been destroyed");
     }
     [PunRPC]
@@ -89,18 +92,19 @@ public class PlayerHealth : MonoBehaviourPun
         localArmor = 0;
         armorFillImage.fillAmount = localArmor;
         Debug.Log("Player has respawned again");
+        //restart ammo in both weapons
         riffleController.currentClip = 20;
-        riffleController.currentAmmo = 40;
+        riffleController.currentAmmo = 20;
+        gunController.currentClip = 10;
         //set current weapon on gun
-        //WeaponManager.CurrentWeaponNo = 0;
-        gunShootingController.SetWeapon(weapon1);
+        //gunShootingController.SetWeapon(weapon1);
     }
     public void EnableInputs()
     {
         Debug.Log($"Enable inputs method");
         playerScript.DisableInputs = false;
         shootingScript.DisableInputs = false;
-        //weaponManager.DisableInputs = false;
+        weaponManager.DisableInputs = false;
     }
     [PunRPC]
     public void HealthUpdate(float damage)

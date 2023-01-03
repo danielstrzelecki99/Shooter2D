@@ -58,13 +58,14 @@ public class Gun_Shooting : MonoBehaviourPun
             FlipWeapon(gunHolder, 0);
             FlipWeapon(forearmHolder, WeaponManager.CurrentWeaponNo);
 
-            //activate animation when fire button is pressed
+            //react on left mouse button
             if (Input.GetMouseButton(0))
             {
                 if (Time.time > ReadyForNextShoot)
                 {
                     ReadyForNextShoot = Time.time + 1 / weaponController.fireRate;
                     weaponController.Shot();
+                    //activate animation when fire button is pressed
                     shot = true;
                 }
             }
@@ -80,8 +81,10 @@ public class Gun_Shooting : MonoBehaviourPun
             if (Input.GetKeyDown(KeyCode.C))
             {
                 //load weapon settings 
-                weaponController = weapon.GetComponent<WeaponScript>();
+                //weaponController = weapon.GetComponent<WeaponScript>();
+                UpdateWeaponSettings();
                 //reset rotation of the foreArm when switched to riffle
+                //Debug.Log("Reseting forearm rotation");
                 forearmHolder.transform.localRotation = Quaternion.identity;
             }
             if (ItemsManager.isAmmoPickup)
@@ -171,5 +174,11 @@ public class Gun_Shooting : MonoBehaviourPun
     public void SetWeapon(GameObject newWeapon)
     {
         weapon = newWeapon;
+    }
+
+    public void UpdateWeaponSettings()
+    {
+        Debug.Log("Gun shooting script: changing weapon settings");
+        weaponController = weapon.GetComponent<WeaponScript>();
     }
 }

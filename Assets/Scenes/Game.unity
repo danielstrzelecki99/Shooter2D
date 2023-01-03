@@ -467,7 +467,7 @@ MonoBehaviour:
   quitButton: {fileID: 1162281594}
   yesButton: {fileID: 378728434}
   noButton: {fileID: 714013353}
-  duration: 90
+  duration: 900
   currentLevel: 0
   currentExp: 0
   currentCoins: 0

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviourPun
 {
+    public string gameMode;
+
     public Image fillImage;
     public Image armorFillImage;
     public float localHealth = 1;
@@ -33,6 +35,7 @@ public class PlayerHealth : MonoBehaviourPun
         armorFillImage.fillAmount = localArmor;
         view = GetComponent<PhotonView>();
         riffleController = riffle.GetComponent<WeaponScript>();
+        gameMode = PhotonNetwork.CurrentRoom.CustomProperties["GameMode"].ToString();
     }
     private void Update()
     {
@@ -48,12 +51,19 @@ public class PlayerHealth : MonoBehaviourPun
         if(photonView.IsMine && localHealth <= 0)
         {
             localHealth = 0;
-            GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon
             weaponManager.DisableInputs = true; //disable switching guns
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
             PlayerEq.deathsInGame += 1;
+            if (gameMode == "Deathmatch")
+            {
+                GameManagerScript.instance.EnableRespawn(); //respawn player in a new place
+            }
+            else
+            {
+                Timer.instance.OnEnd();
+            }
         }
     }
 

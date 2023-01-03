@@ -11,6 +11,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
     public Dropdown maxPlayers;
+    public Dropdown gameMode;
     public Button map1;
     public Button map2;
     public Button map3;
@@ -61,6 +62,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         options.IsVisible = true;
         Hashtable customProps = new Hashtable();
         customProps.Add("Map", selectedMap);
+        customProps.Add("GameMode", gameMode.options[gameMode.value].text);
         if (privateGame.isOn && roomPasswordInput.text != "")
         {
             customProps.Add("isPrivate", true);

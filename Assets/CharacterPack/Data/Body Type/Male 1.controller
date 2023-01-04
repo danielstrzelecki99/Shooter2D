@@ -144,7 +144,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: Gun Layer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1419775676103301090}
@@ -157,7 +157,7 @@ AnimatorStateMachine:
     m_Position: {x: 170, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4951128183838395339}
-    m_Position: {x: 430, y: -50, z: 0}
+    m_Position: {x: 440, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8557592013369756637}
     m_Position: {x: 660, y: 290, z: 0}
@@ -167,9 +167,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 160, y: -40, z: 0}
+  m_AnyStatePosition: {x: 170, y: -50, z: 0}
   m_EntryPosition: {x: 30, y: 110, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 810, y: 110, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 5326726003086048850}
 --- !u!1101 &-5528948166237450677
@@ -655,7 +655,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
+    m_Name: Gun Layer
     m_StateMachine: {fileID: -5571801757718961207}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -888,7 +888,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6968983553529233347}
-    m_Position: {x: 550, y: 250, z: 0}
+    m_Position: {x: 550, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7854621577776715779}
     m_Position: {x: 300, y: 120, z: 0}

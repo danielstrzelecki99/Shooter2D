@@ -85,7 +85,9 @@ public class ItemsManager : MonoBehaviourPun
     public void RPC_PickUp()
     {
         localizationToAdd = selectedObject.GetComponent<Transform>();
+        //Debug.Log("item position: " + localizationToAdd.position);
         foreach(Transform spot in spawnLocationsOriginal){
+            //Debug.Log("Spotpositio: " + spot.position);
             if(spot.position == localizationToAdd.position){
                 spawnLocations.Add(spot);
                 break;
@@ -130,5 +132,6 @@ public class ItemsManager : MonoBehaviourPun
         Transform locationToSpawn = spawnLocations[spawnPosition];
         Instantiate(itemToSpawn, locationToSpawn);
         spawnLocations.Remove(locationToSpawn);
+        //Debug.Log("Spawned. Pozostało lokalizacji: " + spawnLocations.Count);
     }
 }

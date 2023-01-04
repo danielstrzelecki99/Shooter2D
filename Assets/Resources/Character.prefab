@@ -13197,7 +13197,6 @@ MonoBehaviour:
   src: {fileID: 6683543382123631435}
   jumpSound: {fileID: 8300000, guid: df97d991274f8114897281a458783ee4, type: 3}
   DisableInputs: 0
-  weapon: {fileID: 7197215574491090403}
 --- !u!114 &7878504907076256891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13210,11 +13209,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844471948cd9b5a46ac5a69d30b34bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentWeaponNo: 0
   firePoint1: {fileID: 2981141767691014503}
   firePoint2: {fileID: 7976424847736481237}
   weapon1: {fileID: 7008153050880386164}
   weapon2: {fileID: 7550169550785692224}
   DisableInputs: 0
+  bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
 --- !u!114 &7197215574491090403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13266,6 +13267,7 @@ MonoBehaviour:
   armorSound: {fileID: 8300000, guid: cd7977f97d1013b4ba07381b0a0fea81, type: 3}
   dmgSound: {fileID: 8300000, guid: 1dcbf9fceeaed774d8b0747f0512e095, type: 3}
   riffle: {fileID: 7008153050880386164}
+  weapon1: {fileID: 7550169550785692224}
 --- !u!114 &-6113115038188728013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15882,7 +15884,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3114463134887842511, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
       propertyPath: currentAmmo
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3114463134887842511, guid: f7dd56ac3aef13a4a8e83d1be041256c, type: 3}
       propertyPath: currentClip

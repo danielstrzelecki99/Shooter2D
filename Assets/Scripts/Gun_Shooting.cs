@@ -21,7 +21,6 @@ public class Gun_Shooting : MonoBehaviourPun
     public Transform nickName;
     public Transform healthBar;
 
-
     //Ammo variables
     public int AcurrentClip, AmaxClipSize, AcurrentAmmo, AmaxAmmoSize;
 
@@ -29,6 +28,8 @@ public class Gun_Shooting : MonoBehaviourPun
     [SerializeField] private GameObject weapon;
     [SerializeField] private GameObject riffle;
     WeaponScript riffleController;
+
+    WeaponManager weaponManager;
 
     //ItemsManager itemsController;
     //[SerializeField] private GameObject items;
@@ -42,6 +43,9 @@ public class Gun_Shooting : MonoBehaviourPun
         view = GetComponent<PhotonView>();
         weaponController = weapon.GetComponent<WeaponScript>();
         riffleController = riffle.GetComponent<WeaponScript>();
+
+
+        weaponManager = GetComponent<WeaponManager>();
         //itemsController = items.GetComponent<ItemsManager>();
     }
     // Update is called once per frame
@@ -56,15 +60,16 @@ public class Gun_Shooting : MonoBehaviourPun
             AmaxAmmoSize = weaponController.maxAmmoSize;
             //invoke methods to rotate gun and forearm
             FlipWeapon(gunHolder, 0);
-            FlipWeapon(forearmHolder, WeaponManager.CurrentWeaponNo);
+            FlipWeapon(forearmHolder, weaponManager.CurrentWeaponNo);
 
-            //activate animation when fire button is pressed
+            //react on left mouse button
             if (Input.GetMouseButton(0))
             {
                 if (Time.time > ReadyForNextShoot)
                 {
                     ReadyForNextShoot = Time.time + 1 / weaponController.fireRate;
                     weaponController.Shot();
+                    //activate animation when fire button is pressed
                     shot = true;
                 }
             }
@@ -79,8 +84,11 @@ public class Gun_Shooting : MonoBehaviourPun
             //switch reference to weapon when C button is pressed
             if (Input.GetKeyDown(KeyCode.C))
             {
-                weaponController = weapon.GetComponent<WeaponScript>();
+                //load weapon settings 
+                //weaponController = weapon.GetComponent<WeaponScript>();
+                UpdateWeaponSettings();
                 //reset rotation of the foreArm when switched to riffle
+                //Debug.Log("Reseting forearm rotation");
                 forearmHolder.transform.localRotation = Quaternion.identity;
             }
             if (ItemsManager.isAmmoPickup)
@@ -170,5 +178,10 @@ public class Gun_Shooting : MonoBehaviourPun
     public void SetWeapon(GameObject newWeapon)
     {
         weapon = newWeapon;
+    }
+
+    public void UpdateWeaponSettings()
+    {
+        weaponController = weapon.GetComponent<WeaponScript>();
     }
 }

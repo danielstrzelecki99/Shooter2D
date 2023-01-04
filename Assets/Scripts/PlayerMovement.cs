@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviourPun
     PhotonView view;
 
     public bool DisableInputs = false; //when player is dead variable disable inputs
-    public Gun_Shooting weapon;
 
     private void Awake()
     {

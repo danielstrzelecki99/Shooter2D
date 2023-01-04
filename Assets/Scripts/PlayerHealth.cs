@@ -30,11 +30,18 @@ public class PlayerHealth : MonoBehaviourPun
     [SerializeField] private GameObject riffle;
     WeaponScript riffleController;
 
+    //test variables
+    Gun_Shooting gunShootingController;
+    [SerializeField] private GameObject weapon1;
+    WeaponScript gunController;
+
     public void Start()
     {
         armorFillImage.fillAmount = localArmor;
         view = GetComponent<PhotonView>();
         riffleController = riffle.GetComponent<WeaponScript>();
+        gunShootingController = GetComponent<Gun_Shooting>();
+        gunController = weapon1.GetComponent<WeaponScript>();
         gameMode = PhotonNetwork.CurrentRoom.CustomProperties["GameMode"].ToString();
     }
     private void Update()
@@ -70,9 +77,16 @@ public class PlayerHealth : MonoBehaviourPun
     [PunRPC]
     public void Death()
     {
+        Debug.Log($"Player: {gameObject}");
         rb.gravityScale = 0;
         playerCanvas.SetActive(false);
         gameObject.SetActive(false);
+        if (weaponManager.CurrentWeaponNo == 1)
+        {
+            Debug.Log("Changing weapon after death from gun to riffle");
+            weaponManager.ChangeWeapon();
+        }
+        gunShootingController.UpdateWeaponSettings();
         Debug.Log("Player model has been destroyed");
     }
     [PunRPC]
@@ -88,8 +102,12 @@ public class PlayerHealth : MonoBehaviourPun
         localArmor = 0;
         armorFillImage.fillAmount = localArmor;
         Debug.Log("Player has respawned again");
+        //restart ammo in both weapons
         riffleController.currentClip = 20;
-        riffleController.currentAmmo = 40;
+        riffleController.currentAmmo = 20;
+        gunController.currentClip = 10;
+        //set current weapon on gun
+        //gunShootingController.SetWeapon(weapon1);
     }
     public void EnableInputs()
     {

@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e276a53af2ac644992cbe43315d298f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentClip: 7
+  currentClip: 10
   maxClipSize: 10
   currentAmmo: 2147483647
   maxAmmoSize: 2147483647

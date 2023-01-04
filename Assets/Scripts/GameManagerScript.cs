@@ -69,10 +69,10 @@ public class GameManagerScript : MonoBehaviourPun
             respawnUI.SetActive(false);
             startRespawn = false;
             RelocatePlayer();
-            //invoke method Revive from playerHealth
-            LocalPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.AllBuffered);
             //invoke method to enable inputs (move)
             LocalPlayer.GetComponent<PlayerHealth>().EnableInputs();
+            //invoke method Revive from playerHealth
+            LocalPlayer.GetComponent<PhotonView>().RPC("Revive", RpcTarget.AllBuffered);
             //SpawnAfterDeath();
         }
     }
@@ -111,7 +111,7 @@ public class GameManagerScript : MonoBehaviourPun
 
     public void UpdateAmmoText()
     {
-        if (WeaponManager.CurrentWeaponNo == 0) //if weapon is gun 
+        if (WeaponManager.CurrentWeaponNoForGameManager == 0) //if weapon is gun 
         {
             ammoText.text = $"{WeaponScript.RcurrentClip}/{"\u221E"}";
             //ammoText.text = $"{weaponController.AcurrentClip}/{"\u221E"}";

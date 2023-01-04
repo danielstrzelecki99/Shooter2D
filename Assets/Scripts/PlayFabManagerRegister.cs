@@ -44,10 +44,10 @@ public class PlayFabManagerRegister : MonoBehaviour
         else 
         {
             var request = new RegisterPlayFabUserRequest {
-            Email = emailInput.text,
-            Password = passwordInput.text,
-            Username = usernameInput.text,
-            RequireBothUsernameAndEmail = false
+                Email = emailInput.text,
+                Password = passwordInput.text,
+                Username = usernameInput.text,
+                RequireBothUsernameAndEmail = false
             };
 
             PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);

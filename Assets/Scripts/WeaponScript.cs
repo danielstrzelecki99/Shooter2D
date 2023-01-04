@@ -17,6 +17,8 @@ public class WeaponScript : MonoBehaviourPun
     public ParticleSystem muzzleFlash;
 
     PhotonView view;
+    public AudioSource src;
+    public AudioClip shotSound, reloadSound;
 
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class WeaponScript : MonoBehaviourPun
             muzzleFlash.Play();
             //Clone the bullet object every thime when shot funciton is involved
             PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
+            src.clip = shotSound;
+            src.Play();
             currentClip--;
         }
     }
@@ -51,6 +55,8 @@ public class WeaponScript : MonoBehaviourPun
         currentAmmo -= reloadAmount;
         RcurrentClip = currentClip;
         RcurrentAmmo = currentAmmo;
+        src.clip = reloadSound;
+        src.Play();
         //Debug.Log($"Actual ammo: {currentClip}/{currentAmmo}");
         //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
     }

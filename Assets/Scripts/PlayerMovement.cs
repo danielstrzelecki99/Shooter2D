@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviourPun
     //Interact with items on map variables
     public static string interactInfoText;
     public static bool pickUpAllowed = false;
+    public AudioSource src;
+    public AudioClip jumpSound;
 
 
 
@@ -122,6 +124,8 @@ public class PlayerMovement : MonoBehaviourPun
             animator.SetBool("jump", false);
         }
         doubleJump = !doubleJump;
+        src.clip = jumpSound;
+        src.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D other) 

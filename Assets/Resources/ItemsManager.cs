@@ -19,8 +19,9 @@ public class ItemsManager : MonoBehaviourPun
     [SerializeField] private GameObject weapon;
     WeaponScript weaponController;
     public Transform localizationToAdd;
-    
     public static bool isAmmoPickup= false;
+    public AudioSource src;
+    public AudioClip pickUpSound;
 
     void Start()
     {
@@ -51,6 +52,8 @@ public class ItemsManager : MonoBehaviourPun
             }
             else{
                 PlayerEq.aidKitAmount += 1;
+                src.clip = pickUpSound;
+                src.Play();
             }
         } else if(selectedObject.tag == "AmmoKit"){
             if(PlayerEq.ammoAmount == 2){
@@ -60,9 +63,8 @@ public class ItemsManager : MonoBehaviourPun
             }
             else{
                 isAmmoPickup = true;
-                //PlayerEq.ammoAmount += 1;
-                Debug.Log("Adding ammo to riffle");
-                //weaponController.currentAmmo += 20;
+                src.clip = pickUpSound;
+                src.Play();
             }
         } else if (selectedObject.tag == "Armor"){
             if(PlayerEq.armorAmount == 2){
@@ -72,6 +74,8 @@ public class ItemsManager : MonoBehaviourPun
             }
             else{
                 PlayerEq.armorAmount += 1;
+                src.clip = pickUpSound;
+                src.Play();
             }
         }
         view.RPC("RPC_PickUp", RpcTarget.All);
@@ -81,9 +85,7 @@ public class ItemsManager : MonoBehaviourPun
     public void RPC_PickUp()
     {
         localizationToAdd = selectedObject.GetComponent<Transform>();
-        Debug.Log("item position: " + localizationToAdd.position);
         foreach(Transform spot in spawnLocationsOriginal){
-            Debug.Log("Spotpositio: " + spot.position);
             if(spot.position == localizationToAdd.position){
                 spawnLocations.Add(spot);
                 break;
@@ -128,6 +130,5 @@ public class ItemsManager : MonoBehaviourPun
         Transform locationToSpawn = spawnLocations[spawnPosition];
         Instantiate(itemToSpawn, locationToSpawn);
         spawnLocations.Remove(locationToSpawn);
-        Debug.Log("Spawned. Pozostało lokalizacji: " + spawnLocations.Count);
     }
 }

@@ -21,7 +21,6 @@ public class Gun_Shooting : MonoBehaviourPun
     public Transform nickName;
     public Transform healthBar;
 
-
     //Ammo variables
     public int AcurrentClip, AmaxClipSize, AcurrentAmmo, AmaxAmmoSize;
 
@@ -29,6 +28,8 @@ public class Gun_Shooting : MonoBehaviourPun
     [SerializeField] private GameObject weapon;
     [SerializeField] private GameObject riffle;
     WeaponScript riffleController;
+
+    WeaponManager weaponManager;
 
     //ItemsManager itemsController;
     //[SerializeField] private GameObject items;
@@ -42,6 +43,9 @@ public class Gun_Shooting : MonoBehaviourPun
         view = GetComponent<PhotonView>();
         weaponController = weapon.GetComponent<WeaponScript>();
         riffleController = riffle.GetComponent<WeaponScript>();
+
+
+        weaponManager = GetComponent<WeaponManager>();
         //itemsController = items.GetComponent<ItemsManager>();
     }
     // Update is called once per frame
@@ -56,7 +60,7 @@ public class Gun_Shooting : MonoBehaviourPun
             AmaxAmmoSize = weaponController.maxAmmoSize;
             //invoke methods to rotate gun and forearm
             FlipWeapon(gunHolder, 0);
-            FlipWeapon(forearmHolder, WeaponManager.CurrentWeaponNo);
+            FlipWeapon(forearmHolder, weaponManager.CurrentWeaponNo);
 
             //react on left mouse button
             if (Input.GetMouseButton(0))
@@ -178,7 +182,6 @@ public class Gun_Shooting : MonoBehaviourPun
 
     public void UpdateWeaponSettings()
     {
-        Debug.Log("Gun shooting script: changing weapon settings");
         weaponController = weapon.GetComponent<WeaponScript>();
     }
 }

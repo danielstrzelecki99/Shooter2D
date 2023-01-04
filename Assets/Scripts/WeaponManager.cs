@@ -6,7 +6,8 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     private Animator animator;
-    public static int CurrentWeaponNo;
+    [SerializeField] public int CurrentWeaponNo;
+    public static int CurrentWeaponNoForGameManager = 0;
     [SerializeField] Transform firePoint1;
     [SerializeField] Transform firePoint2;
     [SerializeField] private GameObject weapon1;
@@ -48,8 +49,8 @@ public class WeaponManager : MonoBehaviour
     {
         if (CurrentWeaponNo == 0) //change from gun --> riffle
         {
-            Debug.Log($"Current weapon no: {CurrentWeaponNo}, changing to riffle");
             CurrentWeaponNo += 1;
+            CurrentWeaponNoForGameManager += 1;
             animator.SetLayerWeight(CurrentWeaponNo - 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", true);
@@ -60,8 +61,8 @@ public class WeaponManager : MonoBehaviour
         }
         else //change from riffle --> gun 
         {
-            Debug.Log($"Current weapon no: {CurrentWeaponNo}, changing to gun");
             CurrentWeaponNo -= 1;
+            CurrentWeaponNoForGameManager -= 1;
             animator.SetLayerWeight(CurrentWeaponNo + 1, 0);
             animator.SetLayerWeight(CurrentWeaponNo, 1);
             animator.SetBool("riffle", false);

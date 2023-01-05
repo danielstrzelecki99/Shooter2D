@@ -20,6 +20,9 @@ public class WeaponManager : MonoBehaviour
     BulletProjectile bulletController;
     public bool DisableInputs = false; //when player is dead variable disable inputs
 
+    //Disable weapon manager when Quit window opened
+    private bool quitUIShowed = false;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -35,13 +38,35 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine && !DisableInputs)
+        if (view.IsMine)
         {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                ChangeWeapon();
-                //Debug.Log($"Current weapon no: {CurrentWeaponNo}");
+            if (!DisableInputs) {
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    ChangeWeapon();
+                }
+                if (Input.GetKeyDown(KeyCode.Escape) && quitUIShowed == false)
+                {
+                    DisableInputs = true; //disable weapons management 
+                    quitUIShowed = true;
+                    Debug.Log("Weapon management disabled");
+                }
             }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Escape) && quitUIShowed == true)
+                {
+                    DisableInputs = false; //enable weapons management 
+                    quitUIShowed = false;
+                    Debug.Log("Weapon management enabled");
+                }
+                if (Timer.isNoButtonPressed)
+                {
+                    DisableInputs = false; //enable weapons management 
+                    quitUIShowed = false;
+                    Debug.Log("Weapon management enabled by button");
+                }
+            } 
         }
     }
     [PunRPC]

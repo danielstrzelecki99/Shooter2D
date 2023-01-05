@@ -13216,6 +13216,7 @@ MonoBehaviour:
   weapon2: {fileID: 7550169550785692224}
   bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   DisableInputs: 0
+  quitUIShowed: 0
 --- !u!114 &7197215574491090403
 MonoBehaviour:
   m_ObjectHideFlags: 0

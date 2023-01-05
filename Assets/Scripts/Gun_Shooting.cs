@@ -38,8 +38,8 @@ public class Gun_Shooting : MonoBehaviourPun
     PhotonView view;
     public bool DisableInputs = false; //when player is dead variable disable inputs
     
-    //Disabling shooting when 
-    public bool quitUIShowed = false;
+    //Disable shoting when Quit window opened
+    private bool quitUIShowed = false;
 
     private void Awake()
     {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Photon.Pun.Demo.Asteroids;
+using UnityEngine.UI;
 
 public class Gun_Shooting : MonoBehaviourPun
 {
@@ -36,6 +37,9 @@ public class Gun_Shooting : MonoBehaviourPun
 
     PhotonView view;
     public bool DisableInputs = false; //when player is dead variable disable inputs
+    
+    //Disable shoting when Quit window opened
+    private bool quitUIShowed = false;
 
     private void Awake()
     {
@@ -43,8 +47,6 @@ public class Gun_Shooting : MonoBehaviourPun
         view = GetComponent<PhotonView>();
         weaponController = weapon.GetComponent<WeaponScript>();
         riffleController = riffle.GetComponent<WeaponScript>();
-
-
         weaponManager = GetComponent<WeaponManager>();
         //itemsController = items.GetComponent<ItemsManager>();
     }
@@ -52,50 +54,75 @@ public class Gun_Shooting : MonoBehaviourPun
     private void Update()
     {
         
-        if (view.IsMine && !DisableInputs)
+        if (view.IsMine)
         {
-            AcurrentClip = weaponController.currentClip;
-            AmaxClipSize = weaponController.maxClipSize;
-            AcurrentAmmo = weaponController.currentAmmo;
-            AmaxAmmoSize = weaponController.maxAmmoSize;
-            //invoke methods to rotate gun and forearm
-            FlipWeapon(gunHolder, 0);
-            FlipWeapon(forearmHolder, weaponManager.CurrentWeaponNo);
-
-            //react on left mouse button
-            if (Input.GetMouseButton(0))
+            if (!DisableInputs)
             {
-                if (Time.time > ReadyForNextShoot)
+                AcurrentClip = weaponController.currentClip;
+                AmaxClipSize = weaponController.maxClipSize;
+                AcurrentAmmo = weaponController.currentAmmo;
+                AmaxAmmoSize = weaponController.maxAmmoSize;
+                //invoke methods to rotate gun and forearm
+                FlipWeapon(gunHolder, 0);
+                FlipWeapon(forearmHolder, weaponManager.CurrentWeaponNo);
+
+                //react on left mouse button
+                if (Input.GetMouseButton(0))
                 {
-                    ReadyForNextShoot = Time.time + 1 / weaponController.fireRate;
-                    weaponController.Shot();
-                    //activate animation when fire button is pressed
-                    shot = true;
+                    if (Time.time > ReadyForNextShoot)
+                    {
+                        ReadyForNextShoot = Time.time + 1 / weaponController.fireRate;
+                        weaponController.Shot();
+                        //activate animation when fire button is pressed
+                        shot = true;
+                    }
+                }
+                else
+                    shot = false;
+                animator.SetBool("shoot", shot);
+                //reload weapon when R button is pressed
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    weaponController.Reload();
+                }
+                //switch reference to weapon when C button is pressed
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    //load weapon settings 
+                    //weaponController = weapon.GetComponent<WeaponScript>();
+                    UpdateWeaponSettings();
+                    //reset rotation of the foreArm when switched to riffle
+                    //Debug.Log("Reseting forearm rotation");
+                    forearmHolder.transform.localRotation = Quaternion.identity;
+                }
+                if (ItemsManager.isAmmoPickup)
+                {
+                    riffleController.AddAmmo(20);
+                    ItemsManager.isAmmoPickup = false;
+                }
+                if (Input.GetKeyDown(KeyCode.Escape) && quitUIShowed == false)
+                {
+                    DisableInputs = true; //disable shooting and moving weapon
+                    quitUIShowed = true;
+                    Debug.Log("Shooting disabled");
                 }
             }
             else
-                shot = false;
-            animator.SetBool("shoot", shot);
-            //reload weapon when R button is pressed
-            if (Input.GetKeyDown(KeyCode.R))
             {
-                weaponController.Reload();
-            }
-            //switch reference to weapon when C button is pressed
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                //load weapon settings 
-                //weaponController = weapon.GetComponent<WeaponScript>();
-                UpdateWeaponSettings();
-                //reset rotation of the foreArm when switched to riffle
-                //Debug.Log("Reseting forearm rotation");
-                forearmHolder.transform.localRotation = Quaternion.identity;
-            }
-            if (ItemsManager.isAmmoPickup)
-            {
-                riffleController.AddAmmo(20);
-                ItemsManager.isAmmoPickup = false;
-            }
+                if (Input.GetKeyDown(KeyCode.Escape) && quitUIShowed == true)
+                {
+                    DisableInputs = false; //enable shooting and moving weapon
+                    quitUIShowed = false;
+                    Debug.Log("Shooting enabled");
+                }
+                if (Timer.isNoButtonPressed)
+                {
+                    DisableInputs = false; //enable shooting and moving weapon
+                    Timer.isNoButtonPressed = false;
+                    quitUIShowed = false;
+                    Debug.Log("Shooting enabled by button");
+                }
+            }       
         }
         nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of nickname tag
         healthBar.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // freeze rotation of health bar

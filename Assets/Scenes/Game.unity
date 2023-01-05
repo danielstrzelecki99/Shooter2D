@@ -474,6 +474,8 @@ MonoBehaviour:
   currentCoins: 0
   leaveBeforeEnd: 0
   quitUIShowed: 0
+  playerModel: {fileID: 7008343939132955052, guid: 10018cc639fbab444992b4ef5cb3c772, type: 3}
+  shootingScript: {fileID: 7197215574491090403, guid: 10018cc639fbab444992b4ef5cb3c772, type: 3}
 --- !u!114 &153007439
 MonoBehaviour:
   m_ObjectHideFlags: 0

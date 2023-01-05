@@ -13195,7 +13195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   src: {fileID: 6683543382123631435}
-  jumpSound: {fileID: 8300000, guid: df97d991274f8114897281a458783ee4, type: 3}
+  jumpSound: {fileID: 8300000, guid: aba5f895b8c82a14ba7411eff1f30906, type: 3}
   DisableInputs: 0
 --- !u!114 &7878504907076256891
 MonoBehaviour:
@@ -13253,6 +13253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733178dbb58d2a8479e4b1290ea88007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMode: 
   fillImage: {fileID: 7522395843720666980}
   armorFillImage: {fileID: 9137624942611233298}
   localHealth: 1

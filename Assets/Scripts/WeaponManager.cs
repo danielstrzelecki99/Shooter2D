@@ -15,10 +15,10 @@ public class WeaponManager : MonoBehaviour
 
 
     PhotonView view;
-    public bool DisableInputs = false; //when player is dead variable disable inputs
     Gun_Shooting gunShootingScript;
     [SerializeField] private GameObject bullet;
     BulletProjectile bulletController;
+    public bool DisableInputs = false; //when player is dead variable disable inputs
 
     private void Awake()
     {

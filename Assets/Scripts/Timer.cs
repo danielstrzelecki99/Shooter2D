@@ -27,6 +27,7 @@ public class Timer : MonoBehaviour
     public bool quitUIShowed = false;
     //allow access the other classes without the reference
     public static Timer instance = null;
+    public static bool isNoButtonPressed = false;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class Timer : MonoBehaviour
         {
             clockObject.transform.localScale = new Vector3(0, 0, 0); //hide clock
         }
-        noButton.onClick.AddListener(() => { hideQuitUI(); });
+        noButton.onClick.AddListener(() => { hideQuitUI(); isNoButtonPressed = true;});
         yesButton.onClick.AddListener(() => { LeaveRoom(); });
     }
 

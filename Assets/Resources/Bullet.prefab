@@ -106,8 +106,8 @@ MonoBehaviour:
   impactEffect: {fileID: 578406035328597884, guid: f87df617eabf6644ebf8f0762c8b3625, type: 3}
   lifeTime: 1.5
   bulleteDamage: 1
-  minDmg: 0.19
-  maxDmg: 0.24
+  minDmg: 0.13
+  maxDmg: 0.18
 --- !u!50 &-4711363732674924711
 Rigidbody2D:
   serializedVersion: 4

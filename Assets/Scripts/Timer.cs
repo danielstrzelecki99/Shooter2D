@@ -24,6 +24,7 @@ public class Timer : MonoBehaviour
     public int currentExp;
     public int currentCoins;
     public bool leaveBeforeEnd = false;
+    public bool quitUIShowed = false;
     //allow access the other classes without the reference
     public static Timer instance = null;
 
@@ -39,10 +40,19 @@ public class Timer : MonoBehaviour
         {
             clockObject.transform.localScale = new Vector3(0, 0, 0); //hide clock
         }
-
-        quitButton.onClick.AddListener(() => { showQuitUI(); });
         noButton.onClick.AddListener(() => { hideQuitUI(); });
         yesButton.onClick.AddListener(() => { LeaveRoom(); });
+    }
+
+    public void Update(){
+        if(Input.GetKeyDown(KeyCode.Escape) && quitUIShowed == false){
+            showQuitUI();
+            quitUIShowed = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && quitUIShowed == true){
+            hideQuitUI();
+            quitUIShowed = false;
+        }
     }
 
     private void Being(int Second)
@@ -88,6 +98,7 @@ public class Timer : MonoBehaviour
     public void hideQuitUI()
     {
         quitGameUI.SetActive(false);
+        quitUIShowed = false;
     }
 
     public void LeaveRoom()

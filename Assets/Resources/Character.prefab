@@ -13460,6 +13460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7008343939132955052}
+  src: {fileID: 6683543382123631435}
+  healSound: {fileID: 8300000, guid: 015db88de364c5e45b3917ed6216895d, type: 3}
+  armorSound: {fileID: 8300000, guid: cd7977f97d1013b4ba07381b0a0fea81, type: 3}
+  dmgSound: {fileID: 0}
 --- !u!82 &6683543382123631435
 AudioSource:
   m_ObjectHideFlags: 0

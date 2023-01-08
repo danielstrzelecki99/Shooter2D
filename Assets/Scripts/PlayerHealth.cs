@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviourPun
     public WeaponManager weaponManager;
     PhotonView view;
     public AudioSource src;
-    public AudioClip healSound, armorSound, dmgSound;
+    public AudioClip dmgSound;
 
     //variables to reset ammo in riffle when respawn 
     [SerializeField] private GameObject riffle;
@@ -133,8 +133,6 @@ public class PlayerHealth : MonoBehaviourPun
     public void Heal(){
         localHealth = 1;
         fillImage.fillAmount = localHealth;
-        src.clip = healSound;
-        src.Play();
     }
 
     [PunRPC]
@@ -148,13 +146,13 @@ public class PlayerHealth : MonoBehaviourPun
             localArmor = 0;
             localArmor = armorFillImage.fillAmount;
         }
+        src.clip = dmgSound;
+        src.Play();
     }
     [PunRPC]
     public void ArmorUse(){
         localArmor = 1;
         armorFillImage.fillAmount = localArmor;
-        src.clip = armorSound;
-        src.Play();
     }
 
     //Checking methods for items system

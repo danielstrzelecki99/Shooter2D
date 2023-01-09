@@ -52,6 +52,10 @@ public class PlayerHealth : MonoBehaviourPun
             slocalArmor = localArmor;
             slocalHealth = localHealth;
         }
+        if(PhotonNetwork.CurrentRoom.PlayerCount <= 1)
+        {
+            Timer.instance.OnEnd();
+        }
     }
     //check health level 
     public void CheckHealth()

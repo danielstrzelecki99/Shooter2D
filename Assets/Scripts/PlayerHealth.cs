@@ -52,7 +52,7 @@ public class PlayerHealth : MonoBehaviourPun
             slocalArmor = localArmor;
             slocalHealth = localHealth;
         }
-        if(PhotonNetwork.CurrentRoom.PlayerCount <= 1 && PhotonNetwork.IsConnected)
+        if(PhotonNetwork.CurrentRoom.PlayerCount <= 1 && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
         {
             Timer.instance.OnEnd();
         }

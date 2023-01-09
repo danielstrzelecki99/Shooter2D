@@ -85,7 +85,7 @@ public class Timer : MonoBehaviour
         PhotonNetwork.LeaveRoom();
         if (win)
         {
-            endGameText.text = "Y O U\nW I N";
+            endGameText.text = "Y O U\nW O N !!!";
 
         }
         endGameUI.SetActive(true);

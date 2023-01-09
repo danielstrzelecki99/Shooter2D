@@ -464,6 +464,7 @@ MonoBehaviour:
   text: {fileID: 794683665}
   clockObject: {fileID: 153007436}
   endGameUI: {fileID: 372977954}
+  endGameText: {fileID: 1966934755}
   quitGameUI: {fileID: 398936020}
   quitButton: {fileID: 0}
   yesButton: {fileID: 1079968199}

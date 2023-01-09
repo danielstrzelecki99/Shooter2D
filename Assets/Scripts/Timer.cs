@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     public GameObject clockObject;
     public GameObject endGameUI;
+    public TextMeshProUGUI endGameText;
     public GameObject quitGameUI;
     public Button quitButton;
     public Button yesButton;
@@ -77,11 +78,16 @@ public class Timer : MonoBehaviour
         OnEnd();
     }
 
-    public void OnEnd()
+    public void OnEnd(bool win = false)
     {
         statisticUpdate();
-        UpdatePlayerStatistics();
+        UpdatePlayerStatistics(win);
         PhotonNetwork.LeaveRoom();
+        if (win)
+        {
+            endGameText.text = "Y O U\nW I N";
+
+        }
         endGameUI.SetActive(true);
         Invoke("nextScene", 4);
     }
@@ -136,13 +142,16 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerStatistics(){
+    public void UpdatePlayerStatistics(bool win){
+        var wonGames = win ? PlayFabManagerLogin.wins + 1 : PlayFabManagerLogin.wins;
         var request = new UpdatePlayerStatisticsRequest {
             Statistics = new List<StatisticUpdate>{
                 new StatisticUpdate {StatisticName = "PlayedGames", Value = PlayFabManagerLogin.playedGames + 1},
                 new StatisticUpdate {StatisticName = "Experience", Value = currentExp},
                 new StatisticUpdate {StatisticName = "Level", Value = currentLevel},
-                new StatisticUpdate {StatisticName = "Coins", Value = currentCoins}               
+                new StatisticUpdate {StatisticName = "Coins", Value = currentCoins},
+                new StatisticUpdate {StatisticName = "Wins", Value = wonGames}
+                
             }
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdateStatistics, OnError);

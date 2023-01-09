@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviourPun
         }
         if(PhotonNetwork.CurrentRoom.PlayerCount <= 1 && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
         {
-            Timer.instance.OnEnd();
+            Timer.instance.OnEnd(true);
         }
     }
     //check health level 

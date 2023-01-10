@@ -84,19 +84,25 @@ public class ItemsManager : MonoBehaviourPun
     [PunRPC]
     public void RPC_PickUp()
     {
-        localizationToAdd = selectedObject.GetComponent<Transform>();
-        //Debug.Log("item position: " + localizationToAdd.position);
-        foreach(Transform spot in spawnLocationsOriginal){
-            //Debug.Log("Spotpositio: " + spot.position);
-            if(spot.position == localizationToAdd.position){
-                spawnLocations.Add(spot);
-                break;
+        if (selectedObject != null)
+        {
+            localizationToAdd = selectedObject.GetComponent<Transform>();
+            //Debug.Log("item position: " + localizationToAdd.position);
+            foreach (Transform spot in spawnLocationsOriginal)
+            {
+                //Debug.Log("Spotpositio: " + spot.position);
+                if (spot.position == localizationToAdd.position)
+                {
+                    spawnLocations.Add(spot);
+                    break;
+                }
             }
-        }
-        Destroy(selectedObject);
-        if(stopSpawning == true){
-            stopSpawning = false;
-            InvokeRepeating("SpawnItem", (spawnTime+10), spawnDelay);
+            Destroy(selectedObject);
+            if (stopSpawning == true)
+            {
+                stopSpawning = false;
+                InvokeRepeating("SpawnItem", (spawnTime + 10), spawnDelay);
+            }
         }
     }
 

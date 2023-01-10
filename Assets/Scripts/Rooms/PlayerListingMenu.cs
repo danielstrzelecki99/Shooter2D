@@ -110,6 +110,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
+            if (PhotonNetwork.CurrentRoom.PlayerCount <= 1) return;
             for(int i = 0; i < playerListings.Count; i++) // check if all players are ready
             {
                 if (playerListings[i].Player != PhotonNetwork.LocalPlayer) // check if player on list is not host player

@@ -88,11 +88,22 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
                 }
             }
 
-            PhotonNetwork.JoinOrCreateRoom(createInput.text, options, TypedLobby.Default);
+            PhotonNetwork.CreateRoom(createInput.text, options, TypedLobby.Default);
             createGameMenu.SetActive(false);
         }
     }
-
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        createGameMenu.SetActive(true);
+        if (message == "A game with the specified id already exist.")
+        {
+            errorText.text = "This server name already exists !";
+        }
+        else
+        {
+            errorText.text = message;
+        }
+    }
     public override void OnCreatedRoom()
     {
         roomsCanvases.CurrentRoomCanvas.Show();

@@ -13216,7 +13216,6 @@ MonoBehaviour:
   weapon2: {fileID: 7550169550785692224}
   bullet: {fileID: 1247887314533593849, guid: f681eafe0cc535b48bc4b4a80cf753f6, type: 3}
   DisableInputs: 0
-  quitUIShowed: 0
 --- !u!114 &7197215574491090403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13242,7 +13241,6 @@ MonoBehaviour:
   weapon: {fileID: 7550169550785692224}
   riffle: {fileID: 7008153050880386164}
   DisableInputs: 0
-  quitUIShowed: 0
 --- !u!114 &6472150491140279519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13462,6 +13460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7008343939132955052}
+  src: {fileID: 6683543382123631435}
+  healSound: {fileID: 8300000, guid: 015db88de364c5e45b3917ed6216895d, type: 3}
+  armorSound: {fileID: 8300000, guid: cd7977f97d1013b4ba07381b0a0fea81, type: 3}
+  dmgSound: {fileID: 0}
 --- !u!82 &6683543382123631435
 AudioSource:
   m_ObjectHideFlags: 0

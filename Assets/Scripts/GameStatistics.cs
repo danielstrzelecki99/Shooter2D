@@ -83,5 +83,13 @@ public class GameStatistics : MonoBehaviourPunCallbacks
         toFill = (float)((float)PlayFabManagerLogin.experience / 1000f);
         toNextLevel.text = PlayFabManagerLogin.experience.ToString() + " / 1000";
         fillLevelImage.fillAmount = toFill;
+        ResetStatisticsAfterGame();
+    }
+
+    public void ResetStatisticsAfterGame(){
+        PlayerEq.pointsInGame = 0;
+        PlayerEq.killsInGame = 0;
+        PlayerEq.deathsInGame = 0;
+        PlayerEq.damageDealtInGame = 0;
     }
 }

@@ -20,6 +20,8 @@ public class PlayerEq : MonoBehaviourPunCallbacks
     PlayerHealth playerHealth;
     PlayerHealth playerArmor;
     public GameObject player;
+    public AudioSource src;
+    public AudioClip healSound, armorSound;
 
     private void Awake() {
         playerHealth = player.GetComponent<PlayerHealth>();
@@ -45,10 +47,14 @@ public class PlayerEq : MonoBehaviourPunCallbacks
             if(aidKitAmount > 0 && Input.GetKeyDown(KeyCode.F) && !playerHealth.isHealthFull()){
                     aidKitAmount -= 1;
                     GetComponent<PhotonView>().RPC("Heal", RpcTarget.AllBuffered);
+                    src.clip = healSound;
+                    src.Play();
             }
             if(armorAmount > 0 && Input.GetKeyDown(KeyCode.G) && !playerArmor.isArmorFull()){
                 armorAmount -= 1;
                 GetComponent<PhotonView>().RPC("ArmorUse", RpcTarget.AllBuffered);
+                src.clip = armorSound;
+                src.Play();
             }
             UpdatePoints();
         }

@@ -84,17 +84,14 @@ public class PlayerHealth : MonoBehaviourPun
     [PunRPC]
     public void Death()
     {
-        Debug.Log($"Player: {gameObject}");
         rb.gravityScale = 0;
         playerCanvas.SetActive(false);
         gameObject.SetActive(false);
         if (weaponManager.CurrentWeaponNo == 1)
         {
-            Debug.Log("Changing weapon after death from gun to riffle");
             weaponManager.ChangeWeapon();
         }
         gunShootingController.UpdateWeaponSettings();
-        Debug.Log("Player model has been destroyed");
     }
     [PunRPC]
     public void Revive()
@@ -108,17 +105,14 @@ public class PlayerHealth : MonoBehaviourPun
         //set armor level and image to 1
         localArmor = 0;
         armorFillImage.fillAmount = localArmor;
-        Debug.Log("Player has respawned again");
         //restart ammo in both weapons
         riffleController.currentClip = 20;
         riffleController.currentAmmo = 20;
         gunController.currentClip = 10;
-        //set current weapon on gun
-        //gunShootingController.SetWeapon(weapon1);
+
     }
     public void EnableInputs()
     {
-        Debug.Log($"Enable inputs method");
         playerScript.DisableInputs = false;
         shootingScript.DisableInputs = false;
         weaponManager.DisableInputs = false;

@@ -13033,11 +13033,12 @@ MonoBehaviour:
   text: {fileID: 1554439287}
   clockObject: {fileID: 645355276}
   endGameUI: {fileID: 1318777454}
+  endGameText: {fileID: 0}
   quitGameUI: {fileID: 1928624397}
   quitButton: {fileID: 0}
   yesButton: {fileID: 1905655401}
   noButton: {fileID: 154418428}
-  duration: 90
+  duration: 240
   currentLevel: 0
   currentExp: 0
   currentCoins: 0

@@ -58,8 +58,6 @@ public class WeaponScript : MonoBehaviourPun
         RcurrentAmmo = currentAmmo;
         src.clip = reloadSound;
         src.Play();
-        //Debug.Log($"Actual ammo: {currentClip}/{currentAmmo}");
-        //Debug.Log($"Static variables: {RcurrentClip}/{RcurrentAmmo}");
     }
     public void AddAmmo(int ammoAmount)
     {
@@ -68,6 +66,5 @@ public class WeaponScript : MonoBehaviourPun
         {
             currentAmmo = maxAmmoSize;
         }
-        Debug.Log($"WeaponScript, currentAmmo: {currentAmmo}");
     }
 }

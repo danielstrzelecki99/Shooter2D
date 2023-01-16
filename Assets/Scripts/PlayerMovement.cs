@@ -87,11 +87,6 @@ public class PlayerMovement : MonoBehaviourPun
     {
         if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
-            // if (isDashing)
-            // {
-            //     return;
-            // }
-
             if (grounded && !Input.GetKey(KeyCode.Space))
             {
                 doubleJump = false;
@@ -106,10 +101,6 @@ public class PlayerMovement : MonoBehaviourPun
     
             //Set the yVelocity in the animator
             animator.SetFloat("yVelocity", body.velocity.y);
-            // if (Input.GetKey(KeyCode.LeftShift) && canDash)
-            // {
-            //     StartCoroutine(Dash());
-            // }
         }
     }
 
@@ -132,7 +123,6 @@ public class PlayerMovement : MonoBehaviourPun
         if(other.gameObject.tag == "Ground")
         {
             grounded = true;
-            //Debug.Log(other.gameObject.tag);
         }
     }
 
@@ -154,30 +144,4 @@ public class PlayerMovement : MonoBehaviourPun
             pickUpAllowed = false;
         }
     }
-    
-
-    
-
-    // private IEnumerator Dash()
-    // {
-    //     canDash = false;
-    //     isDashing = true;
-    //     float originalGravity = body.gravityScale;
-    //     body.gravityScale = 0f;
-    //     if (horizontalInput > 0.01f)
-    //     {
-    //         body.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-    //     }
-    //     else if (horizontalInput < -0.01f)
-    //     {
-    //         body.velocity = new Vector2(transform.localScale.x * -dashingPower, 0f);
-    //     }
-    //     //tr.emitting = true;
-    //     yield return new WaitForSeconds(dashingTime);
-    //     //tr.emitting = false;
-    //     body.gravityScale = originalGravity;
-    //     isDashing = false;
-    //     yield return new WaitForSeconds(dashingCooldown);
-    //     canDash = true;
-    // }
 }

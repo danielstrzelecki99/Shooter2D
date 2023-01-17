@@ -18,6 +18,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public GameObject startGameButton;
     public GameObject readyButton;
     public TextMeshProUGUI readyButtonText;
+    public TextMeshProUGUI infoTextText;
+    public GameObject infoTextObject;
 
     private bool ready = false;
     private bool host = false;
@@ -28,6 +30,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         ShowOrHideStartGameButton();
         SetReady(false);
         CheckIfPlayerIsHost();
+        infoTextObject.SetActive(false);
         if (host)
             base.photonView.RPC("RPC_ChangeHostPlayer", RpcTarget.AllViaServer, PhotonNetwork.LocalPlayer, host);
     }
@@ -110,13 +113,23 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount <= 1) return;
-            for(int i = 0; i < playerListings.Count; i++) // check if all players are ready
+            if (PhotonNetwork.CurrentRoom.PlayerCount <= 1)
+            {
+                infoTextText.text = "Minimum players number: 2";
+                infoTextObject.SetActive(true);
+                return;
+
+            }
+            for (int i = 0; i < playerListings.Count; i++) // check if all players are ready
             {
                 if (playerListings[i].Player != PhotonNetwork.LocalPlayer) // check if player on list is not host player
                 {
                     if (!playerListings[i].Ready)
+                    {
+                        infoTextText.text = "All players have to be ready";
+                        infoTextObject.SetActive(true);
                         return;
+                    }
                 }
             }
 

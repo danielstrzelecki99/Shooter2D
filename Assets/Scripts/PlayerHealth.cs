@@ -68,6 +68,9 @@ public class PlayerHealth : MonoBehaviourPun
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon
             weaponManager.DisableInputs = true; //disable switching guns
+            PlayerEq.armorAmount = 0;
+            PlayerEq.ammoAmount = 0;
+            PlayerEq.aidKitAmount = 0;
             GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
             PlayerEq.deathsInGame += 1;
             if (gameMode == "Deathmatch")

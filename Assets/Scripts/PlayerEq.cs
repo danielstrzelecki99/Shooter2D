@@ -31,12 +31,6 @@ public class PlayerEq : MonoBehaviourPunCallbacks
     {
          view = GetComponent<PhotonView>();
     }
-    public override void OnEnable()
-    {
-        armorAmount = 0;
-        ammoAmount = 0;
-        aidKitAmount = 0;
-    }
 
     void Update()
     {

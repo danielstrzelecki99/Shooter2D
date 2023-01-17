@@ -102,7 +102,6 @@ public class Gun_Shooting : MonoBehaviourPun
                 {
                     DisableInputs = true; //disable shooting and moving weapon
                     quitUIShowed = true;
-                    Debug.Log("Shooting disabled");
                 }
             }
             else
@@ -111,14 +110,12 @@ public class Gun_Shooting : MonoBehaviourPun
                 {
                     DisableInputs = false; //enable shooting and moving weapon
                     quitUIShowed = false;
-                    Debug.Log("Shooting enabled");
                 }
                 if (Timer.isNoButtonPressed)
                 {
                     DisableInputs = false; //enable shooting and moving weapon
                     Timer.isNoButtonPressed = false;
                     quitUIShowed = false;
-                    Debug.Log("Shooting enabled by button");
                 }
             }       
         }

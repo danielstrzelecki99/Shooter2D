@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviourPun
+public class PlayerMovement : MonoBehaviourPunCallbacks
 {
     //Move and jump
     private float horizontalInput;
@@ -21,16 +21,6 @@ public class PlayerMovement : MonoBehaviourPun
     public AudioSource src;
     public AudioClip jumpSound;
 
-
-
-    //Dash
-    // private bool canDash = true;
-    // private bool isDashing;
-    // private float dashingPower = 24f;
-    // private float dashingTime = 0.2f;
-    // private float dashingCooldown = 1f;
-    //[SerializeField] private TrailRenderer tr;
-
     PhotonView view;
 
     public bool DisableInputs = false; //when player is dead variable disable inputs
@@ -44,6 +34,11 @@ public class PlayerMovement : MonoBehaviourPun
         animator = GetComponent<Animator>();
     }
 
+    public override void OnEnable()
+    {
+        speed = 4;
+    }
+
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(6,6);
@@ -51,8 +46,6 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Update()
     {
-        //GameManagerScript.instance.LocalPlayer = gameObject;
-
         if (view.IsMine && !DisableInputs)
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
@@ -87,11 +80,6 @@ public class PlayerMovement : MonoBehaviourPun
     {
         if ((view.IsMine || !PhotonNetwork.InRoom) && !DisableInputs)
         {
-            // if (isDashing)
-            // {
-            //     return;
-            // }
-
             if (grounded && !Input.GetKey(KeyCode.Space))
             {
                 doubleJump = false;
@@ -106,10 +94,6 @@ public class PlayerMovement : MonoBehaviourPun
     
             //Set the yVelocity in the animator
             animator.SetFloat("yVelocity", body.velocity.y);
-            // if (Input.GetKey(KeyCode.LeftShift) && canDash)
-            // {
-            //     StartCoroutine(Dash());
-            // }
         }
     }
 
@@ -132,7 +116,6 @@ public class PlayerMovement : MonoBehaviourPun
         if(other.gameObject.tag == "Ground")
         {
             grounded = true;
-            //Debug.Log(other.gameObject.tag);
         }
     }
 
@@ -154,30 +137,4 @@ public class PlayerMovement : MonoBehaviourPun
             pickUpAllowed = false;
         }
     }
-    
-
-    
-
-    // private IEnumerator Dash()
-    // {
-    //     canDash = false;
-    //     isDashing = true;
-    //     float originalGravity = body.gravityScale;
-    //     body.gravityScale = 0f;
-    //     if (horizontalInput > 0.01f)
-    //     {
-    //         body.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-    //     }
-    //     else if (horizontalInput < -0.01f)
-    //     {
-    //         body.velocity = new Vector2(transform.localScale.x * -dashingPower, 0f);
-    //     }
-    //     //tr.emitting = true;
-    //     yield return new WaitForSeconds(dashingTime);
-    //     //tr.emitting = false;
-    //     body.gravityScale = originalGravity;
-    //     isDashing = false;
-    //     yield return new WaitForSeconds(dashingCooldown);
-    //     canDash = true;
-    // }
 }

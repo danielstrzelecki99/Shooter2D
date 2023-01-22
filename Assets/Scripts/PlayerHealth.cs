@@ -91,6 +91,7 @@ public class PlayerHealth : MonoBehaviourPun
         rb.gravityScale = 0;
         playerCanvas.SetActive(false);
         gameObject.SetActive(false);
+        slocalHealth = 0;
         if (weaponManager.CurrentWeaponNo == 1)
         {
             Debug.Log("Changing weapon after death from gun to riffle");

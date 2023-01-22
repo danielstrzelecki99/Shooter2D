@@ -62,7 +62,6 @@ public class SpawnPlayers : MonoBehaviour
         int numberOfSpawnPoint = gen.Next(11);
         Vector3 spawnPosition;
         String activeSceneName = SceneManager.GetActiveScene().name;
-        Debug.Log(activeSceneName);
         if (activeSceneName == "Game")
         {
             spawnPosition = new Vector3(listOfSpawnsForestMap[numberOfSpawnPoint, 0], listOfSpawnsForestMap[numberOfSpawnPoint, 1]);

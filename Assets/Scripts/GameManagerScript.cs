@@ -7,6 +7,7 @@ using Cinemachine;
 using TMPro;
 using CharacterCreator2D;
 using UnityEngine.UI;
+using System;
 
 public class GameManagerScript : MonoBehaviourPun
 {
@@ -28,7 +29,7 @@ public class GameManagerScript : MonoBehaviourPun
     //Dispaly ammo variables
     public TextMeshProUGUI ammoText;
 
-    public float[,] listOfSpawns =
+    public float[,] listOfSpawnsForestMap =
     {
         {28, 0.2f},
         {37, 26},
@@ -41,6 +42,36 @@ public class GameManagerScript : MonoBehaviourPun
         {43, 14},
         {58, 20},
         {61.5f, 26}
+    };
+
+    public float[,] listOfSpawnsWinterMap =
+    {
+        {44, 19},
+        {100, 22},
+        {128, 24},
+        {78, 40},
+        {52, 47},
+        {83, 47},
+        {80, 58},
+        {121, 57},
+        {122, 46},
+        {61, 29},
+        {97, 26},
+    };
+
+    public float[,] listOfSpawnsEveningMap =
+    {
+        {39, 20},
+        {70, 24},
+        {98, 19},
+        {98, 1},
+        {117, -29},
+        {107, -43},
+        {36, -43},
+        {23, -28},
+        {60, -20},
+        {68, 24},
+        {52, 10}
     };
 
     public void Awake()
@@ -88,7 +119,20 @@ public class GameManagerScript : MonoBehaviourPun
     {
         System.Random gen = new System.Random();
         int numberOfSpawnPoint = gen.Next(11);
-        Vector3 spawnPosition = new Vector3(listOfSpawns[numberOfSpawnPoint, 0], listOfSpawns[numberOfSpawnPoint, 1]);
+        Vector3 spawnPosition;
+        String activeSceneName = SceneManager.GetActiveScene().name;
+        if (activeSceneName == "Game")
+        {
+            spawnPosition = new Vector3(listOfSpawnsForestMap[numberOfSpawnPoint, 0], listOfSpawnsForestMap[numberOfSpawnPoint, 1]);
+        }
+        else if (activeSceneName == "WinterMap")
+        {
+            spawnPosition = new Vector3(listOfSpawnsWinterMap[numberOfSpawnPoint, 0], listOfSpawnsWinterMap[numberOfSpawnPoint, 1]);
+        }
+        else
+        {
+            spawnPosition = new Vector3(listOfSpawnsEveningMap[numberOfSpawnPoint, 0], listOfSpawnsEveningMap[numberOfSpawnPoint, 1]);
+        }
         GameObject player;
         if (PhotonNetwork.InRoom)
         {
@@ -105,7 +149,20 @@ public class GameManagerScript : MonoBehaviourPun
     {
         System.Random gen = new System.Random();
         int numberOfSpawnPoint = gen.Next(11);
-        Vector3 spawnPosition = new Vector3(listOfSpawns[numberOfSpawnPoint, 0], listOfSpawns[numberOfSpawnPoint, 1]);
+        Vector3 spawnPosition;
+        String activeSceneName = SceneManager.GetActiveScene().name;
+        if (activeSceneName == "Game")
+        {
+            spawnPosition = new Vector3(listOfSpawnsForestMap[numberOfSpawnPoint, 0], listOfSpawnsForestMap[numberOfSpawnPoint, 1]);
+        }
+        else if (activeSceneName == "WinterMap")
+        {
+            spawnPosition = new Vector3(listOfSpawnsWinterMap[numberOfSpawnPoint, 0], listOfSpawnsWinterMap[numberOfSpawnPoint, 1]);
+        }
+        else
+        {
+            spawnPosition = new Vector3(listOfSpawnsEveningMap[numberOfSpawnPoint, 0], listOfSpawnsEveningMap[numberOfSpawnPoint, 1]);
+        }
         LocalPlayer.transform.localPosition = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
     }
 

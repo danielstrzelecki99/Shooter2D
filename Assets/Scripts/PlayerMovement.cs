@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviourPun
+public class PlayerMovement : MonoBehaviourPunCallbacks
 {
     //Move and jump
     private float horizontalInput;
@@ -21,16 +21,6 @@ public class PlayerMovement : MonoBehaviourPun
     public AudioSource src;
     public AudioClip jumpSound;
 
-
-
-    //Dash
-    // private bool canDash = true;
-    // private bool isDashing;
-    // private float dashingPower = 24f;
-    // private float dashingTime = 0.2f;
-    // private float dashingCooldown = 1f;
-    //[SerializeField] private TrailRenderer tr;
-
     PhotonView view;
 
     public bool DisableInputs = false; //when player is dead variable disable inputs
@@ -44,6 +34,11 @@ public class PlayerMovement : MonoBehaviourPun
         animator = GetComponent<Animator>();
     }
 
+    public override void OnEnable()
+    {
+        speed = 4;
+    }
+
     private void Start()
     {
         Physics2D.IgnoreLayerCollision(6,6);
@@ -51,8 +46,6 @@ public class PlayerMovement : MonoBehaviourPun
 
     private void Update()
     {
-        //GameManagerScript.instance.LocalPlayer = gameObject;
-
         if (view.IsMine && !DisableInputs)
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * speed;

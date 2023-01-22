@@ -37,6 +37,8 @@ public class PlayerHealth : MonoBehaviourPun
     [SerializeField] private GameObject weapon1;
     WeaponScript gunController;
 
+    private Animator animator;
+
     public void Start()
     {
         armorFillImage.fillAmount = localArmor;
@@ -45,6 +47,7 @@ public class PlayerHealth : MonoBehaviourPun
         gunShootingController = GetComponent<Gun_Shooting>();
         gunController = weapon1.GetComponent<WeaponScript>();
         gameMode = PhotonNetwork.CurrentRoom.CustomProperties["GameMode"].ToString();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -64,6 +67,7 @@ public class PlayerHealth : MonoBehaviourPun
         //condition only for specific (local) 
         if(photonView.IsMine && localHealth <= 0)
         {
+            animator.Play("Idle");
             localHealth = 0;
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon

@@ -37,6 +37,8 @@ public class PlayerHealth : MonoBehaviourPun
     [SerializeField] private GameObject weapon1;
     WeaponScript gunController;
 
+    private Animator animator;
+
     public void Start()
     {
         armorFillImage.fillAmount = localArmor;
@@ -45,6 +47,7 @@ public class PlayerHealth : MonoBehaviourPun
         gunShootingController = GetComponent<Gun_Shooting>();
         gunController = weapon1.GetComponent<WeaponScript>();
         gameMode = PhotonNetwork.CurrentRoom.CustomProperties["GameMode"].ToString();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -64,6 +67,7 @@ public class PlayerHealth : MonoBehaviourPun
         //condition only for specific (local) 
         if(photonView.IsMine && localHealth <= 0)
         {
+            animator.Play("Idle");
             localHealth = 0;
             playerScript.DisableInputs = true; //disable inputs like jump and move
             shootingScript.DisableInputs = true; //disable shooting and moving weapon
@@ -87,18 +91,15 @@ public class PlayerHealth : MonoBehaviourPun
     [PunRPC]
     public void Death()
     {
-        Debug.Log($"Player: {gameObject}");
         rb.gravityScale = 0;
         playerCanvas.SetActive(false);
         gameObject.SetActive(false);
         slocalHealth = 0;
         if (weaponManager.CurrentWeaponNo == 1)
         {
-            Debug.Log("Changing weapon after death from gun to riffle");
             weaponManager.ChangeWeapon();
         }
         gunShootingController.UpdateWeaponSettings();
-        Debug.Log("Player model has been destroyed");
     }
     [PunRPC]
     public void Revive()
@@ -112,17 +113,14 @@ public class PlayerHealth : MonoBehaviourPun
         //set armor level and image to 1
         localArmor = 0;
         armorFillImage.fillAmount = localArmor;
-        Debug.Log("Player has respawned again");
         //restart ammo in both weapons
         riffleController.currentClip = 20;
         riffleController.currentAmmo = 20;
         gunController.currentClip = 10;
-        //set current weapon on gun
-        //gunShootingController.SetWeapon(weapon1);
+
     }
     public void EnableInputs()
     {
-        Debug.Log($"Enable inputs method");
         playerScript.DisableInputs = false;
         shootingScript.DisableInputs = false;
         weaponManager.DisableInputs = false;

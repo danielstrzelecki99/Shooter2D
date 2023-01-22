@@ -13264,8 +13264,6 @@ MonoBehaviour:
   shootingScript: {fileID: 7197215574491090403}
   weaponManager: {fileID: 7878504907076256891}
   src: {fileID: 6683543382123631435}
-  healSound: {fileID: 8300000, guid: 015db88de364c5e45b3917ed6216895d, type: 3}
-  armorSound: {fileID: 8300000, guid: cd7977f97d1013b4ba07381b0a0fea81, type: 3}
   dmgSound: {fileID: 8300000, guid: 1dcbf9fceeaed774d8b0747f0512e095, type: 3}
   riffle: {fileID: 7008153050880386164}
   weapon1: {fileID: 7550169550785692224}
@@ -13463,7 +13461,6 @@ MonoBehaviour:
   src: {fileID: 6683543382123631435}
   healSound: {fileID: 8300000, guid: 015db88de364c5e45b3917ed6216895d, type: 3}
   armorSound: {fileID: 8300000, guid: cd7977f97d1013b4ba07381b0a0fea81, type: 3}
-  dmgSound: {fileID: 0}
 --- !u!82 &6683543382123631435
 AudioSource:
   m_ObjectHideFlags: 0

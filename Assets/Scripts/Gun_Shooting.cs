@@ -89,10 +89,8 @@ public class Gun_Shooting : MonoBehaviourPun
                 if (Input.GetKeyDown(KeyCode.C))
                 {
                     //load weapon settings 
-                    //weaponController = weapon.GetComponent<WeaponScript>();
                     UpdateWeaponSettings();
                     //reset rotation of the foreArm when switched to riffle
-                    //Debug.Log("Reseting forearm rotation");
                     forearmHolder.transform.localRotation = Quaternion.identity;
                 }
                 if (ItemsManager.isAmmoPickup)
@@ -104,7 +102,6 @@ public class Gun_Shooting : MonoBehaviourPun
                 {
                     DisableInputs = true; //disable shooting and moving weapon
                     quitUIShowed = true;
-                    Debug.Log("Shooting disabled");
                 }
             }
             else
@@ -113,14 +110,12 @@ public class Gun_Shooting : MonoBehaviourPun
                 {
                     DisableInputs = false; //enable shooting and moving weapon
                     quitUIShowed = false;
-                    Debug.Log("Shooting enabled");
                 }
                 if (Timer.isNoButtonPressed)
                 {
                     DisableInputs = false; //enable shooting and moving weapon
                     Timer.isNoButtonPressed = false;
                     quitUIShowed = false;
-                    Debug.Log("Shooting enabled by button");
                 }
             }       
         }
@@ -145,29 +140,6 @@ public class Gun_Shooting : MonoBehaviourPun
         }
     }
 
-    //public void Shot()
-    //{
-    //    if (weaponController.currentClip > 0)
-    //    {
-    //        //enable shoting animation
-    //        shot = true;
-    //        //Clone the bullet object every thime when shot funciton is involved
-    //        PhotonNetwork.Instantiate(Bullet.name, new Vector2(firePoint.position.x, firePoint.position.y), firePoint.rotation, 0);
-    //        weaponController.currentClip--;
-    //        Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
-    //    }
-    //}
-    //[PunRPC]
-    //public void Reload()
-    //{
-    //    int reloadAmount = weaponController.maxClipSize - weaponController.currentClip; //how many bullets to refill cilp
-    //    if (weaponController.currentAmmo - reloadAmount < 0)
-    //        reloadAmount = weaponController.currentAmmo;
-    //    weaponController.currentClip += reloadAmount;
-    //    weaponController.currentAmmo -= reloadAmount;
-    //    Debug.Log($"{weaponController.currentClip}/{weaponController.currentAmmo}");
-    //}
-
     private void FlipWeapon(Transform objectToRotate, int isRiffle)
     {
         if (isRiffle == 0)
@@ -177,12 +149,10 @@ public class Gun_Shooting : MonoBehaviourPun
             objectToRotate.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
             if (rotZ < 97 && rotZ > -95)
             {
-                //Debug.Log("Facing right");
                 objectToRotate.transform.Rotate(0f, 0f, objectToRotate.transform.rotation.z);
             }
             else
             {
-                //Debug.Log("Facing left");
                 objectToRotate.transform.Rotate(180f, 0f, objectToRotate.transform.rotation.z);
             }
         }
@@ -195,11 +165,6 @@ public class Gun_Shooting : MonoBehaviourPun
         FacingRight = !FacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
-    //private void NicknameFlip()
-    //{
-    //    nickName.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    //}
 
     //Setters and getters
     public void SetWeapon(GameObject newWeapon)

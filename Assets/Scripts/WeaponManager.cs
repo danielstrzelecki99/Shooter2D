@@ -49,7 +49,6 @@ public class WeaponManager : MonoBehaviour
                 {
                     DisableInputs = true; //disable weapons management 
                     quitUIShowed = true;
-                    Debug.Log("Weapon management disabled");
                 }
             }
             else
@@ -58,13 +57,11 @@ public class WeaponManager : MonoBehaviour
                 {
                     DisableInputs = false; //enable weapons management 
                     quitUIShowed = false;
-                    Debug.Log("Weapon management enabled");
                 }
                 if (Timer.isNoButtonPressed)
                 {
                     DisableInputs = false; //enable weapons management 
                     quitUIShowed = false;
-                    Debug.Log("Weapon management enabled by button");
                 }
             } 
         }

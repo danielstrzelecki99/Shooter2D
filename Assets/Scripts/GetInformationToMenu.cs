@@ -34,7 +34,7 @@ public class GetInformationToMenu : MonoBehaviourPunCallbacks
 
     public void GetAccountStats() {
         levelStat.text = "Account level: " + PlayFabManagerLogin.level.ToString();
-        winsStat.text = "Won games: " + PlayFabManagerLogin.wins.ToString();
+        winsStat.text = "Won battle royal games: " + PlayFabManagerLogin.wins.ToString();
         gamesStat.text = "Played games: " + PlayFabManagerLogin.playedGames.ToString();
         coinsStat.text = "GIT coins: " + PlayFabManagerLogin.coins.ToString();
         Debug.Log("Got Stats!");
